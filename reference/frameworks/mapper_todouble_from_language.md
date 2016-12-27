@@ -43,8 +43,8 @@ Stack:
 [
   NEWGTS { 'label0' '42' } RELABEL
   //10 NaN NaN NaN '4,2' ADDVALUEE
-  10 NaN NaN NaN "2,1" ADDVALUE
-  20 NaN NaN NaN "4,2" ADDVALUE
+  10 NaN NaN NaN '2,1' ADDVALUE
+  20 NaN NaN NaN '4,2' ADDVALUE
   NEWGTS "tata" RENAME 
   { 'label0' '42' } RELABEL
   10 NaN NaN NaN 2.1 ADDVALUE
