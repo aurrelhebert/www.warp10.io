@@ -5,7 +5,7 @@ isPage: "true"
 link: "/gettingStarted"
 categoryTree: ["getting-stated"]
 oldPath: ["00-Index.html.md"]
-category: "getting-started"
+category: "howto"
 ---
 
 This page describes how to download and deploy a standalone version of the Warp 10 platform, generate your first tokens and start interacting with the platform by pushing data and performing analytics.

@@ -3,6 +3,7 @@ title: 'Worf: Warp10 token tool'
 layout: function
 isPage: true
 category: tools
+categoryTree: ["worf"]
 ---
 
 Warp10 entry points are based on bearer token authentication. 

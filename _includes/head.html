@@ -4,50 +4,17 @@
   <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/theme.css">
 
-  <style>
-    body {
-      background-color: #eeeeee;
-    }
-  </style>
-
-
-  <link rel="stylesheet" href="https://home.cityzendata.net/quantum/assets/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
-
-  <script src="https://home.cityzendata.net/quantum/webcomponents-lite.js"></script>
-  <script src="https://home.cityzendata.net/quantum/assets/jquery/dist/jquery.js"></script>
-  <script src="https://home.cityzendata.net/quantum/assets/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="{{ site.baseurl }}/components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="{{ site.baseurl }}/components/polymer/polymer.html">
+  <link rel="import" href="{{ site.baseurl }}/components/marked-element/marked-element.html">
 
   <link rel="import" href="https://home.cityzendata.net/quantum/warp10-components.html">
 
-  <!--
-  <script src="http://localhost:8000/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="http://localhost:8000/bower_components/jquery/dist/jquery.js"></script>
-  <script src="http://localhost:8000/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <link   rel="import" href="http://localhost:8000/bower_components/polymer/polymer.html">
-  <link   rel="import" href="http://localhost:8000/bower_components/warp10-navbar/warp10-navbar.html">
-  <link   rel="import" href="http://localhost:8000/bower_components/warp10-quantum/warp10-conf.html">
-  <link   rel="import" href="http://localhost:8000/bower_components/warp10-quantum/warp10-quantum-widget.html">
-  -->
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ "/css" | prepend: site.baseurl }}/{{ site.filename }}.css">
-  <link rel="stylesheet" href="{{ "/css" | prepend: site.baseurl }}/{{ site.filename }}-navbar.css">
   <!-- Pygments Github CSS -->
   <link rel="stylesheet" href="{{ "/css" | prepend: site.baseurl }}/syntax.css">
-
-  <style>
-    :host {
-      display: block;
-    }
-    .top-10 { margin-top:10px; }
-    h4 {
-      font-weight: bold;
-    }
-    .list-group-item {
-      cursor: pointer;
-    }
-  </style>
 </head>

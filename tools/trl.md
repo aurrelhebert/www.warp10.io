@@ -3,6 +3,7 @@ title: 'Token revocation list'
 layout: function
 isPage: true
 category: tools
+categoryTree: ["trl"]
 ---
 
 Token Revocation List (trl) are the only way for revoke tokens or application. 

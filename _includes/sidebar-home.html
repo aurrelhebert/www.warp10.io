@@ -1,24 +1,9 @@
-<div id="panel-home" class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a data-toggle="collapse" data-parent="#side-menu" href="#collapse-home">
-        <span class="glyphicon glyphicon-home"></span>Home</a>
-    </h4>
-  </div>
-  <div id="collapse-home" class="panel-collapse collapse {% if (page.category == 'introduction')  %} in {% endif %}">
-    <div class="list-group">
+<a class="nav-link" data-toggle="collapse" href="#collapse-home"><span class="fa fa-home"></span> Home</a>
 
-      <a class="list-group-item" href="{{ site.baseurl }}/introduction/platform">Overview</a>
-
-      <a class="list-group-item" href="{{ site.baseurl }}/introduction/concepts">Concepts</a>
-
-      <a class="list-group-item" href="{{ site.baseurl }}/introduction/history">History</a>
-
-      <a class="list-group-item" href="{{ site.baseurl }}/introduction/team">Team</a>
-
-      <a class="list-group-item" href="{{ site.baseurl }}/introduction/versions">Versions</a>
-
-    </div>
-
-  </div>
+<div id="collapse-home" class="collapse {% if (page.category == 'introduction')  %} show {% endif %}">
+  <a class="nav-link" href="{{ site.baseurl }}/introduction/platform">Overview</a>
+  <a class="nav-link" href="{{ site.baseurl }}/introduction/concepts">Concepts</a>
+  <a class="nav-link" href="{{ site.baseurl }}/introduction/history">History</a>
+  <a class="nav-link" href="{{ site.baseurl }}/introduction/team">Team</a>
+  <a class="nav-link" href="{{ site.baseurl }}/introduction/versions">Versions</a>
 </div>

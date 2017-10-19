@@ -3,6 +3,7 @@ title: 'Github repositories: Warp10 tools'
 layout: function
 isPage: true
 category: tools
+categoryTree: ["github-reporitories"]
 ---
 
 This page lists all the Warp10 tools, and their repositories on Github.

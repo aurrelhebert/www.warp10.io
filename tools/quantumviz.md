@@ -3,6 +3,7 @@ title: Quantumviz widget
 layout: function
 isPage: true
 category: tools
+categoryTree: ["quantumviz"]
 ---
 
 The **Quantumviz** widget is a [Polymer webcomponent](https://www.polymer-project.org/) to visualize data from the Warp 10 platform.

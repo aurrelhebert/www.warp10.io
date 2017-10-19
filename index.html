@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Warp 10</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+
+  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="components/polymer/polymer.html">
+  <link rel="import" href="components/marked-element/marked-element.html">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand mx-auto" href="#">Warp<span>10</span></a>
+    <div class="collapse navbar-collapse" id="navbarCollapse1">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a class="nav-link" href="#/">Home <span
+            class="sr-only">(current)</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="/#benefits">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/getting-started">Quick start</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#doc">Reference</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="page-wrap">
+  <header>
+    <marked-element>
+      <div slot="markdown-html"></div>
+      <script type="text/markdown" src="/landing/headline.md"></script>
+    </marked-element>
+  </header>
+
+  <!-- Benefits
+      ================================================== -->
+  <section class="service-sec" id="benefits">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-sm-center service-block"><i class="fa fa-globe" aria-hidden="true"></i>
+          <marked-element>
+            <div slot="markdown-html"></div>
+            <script type="text/markdown" src="/landing/gts.md"></script>
+          </marked-element>
+        </div>
+        <div class="col-md-6 text-sm-center service-block"><i class="fa fa-cubes" aria-hidden="true"></i>
+          <marked-element>
+            <div slot="markdown-html"></div>
+            <script type="text/markdown" src="/landing/platform.md"></script>
+          </marked-element>
+        </div>
+        <div class="col-md-6 text-sm-center service-block"><i class="fa fa-gears" aria-hidden="true"></i>
+          <marked-element>
+            <div slot="markdown-html"></div>
+            <script type="text/markdown" src="/landing/data.md"></script>
+          </marked-element>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+  </section>
+
+  <!-- About
+      ================================================== -->
+  <section class="about-sec parallax-section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h2>
+            <small>Who We Are</small>
+            About<br>
+            US
+          </h2>
+        </div>
+        <div class="col-md-8">
+          <marked-element>
+            <div slot="markdown-html"></div>
+            <script type="text/markdown" src="/landing/history.md"></script>
+          </marked-element>
+          <p><a href="#" class="btn btn-transparent-white btn-capsul">Explore More</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="action-sec">
+    <div class="container">
+      <div class="action-box text-center"><h2>START HERE </h2>
+        <a class="btn btn-success" href="/getting-started" target="_blank">Quick Start</a></div>
+    </div>
+  </section>
+  <footer>
+    <div class="container text-center top-margin">
+      <a class="fab" href="https://twitter.com/CityzenData" target="_blank">
+        <span class="fa fa-fw fa-twitter"></span>
+      </a>
+      <a class="fab" href="https://github.com/cityzendata/" target="_blank">
+        <span class="fa fa-fw fa-github"></span>
+      </a>
+      <a class="fab" href="mailto:contact@cityzendata.com" target="_blank">
+        <span class="fa fa-fw fa-envelope"></span> contact@cityzendata.com
+      </a>
+      <br/>
+      <a href="{{ site.baseurl }}/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+<script src="js/scrollpos_styler.js"></script>
+</body>
+</html>

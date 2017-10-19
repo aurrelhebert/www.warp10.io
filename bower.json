@@ -1,0 +1,24 @@
+{
+  "name": "www.warp10.io",
+  "homepage": "https://github.com/cityzendata/www.warp10.io",
+  "authors": [
+    "Xavier Marin <marin.xavier@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "granite-bootstrap": "LostInBrittany/granite-bootstrap#^3.3.7",
+    "marked-element": "PolymerElements/marked-element#^2.3.0"
+  },
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ]
+}
