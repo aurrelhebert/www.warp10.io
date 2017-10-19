@@ -79,9 +79,11 @@ NEWGTS 1 20 <% NaN NaN NaN 4 PICK ADDVALUE %> FOR ]
 
 #### Global
 
-field `"PRECISION"` number of inner loops (a LONG). Default is 2
+field `"ROBUST"` if TRUE, set defaults of number of inner and outer loops to 1 and 15 instead of 2 and 0. Default is FALSE
 
-field `"ROBUSTNESS"` number of outer loops (a LONG). Default is 15
+field `"PRECISION"` number of inner loops (a LONG). Default is 2 or 1
+
+field `"ROBUSTNESS"` number of outer loops (a LONG). Default is 0 or 15
 
 #### Seasonal extract
 
