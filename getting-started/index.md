@@ -1,12 +1,3 @@
----
-title: "Getting Started - Index"
-layout: "function"
-isPage: "true"
-link: "/gettingStarted"
-categoryTree: ["getting-stated"]
-oldPath: ["00-Index.html.md"]
-category: "howto"
----
 
 This page describes how to download and deploy a standalone version of the Warp 10 platform, generate your first tokens and start interacting with the platform by pushing data and performing analytics.
 
@@ -22,7 +13,7 @@ The standalone version of the Warp 10 platform uses LevelDB as its storage backe
 
 <div class="right margin-left">
   <a href='https://dl.bintray.com/cityzendata/generic/io/warp10/warp10/1.2.11-rc5/warp10-1.2.11-rc5.tar.gz' target="_blank">
-    <img class="no-zoom" src="{{ site.baseurl}}/img/getting-started/bintray.png" alt="Using Warp 10 Init script">
+    <img class="no-zoom" src="/img/getting-started/bintray.png" alt="Using Warp 10 Init script">
     <br />
     <img class="no-zoom" src='https://api.bintray.com/packages/cityzendata/generic/warp10/images/download.svg?version=1.2.11-rc5'>
   </a>
