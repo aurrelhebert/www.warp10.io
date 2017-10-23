@@ -1,0 +1,65 @@
+<link rel="import" href="./styles.html">
+<link rel="import" href="polymer/polymer.html">
+<dom-module id="warp10-footer">
+
+  <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style include="style-module">
+
+
+      .fab {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        background-color: #0297FF;
+        vertical-align: middle;
+        text-decoration: none;
+        text-align: center;
+        transition: 0.2s ease-out;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        color: #FFF;
+      }
+
+      footer {
+        padding: 30px;
+        width: 100%;
+        float: left;
+      }
+    </style>
+    <footer>
+      <div class="container text-center top-margin">
+        <a class="fab" href="https://twitter.com/CityzenData" target="_blank">
+          <span class="fa fa-fw fa-twitter"></span>
+        </a>
+        <a class="fab" href="https://github.com/cityzendata/" target="_blank">
+          <span class="fa fa-fw fa-github"></span>
+        </a>
+        <a class="fab" href="mailto:contact@cityzendata.com" target="_blank" title="contact@cityzendata.com">
+          <span class="fa fa-fw fa-envelope"></span>
+        </a>
+        <br/>
+        <a href="{{ site.baseurl }}/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data
+      </div>
+    </footer>
+
+  </template>
+  <script>
+    class Warp10Footer extends Polymer.Element {
+      static get is() {
+        return 'warp10-footer'
+      }
+
+      static get properties() {
+
+      }
+
+    }
+
+    customElements.define(Warp10Footer.is, Warp10Footer);
+  </script>
+</dom-module>

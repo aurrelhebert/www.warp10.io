@@ -1,0 +1,289 @@
+<link rel="import" href="./styles.html">
+<link rel="import" href="polymer/polymer.html">
+
+<dom-module id="warp10-nav">
+
+  <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style include="style-module">
+      :host {
+        display: block;
+      }
+
+      /* TOP HEADER
+      -------------------------------------------------- */
+      .navbar {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      .navbar.top-bar {
+        border-radius: 0;
+        padding: 16px 0;
+        z-index: 16;
+        box-shadow: none;
+      }
+
+      .navbar-toggler {
+        border: 1px solid #fff;
+        color: #fff;
+        position: absolute;
+        right: 21px;
+      }
+
+      .sps {
+        padding: 1em .5em !important;
+        position: fixed !important;;
+        top: 0;
+        left: 0;
+        transition: all 0.25s ease;
+        width: 100%;
+      }
+
+      .sps--abv {
+        background-color: transparent;
+        color: #000;
+      }
+
+      .sps--blw {
+        background-color: #fff;
+        color: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      a.navbar-brand {
+        color: #000;
+        font-size: 26px;
+        font-weight: 800;
+        padding: 5px 0 0 10px;
+        text-transform: uppercase;
+      }
+
+      a.navbar-brand span {
+        color: #0297ff;
+      }
+
+      .top-bar a.navbar-brand {
+        color: #fff;
+        font-size: 26px;
+        font-weight: 800;
+        padding: 5px 0 0 10px;
+        text-transform: uppercase;
+      }
+
+      .sps--blw.top-bar a.navbar-brand {
+        color: #000;
+      }
+
+      .top-bar a.navbar-brand span {
+        color: #0297ff;
+      }
+
+      .top-bar .nav-link {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 12px 18px !important;
+      }
+
+      .sps--blw.top-bar .nav-link {
+        color: #000
+      }
+
+      .top-bar .navbar-nav .nav-item {
+        margin: 0
+      }
+
+      .top-bar .nav-link:hover, .top-bar .nav-item.active a {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+        border-radius: 0;
+      }
+
+      .sps--blw.top-bar .nav-link:hover, .sps--blw.top-bar .nav-item.active a {
+        color: #0297ff;
+        border-bottom: none;
+        border-radius: 0;
+      }
+
+      #search_box {
+        position: relative;
+      }
+
+      .aa-dropdown-menu {
+        background-color: #FFF;
+        border: 1px solid #444;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 4px;
+        text-align: left;
+        max-width: 500px !important;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Main category headers */
+      .algolia-docsearch-suggestion--category-header {
+        background-color: #222;
+        color: #fff;
+      }
+
+      .algolia-docsearch-suggestion--subcategory-column, .algolia-docsearch-suggestion--subcategory-inline, .algolia-docsearch-suggestion--title {
+        cursor: pointer;
+      }
+
+    </style>
+    <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv" id="sps">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mx-auto" href="#">Warp<span><sup>10</sup></span></a>
+        <div class="collapse navbar-collapse" id="navbarCollapse1">
+          <ul class="navbar-nav ml-auto" id="menu">
+            <li class="nav-item"><a class="nav-link" href="/#/">Home
+              <!-- <dom-if if="[[equals(path,'/')]]">
+                 <template><span class="sr-only">(current)</span></template>
+               </dom-if>-->
+            </a></li>
+            <li class="nav-item"><a class="nav-link" href="/#/nav/getting-started/">Quick
+              start
+              <!--     <dom-if if="[[equals(path,'/nav/getting-started/')]]" restamp>
+                     <template><span class="sr-only">(current)</span></template>
+                   </dom-if>-->
+            </a></li>
+            <li class="nav-item"><a class="nav-link" href="/#/nav/doc">Reference</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#/nav/community/">Community</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#/about">About</a></li>
+          </ul>
+
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" id="search_box" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 fa fa-search" type="submit"></button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="navbar-separator"></div>
+    <warp10-conf conf="doc"></warp10-conf>
+
+  </template>
+  <script>
+    class Warp10Nav extends Polymer.Element {
+      static get is() {
+        return 'warp10-nav'
+      }
+
+      static get properties() {
+        return {
+          busy: {
+            type: Boolean,
+            value: false
+          },
+          show: {
+            type: Boolean,
+            value: false,
+            observer: '_topChanged',
+          },
+          _onTop: {
+            type: Boolean,
+            value: true,
+          },
+          scrollPosY: {
+            type: Number,
+            value: 0,
+          },
+          scrollOffsetY: {
+            type: Number,
+            value: 1,
+          },
+          path: {
+            type: String,
+            observer: '_pathChanged',
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        this.init();
+      }
+
+      init() {
+        this.element = this.root.querySelector('#sps');
+        if (!this.busy) {
+          this.busy = true;
+          if (!this.show) {
+            window.requestAnimationFrame(function() {
+              this.belowScrollPos();
+            }.bind(this));
+          } else {
+            window.requestAnimationFrame(function() {
+              this.aboveScrollPos();
+            }.bind(this));
+          }
+        }
+      }
+
+      equals(a, b) {
+        console.log('[warp10-nav] equals', 'a : ', a, 'b : ', b);
+        return (a === b);
+      }
+
+      _pathChanged(path) {
+        console.log('[warp10-nav] - _pathChanged', path);
+        this.$.menu.childNodes.forEach(function(n) {
+          if ('LI' === n.nodeName) {
+            console.log(n, n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1))
+            if (n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1) === path) {
+              n.classList.add('active');
+            } else {
+              n.classList.remove('active');
+            }
+          }
+        });
+      }
+
+      _topChanged(ontop) {
+        console.log('[warp10-nav] - _topChanged', ontop);
+        if (!this.element) {
+          return;
+        }
+        if (!this.busy) {
+          this.busy = true;
+          if (!ontop) {
+            window.requestAnimationFrame(function() {
+              this.belowScrollPos();
+            }.bind(this));
+          } else {
+            window.requestAnimationFrame(function() {
+              this.aboveScrollPos();
+            }.bind(this));
+          }
+        }
+      }
+
+      aboveScrollPos() {
+        console.log('[warp10-nav] - aboveScrollPos', this.element, this.show);
+        // add style / class to element
+        this.element.classList.add("sps--abv");
+        this.element.classList.remove("sps--blw");
+        // resume accepting scroll events
+        this.busy = false;
+      }
+
+      belowScrollPos() {
+        console.log('[warp10-nav] - belowScrollPos', this.element, this.show);
+        this.element.classList.add("sps--blw");
+        this.element.classList.remove("sps--abv");
+        // resume accepting scroll events
+        this.busy = false;
+      }
+    }
+
+    customElements.define(Warp10Nav.is, Warp10Nav);
+  </script>
+</dom-module>

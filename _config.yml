@@ -6,13 +6,16 @@ owner: Warp10
 description: Warp10 Documentation
 baseurl: ""
 filename: warp10
-url: "http://doc.warp10.io"
+url: "http://www.warp10.io"
 twitter_username: Warp10
-pygments: true
-
+highlighter: true
+incremental: true
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
 # Build settings
 
-# markdown: redcarpet
+# markdown: redcarpetkeep_files:
 #redcarpet:
 # extensions:  ["tables", "autolink", "strikethrough", "space_after_headers", "with_toc_data", "fenced_code_blocks", "lax_spacing", "smart"]
 
@@ -24,7 +27,7 @@ kramdown:
   input: GFM
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
-  use_coderay: false
+  enable_coderay: false
   parse_block_html: true
   hard_wrap: false
 

@@ -1,0 +1,233 @@
+<link rel="import" href="./styles.html">
+<dom-module id="warp10-landing">
+
+  <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style include="style-module">
+
+
+      /* SERVICE SECTION
+      -------------------------------------------------- */
+
+      .service-sec .heading {
+        float: left;
+        width: 100%;
+        margin-bottom: 70px;
+        text-align: center;
+      }
+
+      .service-sec h2 {
+        display: block;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #0297FF;
+        font-size: 32px;
+      }
+
+      .service-sec h2 small {
+        color: #222;
+        display: block;
+        font-size: 22px;
+        margin-bottom: 18px;
+      }
+
+      .service-sec i {
+        border: 1px solid #0297FF;
+        border-radius: 2px;
+        font-size: 25px;
+        padding: 12px 0;
+        width: 52px;
+        color: #0297FF;
+        margin-bottom: 20px
+      }
+
+      .service-sec h3 {
+        font-size: 23px;
+        font-weight: 600;
+      }
+
+      .service-sec p {
+        line-height: 22px;
+        margin-top: 13px;
+        padding: 0 21px;
+      }
+
+      .service-sec .service-block {
+        margin-top: 30px;
+      }
+
+      /* ABOUT SECTION
+      -------------------------------------------------- */
+      .about-sec {
+        background: url('https://images.unsplash.com/photo-1484248970913-02d5ad63477f?dpr=1&auto=format&fit=crop&w=1500&q=60&cs=tinysrgb') no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        position: relative;
+      }
+
+      .about-sec:before {
+        content: ' ';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(22, 122, 192, 0.8);
+        top: 0;
+        left: 0
+      }
+
+      .about-sec h2 {
+        font-size: 55px;
+        font-weight: 800;
+        margin-top: 25%;
+      }
+
+      .about-sec h2 small {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 15px;
+        padding-left: 10px;
+      }
+
+      .about-sec p {
+        font-size: 16px;
+      }
+
+      header::after {
+        display: block;
+        position: fixed;
+      }
+
+      header {
+        height: 100vh;
+        background-size: cover;
+        background: url("https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?w=1950") bottom;
+        z-index: 2;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        position: relative;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+
+      header h1, header h2 {
+        padding-left: 50px;
+        color: #fff;
+        font-weight: bolder;
+        font-size: 2em;
+      }
+
+      header h1 span, header h2 span {
+        color: #0297FF;
+      }
+
+      header [slot="markdown-html"] {
+        color: white;
+        font-size: 1.5em;
+      }
+
+      .header-wrap {
+        position: relative;
+      }
+
+      header .container {
+        padding-top: 200px;
+      }
+    </style>
+
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img src="/img/warp10.png" class="rounded mx-auto d-block" alt="...">
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/headline.md"></script>
+            </marked-element>
+            <a class="btn btn-success btn-lg"
+               href="https://dl.bintray.com/cityzendata/generic/io/warp10/warp10/1.2.11-rc6/:warp10-1.2.11-rc6.tar.gz"
+               role="button"><span class="fa fa-download"></span> Download 1.2.11-rc6</a>
+          </div>
+        </div>
+      </div>
+      <a href="https://github.com/cityzendata/"><img style="position: absolute; top: 0; right: 0; border: 0;"
+                                            src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67"
+                                            alt="Fork me on GitHub"
+                                            data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+    </header>
+
+    <!-- Benefits
+        ================================================== -->
+    <section class="service-sec" id="benefits">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-sm-center service-block"><i class="fa fa-globe" aria-hidden="true"></i>
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/gts.md"></script>
+            </marked-element>
+          </div>
+          <div class="col-md-6 text-sm-center service-block"><i class="fa fa-cubes" aria-hidden="true"></i>
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/platform.md"></script>
+            </marked-element>
+          </div>
+          <div class="col-md-6 text-sm-center service-block"><i class="fa fa-gears" aria-hidden="true"></i>
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/data.md"></script>
+            </marked-element>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+    </section>
+
+    <!-- About
+        ================================================== -->
+    <section class="about-sec parallax-section" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>
+              <small>Who We Are</small>
+              About<br>
+              US
+            </h2>
+          </div>
+          <div class="col-md-8">
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/history.md"></script>
+            </marked-element>
+            <p><a href="#" class="btn btn-transparent-white btn-capsul">Explore More</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="action-sec">
+      <div class="container">
+        <div class="action-box text-center"><h2>START HERE </h2>
+          <a class="btn btn-success" href="/getting-started" target="_blank">Quick Start</a></div>
+      </div>
+    </section>
+
+  </template>
+
+  <script>
+    class Warp10Landing extends Polymer.Element {
+      static get is() {
+        return 'warp10-landing'
+      }
+    }
+
+    customElements.define(Warp10Landing.is, Warp10Landing);
+  </script>
+
+</dom-module>

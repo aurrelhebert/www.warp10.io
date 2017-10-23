@@ -305,9 +305,7 @@ as you would a regular DOM element:
         smartypants: this.smartypants,
         gfm: true
       };
-console.log(this.markdown, opts)
       var md = marked(this.markdown, opts, this.callback)
-      console.log(md)
       Polymer.dom(this._outputElement).innerHTML = md;
       this.fire('marked-render-complete', {}, {composed: true});
     },

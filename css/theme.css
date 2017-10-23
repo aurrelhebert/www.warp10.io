@@ -8,53 +8,6 @@ h1, h2, h3, h4, h5 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.parallax-section {
-  background-attachment: fixed !important;
-}
-
-.btn-capsul {
-  border-radius: 30px;
-}
-
-.btn-aqua {
-  background: #0297FF;
-  color: #fff;
-}
-
-.btn-aqua:hover {
-  background: #10629b;
-  color: #fff;
-}
-
-.btn-dark-blue {
-  background: #0C242E;
-  color: #fff;
-}
-
-.btn-dark-blue:hover {
-  background: #063d28;
-  color: #fff;
-}
-
-.btn-transparent-white {
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.btn-transparent-white:hover, .btn-transparent-white:focus {
-  background: #fff;
-  color: #0297FF
-}
-
-.relative-box {
-  position: relative
-}
-
-section {
-  float: left;
-  width: 100%;
-  padding: 80px 0;
-}
 
 /* TOP HEADER
 -------------------------------------------------- */
@@ -265,8 +218,8 @@ header::after {
 
 header {
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1504890001746-a9a68eda46e2?dpr=1&auto=format&fit=crop&w=1579&q=60&cs=tinysrgb");
   background-size: cover;
+  background: url("https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?w=1950") bottom;
   z-index: 2;
   display: flex;
   flex-flow: column;
@@ -278,8 +231,13 @@ header {
 
 header h1, header h2 {
   padding-left: 50px;
-  color: #0297FF;
+  color: #fff;
   font-weight: bolder;
+  font-size: 2em;
+}
+
+header h1 span, header h2 span {
+  color: #0297FF;
 }
 
 .header-wrap {
@@ -288,6 +246,12 @@ header h1, header h2 {
 
 header [slot="markdown-html"] {
   width: 40%;
+  margin-right: 100px;
+  right: 0;
+  position: absolute;
+  color: white;
+  font-size: 1.5em;
+  top: 200px;
 }
 
 .fab {

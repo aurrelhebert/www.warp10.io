@@ -10,7 +10,11 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "granite-bootstrap": "LostInBrittany/granite-bootstrap#^3.3.7",
-    "marked-element": "PolymerElements/marked-element#^2.3.0"
+    "marked-element": "PolymerElements/marked-element#^2.3.0",
+    "app-route": "PolymerElements/app-route#^2.0.3",
+    "iron-pages": "PolymerElements/iron-pages#^2.0.0",
+    "iron-scroll-threshold": "PolymerElements/iron-scroll-threshold#^2.0.0",
+    "iron-scroll-target-behavior": "PolymerElements/iron-scroll-target-behavior#^2.0.0"
   },
   "private": true,
   "ignore": [

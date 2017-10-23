@@ -1,124 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>Warp 10</title>
+  <meta charset="utf-8">
+  <meta name="generator" content="Polymer Starter Kit">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>Warp10</title>
+  <meta name="description" content="Warp10">
+
+  <link rel="icon" href="./img/favicon.ico">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#3f51b5">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Warp10 UI Dashboard">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Warp10 UI Dashboard">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" href="./images/manifest/icon-48x48.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./images/manifest/icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="96x96" href="./images/manifest/icon-96x96.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./images/manifest/icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./images/manifest/icon-192x192.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="./images/manifest/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#3f51b5">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Load and register pre-caching Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
+  </script>
+  <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+  <script src="components/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/theme.css">
 
-  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="components/polymer/polymer.html">
-  <link rel="import" href="components/marked-element/marked-element.html">
 
+  <link rel="import" href="components/main.html">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv">
-  <div class="container">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand mx-auto" href="#">Warp<span>10</span></a>
-    <div class="collapse navbar-collapse" id="navbarCollapse1">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a class="nav-link" href="#/">Home <span
-            class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="/#benefits">Features</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/getting-started">Quick start</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#doc">Reference</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="page-wrap">
-  <header>
-    <marked-element disable-remote-sanitization>
-      <div slot="markdown-html"></div>
-      <script type="text/markdown" src="/landing/headline.md"></script>
-    </marked-element>
-  </header>
 
-  <!-- Benefits
-      ================================================== -->
-  <section class="service-sec" id="benefits">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-sm-center service-block"><i class="fa fa-globe" aria-hidden="true"></i>
-          <marked-element disable-remote-sanitization>
-            <div slot="markdown-html"></div>
-            <script type="text/markdown" src="/landing/gts.md"></script>
-          </marked-element>
-        </div>
-        <div class="col-md-6 text-sm-center service-block"><i class="fa fa-cubes" aria-hidden="true"></i>
-          <marked-element disable-remote-sanitization>
-            <div slot="markdown-html"></div>
-            <script type="text/markdown" src="/landing/platform.md"></script>
-          </marked-element>
-        </div>
-        <div class="col-md-6 text-sm-center service-block"><i class="fa fa-gears" aria-hidden="true"></i>
-          <marked-element disable-remote-sanitization>
-            <div slot="markdown-html"></div>
-            <script type="text/markdown" src="/landing/data.md"></script>
-          </marked-element>
-        </div>
-      </div>
-      <!-- /.row -->
-    </div>
-  </section>
-
-  <!-- About
-      ================================================== -->
-  <section class="about-sec parallax-section" id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h2>
-            <small>Who We Are</small>
-            About<br>
-            US
-          </h2>
-        </div>
-        <div class="col-md-8">
-          <marked-element disable-remote-sanitization>
-            <div slot="markdown-html"></div>
-            <script type="text/markdown" src="/landing/history.md"></script>
-          </marked-element>
-          <p><a href="#" class="btn btn-transparent-white btn-capsul">Explore More</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="action-sec">
-    <div class="container">
-      <div class="action-box text-center"><h2>START HERE </h2>
-        <a class="btn btn-success" href="/getting-started" target="_blank">Quick Start</a></div>
-    </div>
-  </section>
-  <footer>
-    <div class="container text-center top-margin">
-      <a class="fab" href="https://twitter.com/CityzenData" target="_blank">
-        <span class="fa fa-fw fa-twitter"></span>
-      </a>
-      <a class="fab" href="https://github.com/cityzendata/" target="_blank">
-        <span class="fa fa-fw fa-github"></span>
-      </a>
-      <a class="fab" href="mailto:contact@cityzendata.com" target="_blank">
-        <span class="fa fa-fw fa-envelope"></span> contact@cityzendata.com
-      </a>
-      <br/>
-      <a href="{{ site.baseurl }}/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data
-    </div>
-  </footer>
-
-</div>
+  <warp10-main  scroll-target="document"></warp10-main>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -129,6 +71,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-<script src="js/scrollpos_styler.js"></script>
 </body>
 </html>

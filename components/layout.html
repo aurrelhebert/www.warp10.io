@@ -1,0 +1,81 @@
+<link rel="import" href="./styles.html">
+<link rel="import" href="polymer/polymer.html">
+<link rel="import" href="marked-element/marked-element.html">
+<dom-module id="warp10-layout">
+
+  <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style include="style-module">
+      .nav .collapse, .nav .nav-link .nav {
+        margin-left: 10px;
+      }
+
+      .nav .nav-link {
+        max-width: 200px;
+      }
+
+      .nav .nav-link.active {
+        font-weight: bold;
+      }
+
+      .nav .nav-link.active:before {
+        content: '> ';
+      }
+
+      .main-container {
+        margin-top: 84px;
+      }
+    </style>
+    <app-route
+        route="{{route}}"
+        pattern="/:md"
+        data="{{routeData}}"></app-route>
+
+    <template is="dom-if" if="{{route.path}}" restamp>
+      <div class="container main-container" id="main-container">
+        <div class="row">
+          [[getFile(route.path)]]
+          <div class="col-sm-9">
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="[[getFile(route.path)]]"></script>
+            </marked-element>
+          </div>
+        </div>
+      </div>
+
+    </template>
+  </template>
+  <script>
+    class Warp10Layout extends Polymer.Element {
+      static get is() {
+        return 'warp10-layout'
+      }
+
+      static get properties() {
+
+      }
+
+      getFile(path) {
+        let spath = path.split('/');
+        if (spath[spath.length - 1] === '') {
+          spath[spath.length - 1] = 'index';
+        }
+        let md = '';
+        spath.slice(1).forEach(function(p) {
+          md += '/' + p;
+        });
+        console.log(md);
+        return md + '.md'
+      }
+
+      _stringify(obj) {
+        return JSON.stringify(obj);
+      }
+    }
+
+    customElements.define(Warp10Layout.is, Warp10Layout);
+  </script>
+</dom-module>
