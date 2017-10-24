@@ -188,6 +188,10 @@
             value: false,
             observer: '_topChanged',
           },
+          hasTansparency: {
+            type: Boolean,
+            value: false,
+          },
           _onTop: {
             type: Boolean,
             value: true,
@@ -213,19 +217,8 @@
       }
 
       init() {
+        console.log('[warp10-nav] - init', this.show, this.busy === true);
         this.element = this.root.querySelector('#sps');
-        if (!this.busy) {
-          this.busy = true;
-          if (!this.show) {
-            window.requestAnimationFrame(function() {
-              this.belowScrollPos();
-            }.bind(this));
-          } else {
-            window.requestAnimationFrame(function() {
-              this.aboveScrollPos();
-            }.bind(this));
-          }
-        }
       }
 
       equals(a, b) {
@@ -234,10 +227,10 @@
       }
 
       _pathChanged(path) {
+        this._topChanged(this.show);
         console.log('[warp10-nav] - _pathChanged', path);
         this.$.menu.childNodes.forEach(function(n) {
           if ('LI' === n.nodeName) {
-            console.log(n, n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1))
             if (n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1) === path) {
               n.classList.add('active');
             } else {
@@ -248,39 +241,36 @@
       }
 
       _topChanged(ontop) {
-        console.log('[warp10-nav] - _topChanged', ontop);
-        if (!this.element) {
-          return;
-        }
-        if (!this.busy) {
+        console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
+        if (this.element !== undefined && !this.busy) {
           this.busy = true;
-          if (!ontop) {
+          if (ontop && this.hasTansparency) {
             window.requestAnimationFrame(function() {
-              this.belowScrollPos();
+              this.aboveScrollPos();
+              this.busy = false;
+              console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
             }.bind(this));
           } else {
             window.requestAnimationFrame(function() {
-              this.aboveScrollPos();
+              this.belowScrollPos();
+              this.busy = false;
+              console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
             }.bind(this));
           }
         }
       }
 
       aboveScrollPos() {
-        console.log('[warp10-nav] - aboveScrollPos', this.element, this.show);
+        console.log('[warp10-nav] - aboveScrollPos', this.show);
         // add style / class to element
         this.element.classList.add("sps--abv");
         this.element.classList.remove("sps--blw");
-        // resume accepting scroll events
-        this.busy = false;
       }
 
       belowScrollPos() {
-        console.log('[warp10-nav] - belowScrollPos', this.element, this.show);
+        console.log('[warp10-nav] - belowScrollPos', this.show);
         this.element.classList.add("sps--blw");
         this.element.classList.remove("sps--abv");
-        // resume accepting scroll events
-        this.busy = false;
       }
     }
 

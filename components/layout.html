@@ -62,7 +62,6 @@
 
       _renderComplete() {
         this.root.querySelectorAll('code').forEach(function(element) {
-          console.log(element)
           Prism.highlightElement(element, true, function(r, e) {
             console.log(r, e)
           })

@@ -21,7 +21,7 @@
         display: block;
       }
     </style>
-    <warp10-nav show="[[_hasToShowHeaderAnim(isOnTop, _showHeaderAnim)]]" path="[[path]]"></warp10-nav>
+    <warp10-nav show="[[isOnTop]]" path="[[path]]" has-tansparency="[[_showHeaderAnim]]"></warp10-nav>
 
     <div class="page-wrap" on-scroll="onScroll">
       <app-route
@@ -70,19 +70,18 @@
       }
 
       _hasToShowHeaderAnim() {
-        console.log('_hasToShowHeaderAnim', this.isOnTop, this._showHeaderAnim)
-        return this.isOnTop && this._showHeaderAnim
+        console.log('[warp10-main] _hasToShowHeaderAnim', this.isOnTop, this._showHeaderAnim);
+        return this.isOnTop && this._showHeaderAnim;
       }
 
       ready() {
         super.ready();
-        //  this.init();
         this._scrollHandler();
       }
 
       _routeChanged(changeRecord) {
         this._showHeaderAnim = false;
-        console.log('Path changed!', changeRecord);
+        console.log('[warp10-main] Path changed!', changeRecord);
         if (changeRecord.path === 'route') {
           if ('' === changeRecord.value.path) {
             this.set('route.path', '/');
@@ -101,17 +100,8 @@
 
 
       _viewChanged(view) {
-        console.log('_viewChanged changed!', view);
-        this._showHeaderAnim = true;
-        if (view !== 'landing') {
-          this._showHeaderAnim = false;
-        }
-      }
-
-
-      init() {
-        this.y = window.pageYOffset;
-        this.isOnTop = this.y <= 1;
+        console.log('[warp10-main] _viewChanged changed!', view);
+        this._showHeaderAnim = view === 'landing';
       }
     }
 
