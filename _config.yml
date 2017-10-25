@@ -10,6 +10,8 @@ url: "http://www.warp10.io"
 twitter_username: Warp10
 highlighter: true
 incremental: true
+optional_front_matter:
+  remove_originals: false
 plugins:
   - jekyll-seo-tag
   - jekyll-paginate

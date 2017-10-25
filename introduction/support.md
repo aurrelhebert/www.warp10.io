@@ -11,7 +11,9 @@ If you need help using our software, the following options are available to you:
 
 * Community Support
 
-  The community around the Warp 10 platform gathers around the [Warp 10 Users](https://groups.google.com/forum/#!forum/warp10-users) discussion group. It also meets in real life at occasional meetups.
+  The community around the Warp 10 platform gathers around the 
+  [Warp 10 Users](https://groups.google.com/forum/#!forum/warp10-users) discussion group. It also meets in real life at 
+  occasional meetups.
 
 * Commercial Support
 

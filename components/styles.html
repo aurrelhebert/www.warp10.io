@@ -2,8 +2,9 @@
   <template>
     <style>
       body {
-        color: #5a5a5a;
+        color: #424242;
         font-family: 'Lato', sans-serif;
+        margin-bottom: 160px;
       }
 
       h1, h2, h3, h4, h5 {
@@ -23,22 +24,22 @@
       }
 
       .btn-aqua {
-        background: #0297FF;
+        background: #039be5;
         color: #fff;
       }
 
       .btn-aqua:hover {
-        background: #10629b;
+        background: #01579b;
         color: #fff;
       }
 
       .btn-dark-blue {
-        background: #0C242E;
+        background: #0d47a1;
         color: #fff;
       }
 
       .btn-dark-blue:hover {
-        background: #063d28;
+        background: #1976d2;
         color: #fff;
       }
 
@@ -49,7 +50,7 @@
 
       .btn-transparent-white:hover, .btn-transparent-white:focus {
         background: #fff;
-        color: #0297FF
+        color: #1976d2
       }
 
       .relative-box {
@@ -60,11 +61,6 @@
         float: left;
         width: 100%;
         padding: 80px 0;
-      }
-
-      p {
-        text-align: justify;
-        text-indent: 50px;
       }
 
       .action-sec {
@@ -82,6 +78,39 @@
       .action-box h2 {
         color: #fff;
         font-size: 20px;
+      }
+
+      .shine:after {
+        content: "";
+        position: absolute;
+        top: -110%;
+        left: -210%;
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+        transform: rotate(30deg);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.13);
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.13) 0%,
+            rgba(255, 255, 255, 0.13) 77%,
+            rgba(255, 255, 255, 0.5) 92%,
+            rgba(255, 255, 255, 0.0) 100%
+        );
+      }
+
+      .shine:hover:after {
+        opacity: 1;
+        top: -30%;
+        left: -30%;
+        transition-property: left, top, opacity;
+        transition-duration: 0.7s, 0.7s, 0.15s;
+        transition-timing-function: ease;
+      }
+
+      .shine:active:after {
+        opacity: 0;
       }
     </style>
   </template>

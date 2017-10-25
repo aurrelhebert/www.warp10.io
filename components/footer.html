@@ -8,43 +8,97 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style include="style-module">
 
-
       .fab {
+        position: relative;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
         display: inline-block;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
+        line-height: 60px;
         border-radius: 50%;
-        background-color: #0297FF;
+        background-color: #039be5;
         vertical-align: middle;
-        text-decoration: none;
         text-align: center;
         transition: 0.2s ease-out;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         cursor: pointer;
         color: #FFF;
+        font-size: 2em;
+        margin: 5px;
+      }
+
+      footer a {
+        color: #FFFFFF;
+        text-decoration: underline;
+      }
+
+      footer a:hover {
+        color: #80d8ff;
+      }
+
+      .fab a {
+        text-decoration: none;
+      }
+
+      .fab a:hover {
+        color: #f5f5f5;
+        text-decoration: none;
       }
 
       footer {
-        padding: 30px;
         width: 100%;
         float: left;
+        color: #FFFFFF;
+        background-color: #263238;
+        height: auto;
+        line-height: 130px;
+        margin: 20px 0 0;
+        padding-top: 0.5em;
       }
+
     </style>
     <footer>
-      <div class="container text-center top-margin">
-        <a class="fab" href="https://twitter.com/CityzenData" target="_blank">
-          <span class="fa fa-fw fa-twitter"></span>
-        </a>
-        <a class="fab" href="https://github.com/cityzendata/" target="_blank">
-          <span class="fa fa-fw fa-github"></span>
-        </a>
-        <a class="fab" href="mailto:contact@cityzendata.com" target="_blank" title="contact@cityzendata.com">
-          <span class="fa fa-fw fa-envelope"></span>
-        </a>
-        <br/>
-        <a href="{{ site.baseurl }}/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <p class=""><a href="/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data</p>
+          </div>
+          <div class="col-md-3">
+            <div class="d-inline-block text-center">
+              <div class="fab shine d-inline-block">
+                <a href="https://twitter.com/CityzenData" target="_blank">
+                  <span class="fa fa-fw fa-twitter"></span>
+                </a>
+              </div>
+
+              <div class="fab shine d-inline-block">
+                <a href="https://github.com/cityzendata/" target="_blank">
+                  <span class="fa fa-fw fa-github"></span>
+                </a>
+              </div>
+
+              <div class="fab shine d-inline-block">
+                <a href="mailto:contact@cityzendata.com" target="_blank" title="contact@cityzendata.com">
+                  <span class="fa fa-fw fa-envelope"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- <div class="container text-center">
+         <a class="fab" href="https://twitter.com/CityzenData" target="_blank">
+           <span class="fa fa-fw fa-twitter"></span>
+         </a>
+         <a class="fab" href="https://github.com/cityzendata/" target="_blank">
+           <span class="fa fa-fw fa-github"></span>
+         </a>
+         <a class="fab" href="mailto:contact@cityzendata.com" target="_blank" title="contact@cityzendata.com">
+           <span class="fa fa-fw fa-envelope"></span>
+         </a>
+         <br/>
+         <a href="/introduction/legal">Legal</a> | Copyright &copy; 2016 Cityzen Data
+       </div>-->
     </footer>
 
   </template>

@@ -1,0 +1,53 @@
+<link rel="import" href="./styles.html">
+<link rel="import" href="polymer/polymer.html">
+<dom-module id="warp10-menu">
+
+  <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style include="style-module">
+
+    </style>
+    <nav class="navbar navbar-light bg-light">
+      <marked-element disable-remote-sanitization on-marked-render-complete="_renderComplete">
+        <div slot="markdown-html" id="menu"></div>
+        <script type="text/markdown" src="/menu.md"></script>
+      </marked-element>
+
+      <a  href="#">Navbar</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link" href="#item-1">Item 1</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+          <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+        </nav>
+        <a class="nav-link" href="#item-2">Item2</a>
+        <a class="nav-link" href="#item-3">Item3</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+          <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+        </nav>
+      </nav>
+    </nav>
+
+  </template>
+  <script>
+    class Warp10Menu extends Polymer.Element {
+      static get is() {
+        return 'warp10-menu'
+      }
+
+      static get properties() {
+
+      }
+
+      _renderComplete() {
+
+      }
+
+    }
+
+    customElements.define(Warp10Menu.is, Warp10Menu);
+  </script>
+</dom-module>

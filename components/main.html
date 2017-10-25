@@ -21,9 +21,9 @@
         display: block;
       }
     </style>
-    <warp10-nav show="[[isOnTop]]" path="[[path]]" has-tansparency="[[_showHeaderAnim]]"></warp10-nav>
+    <warp10-nav show="[[isOnTop]]" path="[[path]]"></warp10-nav>
 
-    <div class="page-wrap" on-scroll="onScroll">
+    <div class="page-wrap">
       <app-route
           route="{{route}}"
           pattern="/:view"
@@ -35,7 +35,8 @@
                   role="main"
                   fallback-selection="landing">
         <warp10-landing name="landing" route="{{subroute}}"></warp10-landing>
-        <warp10-layout name="nav" route="{{subroute}}"></warp10-layout>
+        <warp10-layout name="nav" route="{{subroute}}" with-menu="[[false]]"></warp10-layout>
+        <warp10-layout name="doc" route="{{subroute}}" with-menu></warp10-layout>
       </iron-pages>
 
       <warp10-footer></warp10-footer>
@@ -50,10 +51,12 @@
       static get properties() {
         return {
           isOnTop: {
-            type: Boolean, value: true
+            type: Boolean,
+            value: true
           },
           _showHeaderAnim: {
-            type: Boolean, value: true
+            type: Boolean,
+            value: true
           },
           y: {
             type: Number,
@@ -88,6 +91,8 @@
           }
           if ('/' === changeRecord.value.path) {
             this._showHeaderAnim = true;
+          } else {
+            this.isOnTop = false;
           }
         }
         this.path = changeRecord.value.path;
@@ -95,7 +100,7 @@
 
       _scrollHandler() {
         this.y = window.pageYOffset;
-        this.isOnTop = this.y <= 1;
+        this.isOnTop = this.y <= 1 && this._showHeaderAnim;
       }
 
 
