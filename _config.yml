@@ -15,6 +15,7 @@ optional_front_matter:
 plugins:
   - jekyll-seo-tag
   - jekyll-paginate
+
 # Build settings
 
 # markdown: redcarpetkeep_files:
@@ -37,7 +38,7 @@ highlighter: rouge
 permalink: pretty
 paginate: 5
 exclude: ["node_modules"]
-
+keep_files: ['raw']
 authors:
   horacio:
     display_name: Horacio Gonzalez
@@ -55,8 +56,13 @@ authors:
     twitter: FinistSeb
     github: slambour
     gplus: +SébastienLambour29
+  xavio:
+    display_name: Xavier MARIN
+    email: xavier.marin@warp10.io
+    web: http://warp10.io
+    twitter: xavmarin
   hbs:
     display_name: Mathias Herberts
-    email: mathias.herbertsr@warp10.io
+    email: mathias.herberts@warp10.io
     web: http://warp10.io
     twitter: herberts

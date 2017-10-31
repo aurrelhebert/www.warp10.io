@@ -2,8 +2,8 @@
 title: "WarpScript and Processing"
 layout: "function"
 isPage: "true"
-categoryTree: ["reference"]
-category: "reference"
+categoryTree: ["processing"]
+category: "processing"
 ---
 
 [Processing](http://processing.org/) is a language used in the context of visual arts, we thought it would be a great addition to WarpScript to create great visualization from the data you have manipulated. So we integrated a large set of Processing's own functions directly into WarpScript so you can build nice graphs right where the data resides.

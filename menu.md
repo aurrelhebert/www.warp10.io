@@ -1,12 +1,11 @@
-## Menu
-- Home
-    - Overview
-    - Concepts
-    - History
-    - Team
-    - Versions
-- How-to
-    - Getting started
+- [Overview](/#/doc/introduction/)
+    - [Overview](/#/doc/introduction/platform)
+    - [Concepts](/#/doc/introduction/concepts)
+    - [History](/#/doc/introduction/history)
+    - [Team](/#/doc/introduction/team)
+    - [Versions](/#/doc/introduction/versions)
+- [How-to](/#/doc/howto/)
+    - [Getting started](/#/doc/getting-statrted/)
     - Data modeling
     - Migrate from
     - Tutorials

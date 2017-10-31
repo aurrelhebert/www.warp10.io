@@ -219,7 +219,7 @@
 
       _pathChanged(path) {
         this._topChanged(this.show);
-        console.log('[warp10-nav] - _pathChanged', path);
+    //    console.log('[warp10-nav] - _pathChanged', path);
         this.$.menu.childNodes.forEach(function(n) {
           if ('LI' === n.nodeName) {
             if (n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1) === path) {
@@ -232,34 +232,34 @@
       }
 
       _topChanged(ontop) {
-        console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
+     //   console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
         if (this.element !== undefined && !this.busy) {
           this.busy = true;
           if (ontop && this.hasTansparency) {
             window.requestAnimationFrame(function() {
               this.aboveScrollPos();
               this.busy = false;
-              console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
+         //     console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
             }.bind(this));
           } else {
             window.requestAnimationFrame(function() {
               this.belowScrollPos();
               this.busy = false;
-              console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
+         //     console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
             }.bind(this));
           }
         }
       }
 
       aboveScrollPos() {
-        console.log('[warp10-nav] - aboveScrollPos', this.show);
+    //    console.log('[warp10-nav] - aboveScrollPos', this.show);
         // add style / class to element
         this.element.classList.add("sps--abv");
         this.element.classList.remove("sps--blw");
       }
 
       belowScrollPos() {
-        console.log('[warp10-nav] - belowScrollPos', this.show);
+    //    console.log('[warp10-nav] - belowScrollPos', this.show);
         this.element.classList.add("sps--blw");
         this.element.classList.remove("sps--abv");
       }

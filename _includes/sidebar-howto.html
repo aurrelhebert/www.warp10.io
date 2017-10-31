@@ -1,23 +1,44 @@
-<a class="nav-link" data-toggle="collapse" href="#collapse-howto"><span class="fa fa-graduation-cap"></span> How To</a>
+<div id="panel-howto" class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#side-menu" href="#collapse-howto">
+        <span class="glyphicon glyphicon-education"></span>How-to
+      </a>
+    </h4>
+  </div>
+  <div id="collapse-howto" class="panel-collapse collapse {% if (page.category == 'howto') or (page.category == 'getting-started') %} in {% endif %}">
+    <div class="list-group">
 
-<div id="collapse-howto" class="collapse {% if (page.category == 'howto')  %} show {% endif %}">
-  <a class="nav-link {% if (page.categoryTree[0] == 'getting-stated')  %} active {% endif %}" href="{{ site.baseurl }}/getting-started">Getting started</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/data-modeling">Data modeling</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/migrate-from">Migrate from</a>
-  <div class="nav-link">Tutorials</div>
-  <nav class="nav flex-column">
-    <a class="nav-link" href="{{ site.baseurl }}/howto/intro-bucketize">BUCKETIZE</a>
-    <a class="nav-link" href="{{ site.baseurl }}/howto/intro-reduce">REDUCE</a>
-  </nav>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/pushing-data">Pushing data</a>
-  <nav class="nav flex-column">
-    <a class="nav-link" href="{{ site.baseurl }}/howto/websocket-push">Using WebSockets</a>
-    <a class="nav-link" href="{{ site.baseurl }}/howto/collecting-tools">Using metrics collecting tools</a>
-  </nav>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/accessing-data">Accessing data</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/fetching-data">Fetching data</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/create-a-udf">Create and deploy one User Defined Function</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/create-a-warpscript-extension">Create a WarpScript extension</a>
-  <a class="nav-link" href="{{ site.baseurl }}/howto/connect-zeppelin">Connect Warp&nbsp;10 to Apache Zeppelin</a>
-  <a class="nav-link" href="{{{ site.baseurl }}/howto/monitoring-warp-10-using-warp-10">Monitoring Warp&nbsp;10</a>
+      <a class="list-group-item" href="{{ site.baseurl }}/getting-started">Getting started</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/data-modeling">Data modeling</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/migrate-from">Migrate from</a>
+      <div class="list-group-item">Tutorials</div>
+      <div class="list-group">
+        <a class="list-group-item" href="{{ site.baseurl }}/howto/intro-bucketize">BUCKETIZE</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/howto/intro-reduce">REDUCE</a>
+      </div>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/pushing-data">Pushing data</a>
+      <div class="list-group">
+        <a class="list-group-item" href="{{ site.baseurl }}/howto/websocket-push">Using WebSockets</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/howto/collecting-tools">Using metrics collecting tools</a>
+      </div>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/accessing-data">Accessing data</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/fetching-data">Fetching data</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/create-a-udf">Create and deploy one User Defined Function</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/create-a-warpscript-extension">Create a WarpScript extension</a>
+
+      <a class="list-group-item" href="{{ site.baseurl }}/howto/connect-zeppelin">Connect Warp&nbsp;10 to Apache Zeppelin</a>
+
+
+      <a class="list-group-item" href="{{{ site.baseurl }}/howto/monitoring-warp-10-using-warp-10">Monitoring Warp&nbsp;10</a>
+    </div>
+
+  </div>
 </div>

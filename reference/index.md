@@ -1,3 +1,12 @@
+---
+title: "WarpScript"
+layout: "function"
+isPage: "true"
+categoryTree: ["reference"]
+oldPath: ["00-reference.html"]
+category: "reference"
+---
+
 The WarpScript data manipulation environment allows the retrieval and analysis of data stored in the Warp 10 storage
  platform.
 

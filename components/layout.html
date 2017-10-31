@@ -1,6 +1,8 @@
+<link rel="import" href="promise-polyfill/promise-polyfill-lite.html">
 <link rel="import" href="./styles.html">
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="marked-element/marked-element.html">
+<link rel="import" href="iron-ajax/iron-ajax.html">
 <link rel="import" href="menu.html">
 <script src="../js/prism.js"></script>
 <dom-module id="warp10-layout">
@@ -60,27 +62,41 @@
       [slot="markdown-html"] h3 {
         font-size: 1.5em;
       }
+
+      #content {
+        text-align: justify;
+      }
     </style>
     <app-route
       route="{{route}}"
       pattern="/:md"
       data="{{routeData}}"></app-route>
+
+
     <template is="dom-if" if="{{route.path}}" restamp>
       <div class="container main-container" id="main-container">
+        <iron-ajax
+          auto
+          url="[[getFile(route.path)]]"
+          handle-as="json"
+          on-response="_handleResponse"
+          last-response="{{ajaxResponse}}"
+          debounce-duration="300"></iron-ajax>
         <div class="row">
           <dom-if if="[[withMenu]]">
             <template>
               <div class="col-sm-3">
-  <warp10-menu></warp10-menu>
+                <warp10-menu></warp10-menu>
               </div>
             </template>
           </dom-if>
-            <div class="container" id="content">
-              <marked-element disable-remote-sanitization on-marked-render-complete="_renderComplete">
-                <div slot="markdown-html"></div>
-                <script type="text/markdown" src="[[getFile(route.path)]]"></script>
-              </marked-element>
+          <div id="panel">
+            <div class="container">
+              <h1>[[title]]</h1>
+              <p>[[desc]]</p>
+              <div id="content"></div>
             </div>
+          </div>
         </div>
       </div>
     </template>
@@ -100,33 +116,27 @@
         }
       }
 
-      _getSize(withMenu) {
-        let r = withMenu ? 'col-sm-9' : 'col-sm-12';
-        console.log(r)
-        return r;
-      }
-
-      _renderComplete() {
-        console.log('[warp10-layout] _renderComplete');
+      _handleResponse(event, ironRequest) {
+        event.stopPropagation();
+        this.root.querySelector('#content').innerHTML = ironRequest.response.content;
+        this.title = ironRequest.response.title;
+        this.desc = ironRequest.response.desc;
         this.root.querySelectorAll('code').forEach(function (element) {
           Prism.highlightElement(element, false, function (r, e) {
             console.log('[warp10-layout] _renderComplete', r, e);
           });
         });
-        this.root.querySelector('#content').classList.add(this.withMenu ? 'col-sm-9' : 'col-sm-12');
+        this.root.querySelector('#panel').classList.add(this.withMenu ? 'col-sm-9' : 'col-sm-12');
       }
 
       getFile(path) {
         let spath = path.split('/');
-        if (spath[spath.length - 1] === '') {
-          spath[spath.length - 1] = 'index';
-        }
-        let md = '';
+        let md = 'raw';
         spath.slice(1).forEach(function (p) {
           md += '/' + p;
         });
-        console.log('[warp10-layout] - getFile', md);
-        return md + '.md'
+        console.log('[warp10-layout] - getFile', md + '/raw.json');
+        return md + '/raw.json'
       }
 
       _stringify(obj) {

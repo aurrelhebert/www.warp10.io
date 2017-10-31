@@ -1,22 +1,33 @@
-<a class="nav-link" data-toggle="collapse" href="#collapse-tools"><span class="fa fa-wrench"></span> Tools</a>
+<div id="panel-tools" class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#side-menu" href="#collapse-tools">
+        <span class="glyphicon glyphicon-wrench"></span>Tools</a>
+    </h4>
+  </div>
+  <div id="collapse-tools" class="panel-collapse collapse {% if (page.category == 'tools')  %} in {% endif %}">
+    <div class="list-group">
+      <div class="list-group-item">
+        <a href="/tools/github_repositories">Github repositories</a>
+      </div>
+      <div class="list-group" id="collapse-git-list">
+        <a class="list-group-item" href="/tools/github_repositories#Platform">Platform</a>
+        <a class="list-group-item" href="/tools/github_repositories#Batch">Batch</a>
+        <a class="list-group-item" href="/tools/github_repositories#Stream">Stream</a>
+        <a class="list-group-item" href="/tools/github_repositories#Inputs">Input plugins</a>
+        <a class="list-group-item" href="/tools/github_repositories#Outputs">Output plugins</a>
+        <a class="list-group-item" href="/tools/github_repositories#Interpreters">Interpreters</a>
+        <a class="list-group-item" href="/tools/github_repositories#IoT">IoT</a>
+        <a class="list-group-item" href="/tools/github_repositories#UDFs">WarpScript UDFs</a>
+        <a class="list-group-item" href="/tools/github_repositories#Extensions">WarpScript extensions</a>
+        <a class="list-group-item" href="/tools/github_repositories#Websites">Websites</a>
+        <a class="list-group-item" href="/tools/github_repositories#External">External contributions</a>
+      </div>
+      <a class="list-group-item" href="{{ site.baseurl }}/tools/worf">Worf</a>
+      <a class="list-group-item" href="{{ site.baseurl }}/tools/quantum">Quantum</a>
+      <a class="list-group-item" href="{{ site.baseurl }}/tools/trl">Token Revocation List</a>
 
-<div id="collapse-tools" class="collapse {% if (page.category == 'tools')  %} show {% endif %}">
-  <a class="nav-link {% if (page.categoryTree[0] == 'github-reporitories')  %} active {% endif %}" href="{{ site.baseurl }}/tools/github_repositories">Github repositories</a>
-  <nav class="nav flex-column">
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Platform">Platform</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Batch">Batch</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Stream">Stream</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Inputs">Input plugins</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Outputs">Output plugins</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Interpreters">Interpreters</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#IoT">IoT</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#UDFs">WarpScript UDFs</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Extensions">WarpScript extensions</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#Websites">Websites</a>
-    <a class="nav-link" href="{{ site.baseurl }}/tools/github_repositories#External">External contributions</a>
-  </nav>
-  <a class="nav-link {% if (page.categoryTree[0] == 'worf')  %} active {% endif %}" href="/tools/github_repositories" href="{{ site.baseurl }}/tools/worf">Worf</a>
-  <a class="nav-link {% if (page.categoryTree[0] == 'quantum')  %} active {% endif %}" href="/tools/github_repositories" href="{{ site.baseurl }}/tools/quantum">Quantum</a>
-  <a class="nav-link {% if (page.categoryTree[0] == 'quantumviz')  %} active {% endif %}" href="/tools/github_repositories" href="{{ site.baseurl }}/tools/quantumviz">QuantumViz</a>
-  <a class="nav-link {% if (page.categoryTree[0] == 'trl')  %} active {% endif %}" href="/tools/github_repositories" href="{{ site.baseurl }}/tools/trl">Token Revocation List</a>
+    </div>
+
+  </div>
 </div>

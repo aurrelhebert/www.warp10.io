@@ -1,23 +1,32 @@
-<a class="nav-link" data-toggle="collapse" href="#collapse-reference"><span class="fa fa-gear"></span> WarpScript</a>
+<div id="panel-reference" class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#side-menu" href="#collapse-reference">
+        <span class="glyphicon glyphicon-cog"></span>WarpScript</a>
+    </h4>
+  </div>
+  <div id="collapse-reference" class="panel-collapse collapse {% if (page.category == 'reference') or (page.category == 'miscellaneous') %} in {% endif %}">
+    <div class="list-group">
+      <a class="list-group-item" href="{{ site.baseurl }}/reference/">Overview</a>
 
-<div id="collapse-reference" class="collapse {% if (page.category == 'reference')  %} show {% endif %}">
-  <a class="nav-link {% if (page.categoryTree[0] == 'reference')  %} active {% endif %}"
-     href="{{ site.baseurl }}/reference/">Overview</a>
-
-  <a class="nav-link" href="{{ site.baseurl }}/reference/reference">Reference</a>
-  <nav class="nav flex-column" id="collapse-reference-list">
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#frameworks">Frameworks</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-constant">Constant</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-math">Mathematical</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-standalone">Standalone</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-lists-maps">Lists &amp; maps</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-logic">Logic</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-stack">Stack</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-platform">Platform</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-gts">Geo Time Series<sup>®</sup></a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-bucketized-gts">Bucketized GTS</a>
-    <a class="nav-link" href="{{ site.baseurl }}/reference/reference#functions-geo">Geo-related</a>
-  </nav>
-  <a class="nav-link" href="{{ site.baseurl }}/reference/miscellaneous">Miscellaneous functions</a>
-  <a class="nav-link" href="{{ site.baseurl }}/reference/processing">Working with Processing</a>
+      <div class="list-group-item">
+        <a href="{{ site.baseurl }}/reference/reference">Reference</a>
+      </div>
+      <div class="list-group" id="collapse-reference-list">
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#frameworks">Frameworks</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-constant">Constant</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-math">Mathematical</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-standalone">Standalone</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-lists-maps">Lists &amp; maps</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-logic">Logic</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-stack">Stack</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-platform">Platform</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-gts">Geo Time Series<sup>®</sup></a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-bucketized-gts">Bucketized GTS</a>
+        <a class="list-group-item" href="{{ site.baseurl }}/reference/reference#functions-geo">Geo-related</a>
+      </div>
+      <a class="list-group-item" href="{{ site.baseurl }}/reference/miscellaneous">Miscellaneous functions</a>
+      <a class="list-group-item" href="{{ site.baseurl }}/reference/processing">Working with Processing</a>
+    </div>
+  </div>
 </div>

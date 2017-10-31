@@ -1,3 +1,13 @@
+---
+title: "Community - Index"
+layout: "function"
+isPage: "true"
+link: "/community"
+categoryTree: ["community"]
+oldPath: ["00-Index.html.md"]
+category: "community"
+---
+
 <div style="max-height: 40vh; overflow: hidden; width: 100%">
 <img src="https://images.unsplash.com/photo-1493689485253-f07fcbfc731b?w=1333&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" class="img-fluid">
 </div>

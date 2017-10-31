@@ -1,26 +1,39 @@
-<nav class="navbar navbar-expand-lg  fixed-top navbar-static-top bg-white">
-  <a class="navbar-brand mx-auto" href="/#">Warp<span><sup>10</sup></span></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse1">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="/#">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="/#benefits">Features</a></li>
-      <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="/getting-started">Quick start</a></li>
-      <li class="nav-item"><a class="nav-link" href="/#doc">Reference</a></li>
-      <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-    </ul>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" id="search_box" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 fa fa-search" type="submit"></button>
-    </form>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <!--
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    -->
+      <a class="navbar-brand" href="{{ site.baseurl }}">
+        <div class="navbar-id">
+          <div class="navbar-id-icon">
+            <span id="icon-CityzenData" class="icon-CityzenData"></span>
+          </div>
+          <div class="navbar-id-name">
+            Warp 10
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="collapse navbar-nav navbar-collapse navbar-right">
+      <div class="form-inline">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+          <input id="search_box" class="form-control" style="vertical-align: middle" >
+        </div>
+      </div>
+    </div>
   </div>
-
 </nav>
-<div class="navbar-separator"></div>
+<div class="navbar-separator" > </div>
 
 <warp10-conf conf="doc"></warp10-conf>
+
+<div id="mainbody">

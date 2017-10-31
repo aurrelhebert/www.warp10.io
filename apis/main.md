@@ -1,3 +1,13 @@
+---
+title: "APIs"
+layout: "function"
+isPage: "true"
+categoryTree: ["apis"]
+oldPath: ["00-apis.html.md"]
+category: "apis"
+---
+
+
 ## Available APIs
 
 In each endpoint there are several exposed APIs:
