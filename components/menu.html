@@ -37,17 +37,22 @@
         }
       }
       _toggle(evt) {
-        evt.preventDefault();
         this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
-        return false;
+        if(evt.path[0].attributes['data-target'].value === '!#') {
+          evt.preventDefault();
+          return false;
+        }
       }
       _buildMenu(menu) {
         let htmlMenu = '';
         Object.keys(menu).forEach(function (m) {
-          htmlMenu += `<li><a data-target="#${m}" href="!#" >${this._capitalizeFirstLetter(menu[m]['title'])}</a><iron-collapse id="${m}"><ul>`;
-          if(menu[m].hasOwnProperty('children')) {
-            htmlMenu += this._buildMenu(menu[m]['children']);
+          htmlMenu += `<li>`;
+          if(menu[m].hasOwnProperty('children') &&  Object.keys(menu[m].children).length > 0) {
+            htmlMenu += `<a data-target="#${m}" href="!#" >${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul>${this._buildMenu(menu[m].children)}`;
+          } else {
+            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul>`;
           }
+
           if(menu[m].hasOwnProperty('links')) {
             menu[m]['links'].forEach(function(link){
               htmlMenu += `<li><a href="#/doc/${link.path}">${this._capitalizeFirstLetter(link.title)}</a></li>`;
@@ -65,11 +70,13 @@
         console.log(ironRequest.response);
         this.menu = {};
         Object.keys(ironRequest.response).forEach(function (item) {
-          console.log(item)
+          console.log(item);
           let arr = item.split('/');
+          console.log(arr);
           if (!this.menu.hasOwnProperty(arr[0])) {
             this.menu[arr[0]] = {title: arr[0], children: {}, links: []}
           }
+          this.menu[arr[0]].links = this.menu[arr[0]].links.concat(ironRequest.response[item]);
           let tmpArr = this.menu[arr[0]].children;
           for (let i = 1; i < arr.length; i++) {
             if (!tmpArr.hasOwnProperty(arr[i])) {
@@ -80,7 +87,7 @@
             }
             tmpArr = tmpArr[arr[i]];
           }
-        }, this)
+        }, this);
         console.log(this.menu);
 
         this.root.querySelector('#content').innerHTML = `<ul>${this._buildMenu(this.menu)}</ul>`;
