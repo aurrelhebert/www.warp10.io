@@ -3,6 +3,7 @@ title: "HEX->"
 layout: function
 desc: "Decodes an hex encoded string."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Decodes an hex encoded string. If the encoded content is not a valid UTF-8 representation, the resulting string will reflect that.

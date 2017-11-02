@@ -3,6 +3,7 @@ title: "->HEX"
 layout: function
 desc: "Converts a string to the hexadecimal representation of its UTF-8 encoding."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Converts a string to the hexadecimal representaiton of its UTF-8 encoding.

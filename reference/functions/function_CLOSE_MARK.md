@@ -4,6 +4,7 @@ layout: "function"
 isPage: "true"
 link: "/warpscript/functions"
 desc: "Closes an open list."
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
  

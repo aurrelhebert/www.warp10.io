@@ -3,6 +3,7 @@ title: "HASH"
 layout: function
 desc: "Computes a 64 bits hash of the string on top of the stack."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Computes a 64 bits hash of the string on top of the stack.

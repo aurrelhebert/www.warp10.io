@@ -3,6 +3,7 @@ title: "FROMBIN"
 layout: function
 desc: "Converts a binary representation of a long into a long."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Converts the binary representation on top of the stack into the corresponding long.

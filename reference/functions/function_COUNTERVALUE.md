@@ -2,6 +2,7 @@
 title: "COUNTERVALUE"
 layout: function
 desc: "Retrieve the value of a counter."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

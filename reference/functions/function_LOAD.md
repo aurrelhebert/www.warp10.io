@@ -5,6 +5,7 @@ isPage: "true"
 link: "/warpscript/functions"
 desc: "Pushes onto the stack the value of the symbol whose name is on the stack."
 category: "reference"
+categoryTree: ["reference","functions"]
 ---
  
 

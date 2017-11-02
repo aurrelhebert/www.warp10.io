@@ -2,6 +2,7 @@
 title: "B64URL->"
 layout: function
 desc: "Decodes a base64url encoded string."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

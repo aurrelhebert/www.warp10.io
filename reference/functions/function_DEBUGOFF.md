@@ -3,6 +3,7 @@ title: "DEBUGOFF"
 layout: function
 desc: "Turns off stack debugging."
 category: reference
+categoryTree: ["reference","functions"]
 signature: "'string' ->B64 'encoded'"
 ---
 

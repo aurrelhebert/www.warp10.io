@@ -4,6 +4,7 @@ layout: "function"
 isPage: "true"
 desc: "Join N strings with the given separator"
 category: "reference"
+categoryTree: ["reference","functions"]
 ---
 ## JOIN ##
 

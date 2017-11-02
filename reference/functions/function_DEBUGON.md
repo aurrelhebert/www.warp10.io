@@ -2,6 +2,7 @@
 title: "DEBUGON"
 layout: function
 desc: "Turns on stack debugging."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

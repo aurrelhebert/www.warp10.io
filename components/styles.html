@@ -1,6 +1,20 @@
+<link rel="import" href="granite-font-awesome/elements/granite-font-awesome.html">
+<link rel="import" href="warp10-quantum-elements/quantum-warpscript.html">
+<link rel="import" href="granite-bootstrap/granite-bootstrap.html">
 <dom-module id="style-module">
   <template>
+    <style include="granite-bootstrap"></style>
+    <style include="granite-font-awesome"></style>
     <style>
+
+      html {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
       body {
         color: #424242;
         font-family: 'Lato', sans-serif;
@@ -9,10 +23,39 @@
 
       h1, h2, h3, h4, h5 {
         font-family: 'Montserrat', sans-serif;
+        text-indent: 0;
+        margin-top: 1rem;
       }
 
-      [slot="markdown-html"] p {
+      h1 {
+        font-size: 3rem;
+        color: #ff9900;
+      }
+
+      h2 {
+        font-size: 2rem;
+        color: #ff9900;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      p {
         text-align: justify;
+        text-indent: 10px;
+        font-size: 1.2rem;
+      }
+
+    /*  code[class*="language-"], pre[class*="language-"] {
+        font-size: 1.2rem;
+      }*/
+
+
+      .blockquote {
+        padding-left: 1rem;
+        border-left: 3px solid #ff9900;
+        margin-left: 1rem;
       }
 
       .parallax-section {
@@ -92,11 +135,11 @@
         overflow: hidden;
         background: rgba(255, 255, 255, 0.13);
         background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.13) 0%,
-            rgba(255, 255, 255, 0.13) 77%,
-            rgba(255, 255, 255, 0.5) 92%,
-            rgba(255, 255, 255, 0.0) 100%
+          to right,
+          rgba(255, 255, 255, 0.13) 0%,
+          rgba(255, 255, 255, 0.13) 77%,
+          rgba(255, 255, 255, 0.5) 92%,
+          rgba(255, 255, 255, 0.0) 100%
         );
       }
 
@@ -111,6 +154,171 @@
 
       .shine:active:after {
         opacity: 0;
+      }
+
+      /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+http+java+json+python&plugins=line-numbers */
+      /**
+       * okaidia theme for JavaScript, CSS and HTML
+       * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+       * @author ocodia
+       */
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: #f8f8f2;
+        background: none;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      /* Code blocks */
+      pre[class*="language-"] {
+        padding: 1em;
+        margin: .5em 0;
+        overflow: auto;
+        border-radius: 0.3em;
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background: #272822;
+      }
+
+      /* Inline code */
+      :not(pre) > code[class*="language-"] {
+        padding: .1em;
+        border-radius: .3em;
+        white-space: normal;
+      }
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: slategray;
+      }
+
+      .token.punctuation {
+        color: #f8f8f2;
+      }
+
+      .namespace {
+        opacity: .7;
+      }
+
+      .token.property,
+      .token.tag,
+      .token.constant,
+      .token.symbol,
+      .token.deleted {
+        color: #f92672;
+      }
+
+      .token.boolean,
+      .token.number {
+        color: #ae81ff;
+      }
+
+      .token.selector,
+      .token.attr-name,
+      .token.string,
+      .token.char,
+      .token.builtin,
+      .token.inserted {
+        color: #a6e22e;
+      }
+
+      .token.operator,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string,
+      .token.variable {
+        color: #f8f8f2;
+      }
+
+      .token.atrule,
+      .token.attr-value,
+      .token.function {
+        color: #e6db74;
+      }
+
+      .token.keyword {
+        color: #66d9ef;
+      }
+
+      .token.regex,
+      .token.important {
+        color: #fd971f;
+      }
+
+      .token.important,
+      .token.bold {
+        font-weight: bold;
+      }
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+
+      pre.line-numbers {
+        position: relative;
+        padding-left: 3.8em;
+        counter-reset: linenumber;
+      }
+
+      pre.line-numbers > code {
+        position: relative;
+        white-space: inherit;
+      }
+
+      .line-numbers .line-numbers-rows {
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        font-size: 100%;
+        left: -3.8em;
+        width: 3em; /* works for line-numbers below 1000 lines */
+        letter-spacing: -1px;
+        border-right: 1px solid #999;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+      }
+
+      .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+      }
+
+      .line-numbers-rows > span:before {
+        content: counter(linenumber);
+        color: #999;
+        display: block;
+        padding-right: 0.8em;
+        text-align: right;
       }
     </style>
   </template>

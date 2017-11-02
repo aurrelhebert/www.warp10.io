@@ -3,6 +3,7 @@ title: "FROMHEX"
 layout: function
 desc: "Converts an hexadecimal representation into a long."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Converts an hexadecimal representation into a long.

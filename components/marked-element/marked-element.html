@@ -302,11 +302,10 @@ as you would a regular DOM element:
         sanitize: this.sanitize,
         sanitizer: this.sanitizer,
         pedantic: this.pedantic,
-        smartypants: this.smartypants,
-        gfm: true
+        smartypants: this.smartypants
       };
-      var md = marked(this.markdown, opts, this.callback)
-      Polymer.dom(this._outputElement).innerHTML = md;
+
+      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts, this.callback);
       this.fire('marked-render-complete', {}, {composed: true});
     },
 

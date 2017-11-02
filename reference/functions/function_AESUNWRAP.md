@@ -3,6 +3,7 @@ title: "AESUNWRAP"
 layout: function
 desc: "Unwrap wrapped byte array "
 category: reference
+categoryTree: ["reference","functions"]
 signature: "'bytesarray' AESUNWRAP 'bytesarray'"
 ---
 

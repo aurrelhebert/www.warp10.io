@@ -2,6 +2,7 @@
 title: "FETCHLONG"
 layout: function
 desc: "Fetches data from the store, forcing the returned Geo Time Series to be of type LONG."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

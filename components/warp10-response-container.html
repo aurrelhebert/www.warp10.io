@@ -1,0 +1,130 @@
+<link rel="import" href="polymer/polymer.html">
+<link rel="import" href="./styles.html">
+<dom-module id="warp10-response-container">
+
+  <template>
+    <style include="style-module">
+      :host {
+      }
+
+      .right {
+        float: right;
+      }
+
+      .response-panel {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: #002240;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
+      }
+
+      .response-panel div {
+        color: white;
+      }
+
+      .line {
+        width: 100%;
+        font-size: 12px;
+        font-family: monospace;
+      }
+
+      .line-number {
+        float: left;
+        width: 30px;
+        text-align: right;
+        color: white;
+      }
+
+      .line-content-container {
+        float: left;
+        width: 100%;
+        margin-left: -30px;
+      }
+
+      .line-content {
+        margin-left: 50px;
+        color: white;
+        word-wrap: break-word;
+      }
+
+    </style>
+
+    <template is="dom-if" if="{{showResponse}}">
+      <h4>Response:</h4>
+      <div class="response-panel">
+        <div class="right" on-click="hide">X</div>
+        <div class="clearfix"></div>
+        <template is="dom-repeat" items="{{data}}" as="line">
+          <div class="line">
+            <div class="line-number">{{index}}:</div>
+            <div class="line-content-container">
+              <div class="line-content">{{stringify(line)}}</div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </template>
+      </div>
+    </template>
+  </template>
+
+
+  <script>
+    class Warp10ResponseContainer extends Polymer.Element {
+      static get is() {
+        return 'warp10-response-container'
+      }
+
+      static get properties() {
+        return {
+          reponse: {
+            type: Array,
+            observer: 'responseChanged'
+          }
+        };
+      }
+
+      static get observers() {
+        return ['responseChanged(reponse.*)'];
+      }
+
+      ready() {
+        super.ready();
+        this.showResponse = false;
+        this.data = []
+      }
+
+      attached() {
+        this.responseChanged();
+      }
+
+      responseChanged() {
+        console.debug("[warp10-response-container] responseChanged", this.response);
+        if ((this.response === null) || (this.response === undefined)) {
+          this.showResponse = false;
+          return;
+        }
+
+        this.data = this.response;
+
+        // console.debug([warp10-response-container] responseChanged", this.data);
+
+        this.showResponse = (this.data !== undefined) && (this.data !== null);
+      }
+
+      hide() {
+        this.showResponse = false;
+      }
+
+      stringify(line) {
+        return looseJSON.stringify(line);
+      }
+    }
+
+    customElements.define(Warp10ResponseContainer.is, Warp10ResponseContainer);
+
+  </script>
+</dom-module>

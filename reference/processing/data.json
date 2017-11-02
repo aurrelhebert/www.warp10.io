@@ -1,7 +1,0 @@
----
-layout: null
----
-{% assign pages = site.pages | where:"category","processing" %}[{% for s in  pages  %}{
-"title"    : "{{ s.title }}",
-"content"  : {{ s.content | markdownify | jsonify }}
-}{% if forloop.last %}{% else %},{% endif %}{% endfor %}]

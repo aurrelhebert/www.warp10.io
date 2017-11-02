@@ -1,22 +1,23 @@
 <link rel="import" href="./styles.html">
+<link rel="import" href="iron-ajax/iron-ajax.html">
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="iron-collapse/iron-collapse.html">
 
 <dom-module id="warp10-menu">
 
   <template>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style include="style-module">
 
     </style>
-    <nav class="navbar navbar-light bg-light">
-      <marked-element disable-remote-sanitization on-marked-render-complete="_renderComplete">
-        <div slot="markdown-html" id="menu"></div>
-        <script type="text/markdown" src="/menu.md"></script>
-      </marked-element>
-    </nav>
+    <iron-ajax
+      auto
+      url="/raw/menu.json"
+      handle-as="json"
+      on-response="_handleResponse"
+      last-response="{{ajaxResponse}}"
+      debounce-duration="300"></iron-ajax>
+
+    <div id="content"></div>
 
   </template>
   <script>
@@ -26,56 +27,68 @@
       }
 
       static get properties() {
-
-      }
-
-      _renderComplete() {
-        let root = this.root.querySelector('#menu');
-        if (root.hasChildNodes()) {
-          root.childNodes.forEach(n => {
-            if ('UL' === n.nodeName) {
-              n.classList.add('nav', 'nav-pills', 'flex-column');
-            }
-            this._parse(n, 0);
-          }, this);
+        return {
+          menu: {
+            type: Object,
+            value: function () {
+              return {};
+            },
+          },
         }
       }
-
-      _parse(root, i) {
-        if (root.hasChildNodes()) {
-          root.childNodes.forEach(n => {
-         //   console.log('parse', n);
-            switch (n.nodeName) {
-              case 'UL':
-                n.classList.add('nav', 'nav-pills', 'flex-column');
-                break;
-              case 'LI' :
-                n.classList.add('nav-link', 'ml-3', 'my-1');
-              /*  if (n.firstElementChild !== null && n.firstElementChild.nodeName === 'UL') {
-                  n.setAttribute('data-toggle', 'collapse');
-                  n.setAttribute('data-target', '#collapse_' + i);
-                  n.firstElementChild.classList.add('collapse');
-                  n.firstElementChild.id = 'collapse_' + i;
-                }*/
-                break;
-              case 'A' :
-            //    console.log('First after a', n.nextElementSibling);
-                if (n.nextElementSibling !== null && n.nextElementSibling.nodeName === 'UL') {
-                  n.setAttribute('on-click', 'toggle');
-                  n.setAttribute('data-target', '#collapse_' + i);
-                  n.nextElementSibling.classList.add('collapse');
-                  n.nextElementSibling.id = 'collapse_' + i;
-                }
-                break;
-            }
-            i++;
-            this._parse(n, i);
-          }, this);
-        }
+      _toggle(evt) {
+        evt.preventDefault();
+        this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
+        return false;
       }
+      _buildMenu(menu) {
+        let htmlMenu = '';
+        Object.keys(menu).forEach(function (m) {
+          htmlMenu += `<li><a data-target="#${m}" href="!#" >${this._capitalizeFirstLetter(menu[m]['title'])}</a><iron-collapse id="${m}"><ul>`;
+          if(menu[m].hasOwnProperty('children')) {
+            htmlMenu += this._buildMenu(menu[m]['children']);
+          }
+          if(menu[m].hasOwnProperty('links')) {
+            menu[m]['links'].forEach(function(link){
+              htmlMenu += `<li><a href="#/doc/${link.path}">${this._capitalizeFirstLetter(link.title)}</a></li>`;
+            }, this);
+          }
+          htmlMenu += '</iron-collapse></li></ul>';
+        }, this);
+        return htmlMenu;
+      }
+      _capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+      _handleResponse(event, ironRequest) {
+        event.stopPropagation();
+        console.log(ironRequest.response);
+        this.menu = {};
+        Object.keys(ironRequest.response).forEach(function (item) {
+          console.log(item)
+          let arr = item.split('/');
+          if (!this.menu.hasOwnProperty(arr[0])) {
+            this.menu[arr[0]] = {title: arr[0], children: {}, links: []}
+          }
+          let tmpArr = this.menu[arr[0]].children;
+          for (let i = 1; i < arr.length; i++) {
+            if (!tmpArr.hasOwnProperty(arr[i])) {
+              tmpArr[arr[i]] = {title: arr[i], children: {}, links: []}
+            }
+            if (i === arr.length - 1) {
+              tmpArr[arr[i]].links = tmpArr[arr[i]].links.concat(ironRequest.response[item]);
+            }
+            tmpArr = tmpArr[arr[i]];
+          }
+        }, this)
+        console.log(this.menu);
 
-      toggle(e) {
-        console.log('toggle', e);
+        this.root.querySelector('#content').innerHTML = `<ul>${this._buildMenu(this.menu)}</ul>`;
+        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
+          if(!!element.getAttribute('data-target')) {
+            element.addEventListener('click', this._toggle.bind(this));
+          }
+        }, this);
       }
     }
 

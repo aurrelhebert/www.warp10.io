@@ -2,6 +2,7 @@
 title: "BINTOHEX"
 layout: function
 desc: "Decodes a binary encoded string and immediately re-encode it in hex."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

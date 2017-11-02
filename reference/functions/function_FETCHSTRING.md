@@ -2,6 +2,7 @@
 title: "FETCHSTRING"
 layout: function
 desc: "Fetches data from the store, forcing the returned Geo Time Series to be of type STRING."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

@@ -3,6 +3,7 @@ title: "LFLATMAP"
 layout: function
 desc: "Apply a macro on each element of a list"
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 The `LMAP` function applies a macro on each element of a list, producing a list with each original element replaced by the flattened result of the macro execution

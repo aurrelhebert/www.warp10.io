@@ -3,6 +3,7 @@ title: "INTERSECTION"
 layout: function
 desc: "Computes the intersection of two sets."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Computes the `INTERSECTION` of two sets.

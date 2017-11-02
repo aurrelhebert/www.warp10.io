@@ -3,6 +3,7 @@ title: "LMAP"
 layout: function
 desc: "Apply a macro on each element of a list"
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 The `LMAP` function applies a macro on each element of a list, producing a list with the element on top of the stack after each macro invocation.

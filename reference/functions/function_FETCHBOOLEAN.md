@@ -3,6 +3,7 @@ title: "FETCHBOOLEAN"
 layout: function
 desc: "Fetches data from the store, forcing the returned Geo Time Series to be of type BOOLEAN."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 Warp 10 does not force data stored in a given Geo Time Series to be of a single type, but it forces a single type when manipulating the data.

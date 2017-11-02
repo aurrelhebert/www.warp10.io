@@ -2,6 +2,7 @@
 title: "BBOX"
 layout: "function"
 desc: "Computes the bounding box of a Geo Time Series"
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
  

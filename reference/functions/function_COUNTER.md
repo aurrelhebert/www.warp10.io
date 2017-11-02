@@ -1,6 +1,7 @@
 ---
 title: "COUNTER"
 layout: function
+categoryTree: ["reference","functions"]
 desc: "Push a counter (AtomicLong) onto the stack."
 category: reference
 ---

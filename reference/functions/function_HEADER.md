@@ -3,6 +3,7 @@ title: "HEADER"
 layout: function
 desc: "Set a header which will be returned with the HTTP response."
 category: reference
+categoryTree: ["reference","functions"]
 ---
 
 The `HEADER` function sets a header which will be returned with the HTTP response.

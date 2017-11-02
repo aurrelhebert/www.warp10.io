@@ -2,6 +2,7 @@
 title: "DOCMODE"
 layout: function
 desc: "Turns on documentation mode."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

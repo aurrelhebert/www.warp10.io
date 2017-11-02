@@ -2,6 +2,7 @@
 title: "DEFINEDMACRO"
 layout: function
 desc: "Checks if a macro is defined and pushes true or false on the stack accordingly."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

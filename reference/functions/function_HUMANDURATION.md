@@ -4,6 +4,7 @@ layout: function
 desc: "Convert a number of time units into a human readable duration."
 category: reference
 signature: "time_units HUMANDURATION 'duration'"
+categoryTree: ["reference","functions"]
 ---
 
 Convert a number of time units into a human readable duration.

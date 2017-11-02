@@ -4,6 +4,7 @@ layout: "function"
 isPage: "true"
 link: "/warpscript/functions"
 desc: "Defines the documentation string for a macro."
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
  

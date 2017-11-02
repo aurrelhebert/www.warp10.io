@@ -2,6 +2,7 @@
 title: "COUNTERDELTA"
 layout: function
 desc: "Increment a counter."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

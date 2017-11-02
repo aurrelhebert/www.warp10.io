@@ -5,6 +5,7 @@ isPage: "true"
 link: "/warpscript/functions"
 desc: "Sorts a list of Geo Time Series according to their most recent value."
 category: "reference"
+categoryTree: ["reference","functions"]
 ---
  
 Sorts a list of Geo Time Series according to their most recent value. If most recent values are identical, ticks will be compared, the most recent appearing first. If the ticks are also identical, then metadata (class and labels) will be compared.

@@ -3,6 +3,7 @@ title: "AESWRAP"
 layout: function
 desc: "Wrap a byte array or String with AES cypher"
 category: reference
+categoryTree: ["reference","functions"]
 signature: "'string' or 'bytesarray' AESWRAP 'bytesarray'"
 ---
 

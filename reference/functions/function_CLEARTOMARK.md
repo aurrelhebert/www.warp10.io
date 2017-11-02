@@ -3,6 +3,7 @@ title: "CLEARTOMARK"
 layout: "function"
 isPage: "true"
 link: "/warpscript/functions"
+categoryTree: ["reference","functions"]
 desc: "Removes elements from the stack up to and including the first mark encountered."
 category: "reference"
 ---

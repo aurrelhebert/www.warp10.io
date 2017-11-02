@@ -2,6 +2,7 @@
 title: "B64TOHEX"
 layout: function
 desc: "Decodes a base64 encoded string and immediately re-encode it in hex."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

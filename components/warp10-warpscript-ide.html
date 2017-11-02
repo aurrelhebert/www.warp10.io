@@ -1,0 +1,440 @@
+<link rel="import" href="polymer/polymer.html">
+<link rel="import" href="warp10-iron/warp10-warpscript-caller.html">
+<link rel="import" href="warp10-iron/warp10-gts-tools.html">
+<link rel="import" href="ace-widget/ace-widget.html">
+<link rel="import" href="warp10-response-container.html">
+<link rel="import" href="styles.html">
+<dom-module id="warp10-warpscript-ide">
+
+  <template>
+    <style include="style-module">
+      :host {
+        display: block;
+      }
+
+      .ace-editor {
+        font-size: 14px;
+      }
+
+      .top-10 {
+        margin-top: 10px;
+      }
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+    </style>
+
+    <warp10-warpscript-caller id="warpscriptcaller" url="{{_baseUrl}}" warpscript="{{warpscriptScript}}"
+                              on-response="_handleResponse" on-error="_handleError" loading="{{loading}}">
+    </warp10-warpscript-caller>
+
+
+    <ace-widget id="editor" theme="ace/theme/eclipse" mode="ace/mode/warpscript" softtabs="true" wrap="true"
+                value="{{content}}">Type your code here...
+    </ace-widget>
+
+
+    <div class="top-10">
+      <div class="right">
+        <button id="btn_execute" class="btn btn-primary btn-lg" on-click="execute" disabled$="{{loading}}">
+          Execute!
+        </button>
+      </div>
+    </div>
+    <template is="dom-if" if="{{showedElapsedTime}}">
+      <div class="clearfix"></div>
+      <div class="top-10">
+        <div class="right">Your script execution took {{formattedElapsedTime}} serverside</div>
+      </div>
+    </template>
+    <div class="clearfix"></div>
+
+
+    <div class="top-10">
+      <warp10-response-container id="response_container" response="{{stack}}" received="{{received}}"
+                                 hidden$="{{!_hasAResponse}}">&gt;
+      </warp10-response-container>
+      <div class="alert alert-danger" hidden$="{{!_hasAnError}}">
+        {{errorMsg}}
+      </div>
+    </div>
+
+
+  </template>
+  <script>ace.define("ace/mode/warpscript_keywords", function (require, exports, module) {
+    "use strict";
+
+    var warpscriptFunctions = "\-\>B64|\-\>B64URL|\-\>HEX|\-\>JSON|\-\>LIST|\-\>MAP|\-\>Q|\-\>SET|ABS|ACOS|ADDVALUE|AND|APPEND|APPLY|ASIN|ATAN|ATBUCKET|ATINDEX|ATTICK|ATTRIBUTES|AUTHENTICATE|B64\-\>|B64URL\-\>|BUCKETCOUNT|BUCKETIZE|BUCKETSPAN|CBRT|CEIL|CHUNK|CLEAR|CLEARTOMARK|CLONE|CLONEEMPTY|CLONEREVERSE|COMMONTICKS|COMPACT|CONTAINS|CONTAINSKEY|CONTAINSVALUE|CONTINUE|COPYGEO|COPYSIGN|CORRELATE|COS|COSH|COUNTTOMARK|CROP|CSTORE|CUDF|DEBUGOFF|DEBUGON|DEDUP|DEF|DEFINED|DEPTH|DIFFERENCE|DISCORDS|DOC|DOCMODE|DOUBLEEXPONENTIALSMOOTHING|DROP|DROPN|DTW|DUP|DUPN|DURATION|DWTSPLIT|ELAPSED|ELEVATIONS|ESDTEST|EVAL|EVALSECURE|EVERY|EXP|EXPM1|FDWT|FETCH|FFT|FFTAP|FILLNEXT|FILLPREVIOUS|FILLTICKS|FILLVALUE|FILTER|FIND|FINDSETS|FINDSTATS|FIRSTTICK|FLATTEN|FLOOR|FORGET|FROMBITS|FROMHEX|FUSE|GEO\.INTERSECTS|GEO\.WITHIN|GEO_INTERSECTION|GEO_SUBTRACTION|GEO_UNION|GEO_WKT|GET|GROOVY|GRUBBSTEST|HASH|HAVERSINE|HEX\-\>|HUMANDURATION|HYBRIDTEST|HYBRIDTEST2|HYPOT|IDENT|IDWT|IEEEREMAINDER|IFFT|INTEGRATE|INTERPOLATE|INTERSECTION|ISNULL|ISNaN|ISO8601|ISODURATION|ISONORMALIZE|JOIN|JS|JSON\-\>|JSONLOOSE|JSONSTRICT|KEYLIST|LABELS|LASTBUCKET|LASTSORT|LASTTICK|LBOUNDS|LFLATMAP|LIMIT|LIST\-\>|LMAP|LOAD|LOCATIONOFFSET|LOCATIONS|LOCSTRINGS|LOG|LOG10|LOG1P|LOWESS|LSORT|LUA|MACROBUCKETIZER|MACROFILTER|MACROMAPPER|MACROREDUCER|MAKEGTS|MAP\-\>|MAP|MAPID|MARK|MATCH|MAX|MAXBUCKETS|MAXDEPTH|MAXGTS|MAXOPS|MAXSYMBOLS|MERGE|META|METASORT|MIN|MONOTONIC|MSGFAIL|MSORT|MSTU|MUSIGMA|NAME|NBOUNDS|NDEBUGON|NEWGTS|NEXTAFTER|NEXTUP|NONEMPTY|NOOP|NORMALIZE|NOT|NOTAFTER|NOTBEFORE|NOTIMINGS|NOW|NPDF|NRETURN|NSUMSUMSQ|ONLYBUCKETS|OPS|OR|PAPPLY|PARSESELECTOR|PARTITION|PATTERNDETECTION|PATTERNS|PFILTER|PICK|PROBABILITY|PUT|PYTHON|Q\-\>|QCONJUGATE|QDIVIDE|QMULTIPLY|QROTATE|QROTATION|QUANTIZE|R|R\-\>|RAND|RANGE|RANGECOMPACT|REDUCE|RELABEL|REMOVE|RENAME|RESET|RESETS|REV|REVERSE|RINT|RLOWESS|ROLL|ROLLD|ROT|ROTATIONQ|ROUND|RSORT|RUBY|RUN|RVALUESORT|SECUREKEY|SET|SET\-\>|SETATTRIBUTES|SHRINK|SIGNUM|SIN|SINGLEEXPONENTIALSMOOTHING|SINH|SIZE|SORT|SPLIT|SQRT|STACKATTRIBUTE|STANDARDIZE|STL|STLESDTEST|STOP|STORE|STRICTMAPPER|STRICTPARTITION|STU|SUBLIST|SUBMAP|SUBSTRING|SWAP|SWITCH|TAN|TANH|TEMPLATE|THRESHOLDTEST|TICKINDEX|TICKLIST|TIMECLIP|TIMEMODULO|TIMESCALE|TIMESHIFT|TIMESPLIT|TIMINGS|TOBITS|TODEGREES|TODOUBLE|TOHEX|TOKENINFO|TOLONG|TOLOWER|TORADIANS|TOSELECTOR|TOSTRING|TOTIMESTAMP|TOUPPER|TRIM|TSELEMENTS|TYPEOF|UDF|ULP|UNBUCKETIZE|UNION|UNIQUE|UNSECURE|UNWRAP|UPDATE|URLDECODE|URLENCODE|UUID|VALUEDEDUP|VALUEHISTOGRAM|VALUELIST|VALUES|VALUESORT|VALUESPLIT|WEBCALL|WRAP|ZIP|ZSCORE|ZSCORETEST";
+
+    var warpscriptControl = "ASSERT|BREAK|FAIL|FOR|FOREACH|FORSTEP|IFT|IFTE|RETURN|UNTIL|WHILE";
+
+
+    var warpscriptConstants = "NULL|NaN|E|e|PI|pi|NOW|MAXLONG|MINLONG|TRUE|true|FALSE|false";
+    var warpscriptFrameworkFunctions = "bucketizer\.count|bucketizer\.count\.exclude-nulls|bucketizer\.count\.include-nulls|bucketizer\.count\.nonnull|bucketizer\.first|bucketizer\.join|bucketizer\.join\.forbid-nulls|bucketizer\.last|bucketizer\.max|bucketizer\.max\.forbid-nulls|bucketizer\.mean|bucketizer\.mean\.exclude-nulls|bucketizer\.median|bucketizer\.min|bucketizer\.min\.forbid-nulls|bucketizer\.percentile|bucketizer\.sum|bucketizer\.sum\.forbid-nulls|filter\.byclass|filter|\.bylabels|filter\.last\.eq|filter\.last\.ge|filter\.last\.gt|filter\.last\.le|filter\.last\.lt|filter\.last\.ne|mapper\.abs|mapper\.add|mapper\.ceil|mapper\.count|mapper\.count\.exclude-nulls|mapper\.count\.include-nulls|mapper\.count\.nonnull|mapper\.day|mapper\.delta|mapper\.dotproduct|mapper\.dotproduct\.positive|mapper\.dotproduct\.sigmoid|mapper\.dotproduct\.tanh|mapper\.eq|mapper\.exp|mapper\.first|mapper\.floor|mapper\.ge|mapper\.geo\.approximate|mapper\.geo\.clear|mapper\.geo\.outside|mapper\.geo\.within|mapper\.gt|mapper\.hdist|mapper\.highest|mapper\.hour|mapper\.hspeed|mapper\.join|mapper\.join\.forbid-nulls|mapper\.kernel\.cosine|mapper\.kernel\.epanechnikov|mapper\.kernel\.gaussian|mapper\.kernel\.logistic|mapper\.kernel\.quartic|mapper\.kernel\.silverman|mapper\.kernel\.triangular|mapper\.kernel\.tricube|mapper\.kernel\.triweight|mapper\.kernel\.uniform|mapper\.last|mapper\.le|mapper\.log|mapper\.lowest|mapper\.lt|mapper\.max|mapper\.max\.forbid-nulls|mapper\.max\.x|mapper\.mean|mapper\.mean\.exclude-nulls|mapper\.median|mapper\.min|mapper\.min\.forbid-nulls|mapper\.min\.x|mapper\.minute|mapper\.month|mapper\.mul|mapper\.ne|mapper\.npdf|mapper\.percentile|mapper\.pow|mapper\.product|mapper\.rate|mapper\.replace|mapper\.round|mapper\.sd|mapper\.sd\.forbid-nulls|mapper\.second|mapper\.sigmoid|mapper\.sum|mapper\.sum\.forbid-nulls|mapper\.tanh|mapper\.tick|mapper\.toboolean|mapper\.todouble|mapper\.tolong|mapper\.tostring|mapper\.truecourse|mapper\.var|mapper\.var\.forbid-nulls|mapper\.vdist|mapper\.vspeed|mapper\.weekday|mapper\.year|max\.tick\.sliding\.window|max\.time\.sliding\.window|op\.add|op\.and|op\.div|op\.eq|op\.ge|op\.gt|op\.le|op\.lt|op\.mask|op\.mul|op\.ne|op\.or|op\.sub|reducer\.argmax|reducer\.argmin|reducer\.count|reducer\.count\.exclude-nulls|reducer\.count\.include-nulls|reducer\.count\.nonnull|reducer\.join|reducer\.join\.forbid-nulls|reducer\.join\.nonnull|reducer\.max|reducer\.max\.forbid-nulls|reducer\.max\.nonnull|reducer\.mean|reducer\.mean\.exclude-nulls|reducer\.median|reducer\.min|reducer\.min\.forbid-nulls|reducer\.min\.nonnull|reducer\.percentile|reducer\.product|reducer\.sd|reducer\.sd\.forbid-nulls|reducer\.shannonentropy\.0|reducer\.shannonentropy\.1|reducer\.sum|reducer\.sum\.forbid-nulls|reducer\.sum\.nonnull|reducer\.var|reducer\.var\.forbid-nulls";
+
+    var keywordMap = {
+      "constant.language": warpscriptConstants,
+      "keyword.control": warpscriptControl,
+      "keyword.other": warpscriptFrameworkFunctions,
+      "support.function": warpscriptFunctions
+    }
+
+    console.debug("[mode-warpscript] keywordMap", keywordMap);
+    exports.KeywordMap = keywordMap;
+  });
+
+  ace.define("ace/mode/warpscript_highlight_rules", ["require", "exports", "module", "ace/lib/oop", "ace/mode/text_highlight_rules", "ace/mode/warpscript_keywords"], function (require, exports, module) {
+    "use strict";
+
+    var oop = require("../lib/oop");
+    var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+
+    var keywordMap = require("./warpscript_keywords").KeywordMap;
+
+    var WarpScriptHighlightRules = function () {
+      this.keywordMapper = this.createKeywordMapper(keywordMap, "identifier", false);
+
+
+      this.$rules = {
+        "start": [
+          {
+            token: "comment",
+            regex: /\/\//,        // Token '//'
+            next: "line_comment"
+          }, {
+            token: "string.quoted.single",           // '' string
+            regex: /'[^']*'/
+          }, {
+            token: "constant.numeric", // float
+            regex: /[+-]?\d+(\.\d+)?([eE][+-]?\d+)?\b/
+          }, {
+            token: "support.variable",
+            regex: /\@[a-zA-Z0-9_$]*\b/
+          }, {
+            token: this.keywordMapper,
+            regex: "[a-zA-Z_$][a-zA-Z0-9_$]*\\b",
+            caseInsensitive: false
+          }, {
+            token: "keyword.operator",
+            regex: /!|!=|%|&|&&|\*|\*\*|\+|\-|\/|<|<=|==|>|>=|\[|\]|\[\]|\^|\{\}|\{|\}|\||\|\||~=/
+          }, {
+            token: "paren.lparen",
+            regex: /[\[\{]/
+          }, {
+            token: "paren.rparen",
+            regex: /[\]\}]/
+          }, {
+            token: "text",
+            regex: /\s+/
+          }
+        ],
+        "line_comment": [           // If end of line, back to start state, else it's a comment
+          {
+            token: "comment",
+            regex: "$|^",
+            next: "start"
+          },
+          {
+            defaultToken: "comment",
+            caseInsensitive: true
+          }
+        ],
+      };
+    };
+
+    oop.inherits(WarpScriptHighlightRules, TextHighlightRules);
+
+    exports.WarpScriptHighlightRules = WarpScriptHighlightRules;
+  });
+
+
+  ace.define("ace/mode/warpscript_completions", ["require", "exports", "module", "ace/token_iterator", "ace/mode/warpscript_keywords"], function (require, exports, module) {
+    "use strict";
+
+
+    var keywordMap = require("./warpscript_keywords").KeywordMap;
+
+
+    var keywordList = [];
+
+    for (var key in keywordMap) {
+      keywordList = keywordList.concat(keywordMap[key].split(/\|/));
+    }
+    keywordList = keywordList.sort();
+    console.debug("[mode-warpscript] keyword list", keywordList);
+
+    var WarpScriptCompletions = function () {
+    };
+    (function () {
+      this.getCompletions = function (state, session, pos, prefix) {
+        console.debug("[mode-warpscript] getCompletions - keywordList", keywordList);
+        var matchingWords = [];
+        for (var word in keywordList) {
+
+          if (keywordList[word].search(prefix) > -1) {
+            matchingWords.push(keywordList[word])
+          }
+        }
+        var matchingWordsObjects = matchingWords.map(function (value) {
+          return {
+            caption: value,
+            snippet: value,
+            meta: "WARPSCRIPT",
+            score: Number.MAX_VALUE
+          };
+        });
+        console.debug("[mode-warpscript] getCompletions - matching words", matchingWordsObjects);
+        return matchingWordsObjects;
+      }
+    }).call(WarpScriptCompletions.prototype);
+
+    exports.WarpScriptCompletions = WarpScriptCompletions;
+  });
+
+
+  ace.define("ace/mode/warpscript", ["require", "exports", "module", "ace/lib/oop", "ace/mode/text", "ace/mode/warpscript_highlight_rules", "ace/range", "ace/mode/warpscript_completions"], function (require, exports, module) {
+    "use strict";
+
+    var oop = require("../lib/oop");
+    var TextMode = require("./text").Mode;
+    var WarpScriptHighlightRules = require("./warpscript_highlight_rules").WarpScriptHighlightRules;
+    var WarpScriptCompletions = require("./warpscript_completions").WarpScriptCompletions;
+    var Range = require("../range").Range;
+
+    var Mode = function () {
+      console.debug("[mode-warpscript] Mode initializing")
+      this.HighlightRules = WarpScriptHighlightRules;
+      this.$completer = new WarpScriptCompletions();
+    };
+    oop.inherits(Mode, TextMode);
+
+
+    (function () {
+
+      this.lineCommentStart = "*";
+
+      this.$id = "ace/mode/warpscript";
+
+      this.getCompletions = function (state, session, pos, prefix) {
+        var completerResponse = this.$completer.getCompletions(state, session, pos, prefix);
+        console.debug("[mode-warpscript] completer response", completerResponse);
+        return completerResponse;
+      };
+
+    }).call(Mode.prototype);
+
+    exports.Mode = Mode;
+
+  });
+  </script>
+  <script>ace.define("ace/theme/eclipse", ["require", "exports", "module", "ace/lib/dom"], function (e, t, n) {
+    "use strict";
+    t.isDark = !1, t.cssText = '.ace-eclipse .ace_gutter {background: #ebebeb;border-right: 1px solid rgb(159, 159, 159);color: rgb(136, 136, 136);}.ace-eclipse .ace_print-margin {width: 1px;background: #ebebeb;}.ace-eclipse {background-color: #FFFFFF;color: black;}.ace-eclipse .ace_fold {background-color: rgb(60, 76, 114);}.ace-eclipse .ace_cursor {color: black;}.ace-eclipse .ace_storage,.ace-eclipse .ace_keyword,.ace-eclipse .ace_variable {color: rgb(127, 0, 85);}.ace-eclipse .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-eclipse .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-eclipse .ace_function {color: rgb(60, 76, 114);}.ace-eclipse .ace_string {color: rgb(42, 0, 255);}.ace-eclipse .ace_comment {color: rgb(113, 150, 130);}.ace-eclipse .ace_comment.ace_doc {color: rgb(63, 95, 191);}.ace-eclipse .ace_comment.ace_doc.ace_tag {color: rgb(127, 159, 191);}.ace-eclipse .ace_constant.ace_numeric {color: darkblue;}.ace-eclipse .ace_tag {color: rgb(25, 118, 116);}.ace-eclipse .ace_type {color: rgb(127, 0, 127);}.ace-eclipse .ace_xml-pe {color: rgb(104, 104, 91);}.ace-eclipse .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-eclipse .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-eclipse .ace_meta.ace_tag {color:rgb(25, 118, 116);}.ace-eclipse .ace_invisible {color: #ddd;}.ace-eclipse .ace_entity.ace_other.ace_attribute-name {color:rgb(127, 0, 127);}.ace-eclipse .ace_marker-layer .ace_step {background: rgb(255, 255, 0);}.ace-eclipse .ace_active-line {background: rgb(232, 242, 254);}.ace-eclipse .ace_gutter-active-line {background-color : #DADADA;}.ace-eclipse .ace_marker-layer .ace_selected-word {border: 1px solid rgb(181, 213, 255);}.ace-eclipse .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}', t.cssClass = "ace-eclipse";
+    var r = e("../lib/dom");
+    r.importCssString(t.cssText, t.cssClass)
+  })</script>
+  <script>ace.define("ace/snippets/text", ["require", "exports", "module"], function (e, t, n) {
+    "use strict";
+    t.snippetText = undefined, t.scope = "text"
+  })</script>
+
+
+  <script>
+    class Warp10WarpscriptIde extends Polymer.Element {
+      static get is() {
+        return 'warp10-warpscript-ide'
+      }
+
+      static get properties() {
+        return {
+          content: {
+            type: String,
+            notify: true
+          },
+          backend: {
+            type: String,
+            value: "http://127.0.0.1:8080/api/v0"
+          },
+          /**
+           * The  exec endpoint
+           */
+          execEndpoint: {
+            type: String,
+            value: "/exec"
+          },
+          response: {
+            type: Array,
+            value: function () {
+              return null;
+            }
+          },
+          plot: {
+            type: Number,
+            value: 0,
+            notify: true
+          },
+          data: {
+            type: Array,
+            notify: true
+          },
+          target: {
+            type: Object,
+            value: function () {
+              return document.body;
+            }
+          },
+          /**
+           * Elapsed time for the call
+           */
+          elapsed: {
+            type: Number,
+            value: -1
+          },
+          /**
+           * Elapsed time for the call, formated for view
+           */
+          formattedElapsedTime: {
+            type: String,
+            computed: "formatElapsedTime(elapsed)"
+          },
+          showedElapsedTime: {
+            type: Boolean,
+            computed: "showElapsedTime(elapsed)"
+          },
+          showPermalink: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * If true, the `warp10-warpscript-ide` component inside this one won't show
+           * the plot Button, useful for embedded mode
+           */
+          hidePlot: {
+            type: Boolean,
+            value: false
+          },
+          hidePermalink: {
+            type: Boolean,
+            computed: "isPermalinkHidden(showPermalink)"
+          },
+          _baseUrl: {
+            type: String,
+            computed: "_getBaseUrl(backend,execEndpoint)"
+          },
+
+          _hasAResponse: {
+            type: Boolean,
+            value: false
+          },
+          _hasAnError: {
+            type: Boolean,
+            value: false
+          },
+
+        };
+      }
+
+      ready() {
+        super.ready();
+        let editor = this.$.editor;
+        editor.addEventListener('editor-content', this.editorChangeAction.bind(this));
+
+        console.debug("[warp10-warpscript-ide] backend before conf", this.backend);
+        // Look for a global conf, and apply if it exists
+        if (window.quantumConf !== undefined) {
+          this.hidePlot = window.quantumConf.embedded;
+          this.backend = window.quantumConf.backend;
+          this.execEndpoint = window.quantumConf.execEndpoint;
+          this.headerName = window.quantumConf.headerName;
+        }
+        console.debug("[warp10-warpscript-ide] backend after conf", this.backend);
+
+      }
+
+      _getBaseUrl() {
+        return this.backend + this.execEndpoint;
+      }
+
+      _calcHasAResponse() {
+        // console.debug("[warp10-warpscript-ide] _calcHasAResponse");
+      }
+
+      _handleResponse(event, response) {
+        if (!response.stack ||
+          !response.stack instanceof Array) {
+          this.data = null;
+          return;
+        }
+        this.elapsed = response.options.elapsed;
+        this.data = gtsTools.gtsFromJSONList(response.stack);
+        this.stack = response.stack;
+        this._hasAResponse = true;
+        this._hasAnError = false;
+
+        this.$.response_container.responseChanged();
+
+        console.debug("[warp10-warpscript-ide] _handleResponse", { stack: this.stack, elapsed: this.elapsed, data: this.data });
+      }
+
+      _handleError(event, error) {
+        if (error.request.xhr.responseText.match(/<pre>\s*(.*)\s*<\/prse>/)) {
+          this.errorMsg = error.request.xhr.responseText.match(/<pre>\s*(.*)\s*<\/prse>/)[1];
+        } else {
+          this.errorMsg = error.request.statusText;
+        }
+
+        console.debug("[warp10-warpscript-ide] _handleError", {error: error, errorMsg: this.errorMsg});
+
+        this.elapsed = error.elapsed;
+        this._hasAResponse = false;
+        this._hasAnError = true;
+
+        console.debug("[warp10-warpscript-ide] _handleError - _hasAResponse", this._hasAResponse);
+      }
+
+      isPermalinkHidden() {
+        return !this.showPermalink;
+      }
+
+      editorChangeAction(value, oldValue) {
+        this.content = value.detail.value;
+        // console.debug("[warp10-warpscript-ide] editorChangeAction", this.content);
+      }
+
+
+      execute() {
+        console.debug("[warp10-warpscript-ide] Execute", this.content)
+        if (this.showPermalink) {
+          this.updatePermalink();
+        }
+        this.warpscriptScript = this.content;
+        this.$.warpscriptcaller.generateRequest();
+      }
+
+      formatElapsedTime() {
+        if (this.elapsed < 1000) {
+          return "" + this.elapsed + " ns";
+        }
+        if (this.elapsed < 1000000) {
+          return "" + (this.elapsed / 1000).toFixed(3) + " μs";
+        }
+        if (this.elapsed < 1000000000) {
+          return "" + (this.elapsed / 1000000).toFixed(3) + " ms";
+        }
+        return "" + (this.elapsed / 1000000000).toFixed(3) + " s";
+      }
+
+      showElapsedTime() {
+        return this.elapsed > 0;
+      }
+    }
+
+
+    customElements.define(Warp10WarpscriptIde.is, Warp10WarpscriptIde);
+  </script>
+</dom-module>

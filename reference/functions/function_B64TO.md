@@ -3,6 +3,7 @@ title: "B64->"
 layout: function
 desc: "Decodes a base64 encoded string."
 category: reference
+categoryTree: ["reference","functions"]
 signature: "'string' ->B64 'encoded'"
 ---
 

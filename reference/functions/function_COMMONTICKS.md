@@ -3,6 +3,7 @@ title: "COMMONTICKS"
 layout: "function"
 isPage: "true"
 link: "/warpscript/functions"
+categoryTree: ["reference","functions"]
 desc: "Modifies Geo Time Series so they all have the same ticks, the set of ticks common to all input Geo Time Series."
 category: "reference"
 ---

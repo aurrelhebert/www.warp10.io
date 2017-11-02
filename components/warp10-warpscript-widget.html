@@ -1,0 +1,132 @@
+<link rel="import" href="polymer/polymer.html">
+<link rel="import" href="warp10-warpscript-ide.html">
+<link rel="import" href="./styles.html">
+<dom-module id="warp10-warpscript-widget">
+  <template>
+    <style include="style-module">
+      :host {
+        display: block;
+      }
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+
+      .btn[hidden] {
+        display: none;
+      }
+
+      .top-10 {
+        margin-top: 10px;
+      }
+
+      h4 {
+        font-weight: bold;
+      }
+    </style>
+
+
+    <div hidden="">
+     <content id="content"></content>
+    </div>
+    <div>
+      <h4>WarpScript</h4>
+      <warp10-warpscript-ide id="editor-widget" theme="chaos" content="{{warpscript}}" plot="{{plot}}" data="{{data}}"
+                             backend="{{backend}}" show-permalink="{{showPermalink}}" hide-plot="{{hidePlot}}"
+                             exec-endpoint="{{execEndpoint}}"></warp10-warpscript-ide>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  class Warp10WarpscriptWidget extends Polymer.Element {
+    static get is() {
+      return 'warp10-warpscript-widget'
+    }
+
+    static get properties() {
+      return {
+        /**
+         * The  warpscript code in the IDE
+         */
+        warpscript: {
+          type: String,
+          notify: true,
+          observer: "_warpscriptChanged",
+          value: ""
+        },
+        /**
+         * If true, the warp10-backend-chooser widget is shown, allowing
+         * the user to select the backend
+         */
+        chooseBackend: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * The current backend. Can be used as an input (to fix a backend) or
+         * as an output (to known the current backend)
+         */
+        backend: {
+          type: String,
+          notify: true,
+          value: 'https://warp.cityzendata.net/dist/api/v0'
+        },
+        configuredBackends: {
+          type: Array
+        },
+        /**
+         * If false, the `warp10-warpscript-ide` component inside this one won't show
+         * the permalink, useful for embedded mode
+         */
+        showPermalink: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * If true, the `warp10-warpscript-ide` component inside this one won't show
+         * the plot Button, useful for embedded mode
+         */
+        hidePlot: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * The  exec endpoint
+         */
+        execEndpoint: {
+          type: String,
+          value: "/exec"
+        },
+      };
+    }
+
+    ready() {
+      super.ready();
+      console.debug("[warp10-warpscript-widget] attached - warpscript attribute", this.warpscript);
+      let content = Polymer.dom(this).innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>').trim();
+
+      this.warpscript = content;
+      console.debug(this.warpscript)
+      let event = document.createEvent('CustomEvent');
+      event.initCustomEvent('warp10-warpscript-widget', false, false, {value: "loaded", id: "anId"});
+      window.dispatchEvent(event);
+
+
+    }
+
+    _backToWarpScript() {
+      this.plot = 0;
+    }
+
+    _warpscriptChanged(newValue, oldValue) {
+      // console.debug("[warp10-warpscript-widget] _warpscriptChanged");
+    }
+  }
+
+  customElements.define(Warp10WarpscriptWidget.is, Warp10WarpscriptWidget);
+</script>

@@ -3,6 +3,7 @@ title: "BYTES->"
 layout: function
 desc: "Converts a bytes array into a string"
 category: reference
+categoryTree: ["reference","functions"]
 signature: "bytesarray 'charset' BYTES-> 'string'"
 ---
 

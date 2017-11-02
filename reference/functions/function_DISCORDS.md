@@ -2,6 +2,7 @@
 title: "DISCORDS"
 layout: function
 desc: "Detects discords in a Geo Time Series."
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
 

@@ -2,6 +2,7 @@
 title: "BIN->"
 layout: function
 desc: "Decode a String in binary."
+categoryTree: ["reference","functions"]
 category: reference
 ---
 

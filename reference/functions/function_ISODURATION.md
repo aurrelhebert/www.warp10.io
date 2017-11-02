@@ -3,6 +3,7 @@ title: "ISODURATION"
 layout: function
 desc: "Convert a number of time units into an ISO8601 duration string."
 category: reference
+categoryTree: ["reference","functions"]
 signature: "time_units ISODURATION 'duration'"
 ---
 

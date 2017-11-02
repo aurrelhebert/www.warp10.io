@@ -3,6 +3,7 @@ title: "BREAK"
 layout: "function"
 isPage: "true"
 desc: "Break out of the current loop"
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
 

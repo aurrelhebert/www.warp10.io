@@ -3,16 +3,12 @@
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="marked-element/marked-element.html">
 <link rel="import" href="iron-ajax/iron-ajax.html">
+<link rel="import" href="warp10-warpscript-widget.html">
 <link rel="import" href="menu.html">
 <script src="../js/prism.js"></script>
 <dom-module id="warp10-layout">
 
   <template>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/js/prism.css">
     <style include="style-module">
       .nav .collapse, .nav .nav-link .nav {
         margin-left: 10px;
@@ -34,38 +30,6 @@
         margin-top: 100px;
       }
 
-      [slot="markdown-html"] {
-        font-size: 1.2em;
-      }
-
-      [slot="markdown-html"] p {
-        text-align: justify;
-        text-indent: 10px;
-        font-size: 1.2em;
-      }
-
-      [slot="markdown-html"] h1, [slot="markdown-html"] h2, [slot="markdown-html"] h3, [slot="markdown-html"] h4 {
-        text-indent: 0;
-        margin-top: 1em;
-      }
-
-      [slot="markdown-html"] h1 {
-        font-size: 3em;
-        color: #ff9900;
-      }
-
-      [slot="markdown-html"] h2 {
-        font-size: 2em;
-        color: #ff9900;
-      }
-
-      [slot="markdown-html"] h3 {
-        font-size: 1.5em;
-      }
-
-      #content {
-        text-align: justify;
-      }
     </style>
     <app-route
       route="{{route}}"
@@ -93,7 +57,7 @@
           <div id="panel">
             <div class="container">
               <h1>[[title]]</h1>
-              <p>[[desc]]</p>
+              <blockquote class="blockquote">[[desc]]</blockquote>
               <div id="content"></div>
             </div>
           </div>
@@ -118,14 +82,34 @@
 
       _handleResponse(event, ironRequest) {
         event.stopPropagation();
-        this.root.querySelector('#content').innerHTML = ironRequest.response.content;
+        this.root.querySelector('#content').innerHTML = ironRequest.response.content
+          .replace(new RegExp('\{%[ ]+raw[ ]+%\}', 'g'), '')
+          .replace(new RegExp('\{%[ ]+endraw[ ]+%\}', 'g'), '');
         this.title = ironRequest.response.title;
         this.desc = ironRequest.response.desc;
         this.root.querySelectorAll('code').forEach(function (element) {
-          Prism.highlightElement(element, false, function (r, e) {
-            console.log('[warp10-layout] _renderComplete', r, e);
-          });
+          Prism.highlightElement(element, false);
         });
+        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
+          console.log('[warp10-layout] _handleResponse', element.getAttribute('href'));
+          if (!!element.getAttribute('href')) {
+            if (element.getAttribute('href').indexOf('http') === -1) {
+              let pathUrl = element.getAttribute('href');
+              if (pathUrl.indexOf('/') !== 0) {
+                let spath = this.route.path.split('/');
+                let newPath = '';
+                spath.slice(1).forEach(function (p) {
+                  newPath += '/' + p;
+                });
+                pathUrl = newPath + '/' + pathUrl
+              }
+              let path = ('#/doc/' + pathUrl).replace(new RegExp('//', 'g'), '/');
+              element.setAttribute('href', path);
+            } else {
+              element.setAttribute('target', '_blank');
+            }
+          }
+        }.bind(this));
         this.root.querySelector('#panel').classList.add(this.withMenu ? 'col-sm-9' : 'col-sm-12');
       }
 

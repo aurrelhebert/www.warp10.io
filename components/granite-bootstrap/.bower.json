@@ -52,14 +52,14 @@
   "demos": {
     "demo": "demo/index.html"
   },
-  "version": "3.3.7-5",
-  "_release": "3.3.7-5",
+  "version": "4.0.2-beta.2.1",
+  "_release": "4.0.2-beta.2.1",
   "_resolution": {
     "type": "version",
-    "tag": "3.3.7-5",
-    "commit": "c8bd539afdeba85989e52444d7225c14973e8803"
+    "tag": "4.0.2-beta.2.1",
+    "commit": "c0fc58cca11b5b9b63d4befd3f22b20bd47c45f4"
   },
   "_source": "https://github.com/LostInBrittany/granite-bootstrap.git",
-  "_target": "^3.3.7",
+  "_target": "^4.0.2-beta.2.1",
   "_originalSource": "LostInBrittany/granite-bootstrap"
 }

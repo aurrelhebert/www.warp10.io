@@ -3,6 +3,7 @@ title: "FORGET"
 layout: "function"
 description: "Removes a symbol from the symbol table"
 isPage: "true"
+categoryTree: ["reference","functions"]
 category: "reference"
 ---
 
