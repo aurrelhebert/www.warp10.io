@@ -11,7 +11,7 @@ The following functions haven't been fully documented yet, but we can already gi
 
 <div class='row small-p'>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 [DOUBLEEXPONENTIALSMOOTHING]({{ site.baseurl }}/reference/miscellaneous/DOUBLEEXPONENTIALSMOOTHING)
 
@@ -33,7 +33,7 @@ The following functions haven't been fully documented yet, but we can already gi
 
 </div>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 [LOCATIONOFFSET]({{ site.baseurl }}/reference/miscellaneous/LOCATIONOFFSET)
 
@@ -59,7 +59,7 @@ The following functions haven't been fully documented yet, but we can already gi
 
 </div>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 [ULP]({{ site.baseurl }}/reference/miscellaneous/ULP)
 
@@ -120,7 +120,7 @@ The following functions are not fully tested and may disappear, you can have a l
 
 <div class='row small-p'>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 #### LORA functions
 
@@ -130,7 +130,7 @@ The following functions are not fully tested and may disappear, you can have a l
 
 </div>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 #### Platform  functions
 
@@ -138,7 +138,7 @@ The following functions are not fully tested and may disappear, you can have a l
 
 </div>
 
-<div class='col-sm-3'>
+<div class='col-sm-4'>
 
 
   

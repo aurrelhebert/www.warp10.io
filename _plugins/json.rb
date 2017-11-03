@@ -26,7 +26,7 @@ module Jekyll
       site.pages.each_with_index do |p, index|
         # Encode the HTML to JSON
         p.data['path'] = p.path
-     #   print "#{(100 * index / site.pages.size())}%                                     \r"
+        print "#{(100 * index / site.pages.size())}%                                     \r"
         hash = {:content => converter.convert(p.content), :title => p.data['title'], :desc => p.data['desc']}
         title = p.name.downcase.tr(' ', '-').delete('’!')
         title.slice! '.md'
@@ -57,8 +57,6 @@ module Jekyll
         end
 
         menu[catPath].push({:title => p.data['title'], :path => path})
-puts p.data['title']
-        puts path
         # Create the JSON file and inject the data
         f = File.new("_site/raw/#{path}/raw.json", 'w+')
         f.puts JSON.generate(hash)

@@ -38,7 +38,7 @@ occasional meetups. We don't reply on StackOverflow, so the Google Group  is the
 If you need commercial support for the solution, you can get access to members of the team behind the platform through 
 one of the support plans offered by [Cityzen Data](http://www.cityzendata.com/).
 
-Please contact [sales](mailto:sales@cityzendata.com) for details.
+Please contact [sales@cityzendata.com](mailto:sales@cityzendata.com) for details.
 
 </div><div class="col-sm-12 col-md-4">
 

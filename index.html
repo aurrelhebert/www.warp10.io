@@ -40,7 +40,7 @@
   <!-- Load and register pre-caching Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
+      window.addEventListener('load', function () {
         navigator.serviceWorker.register('./service-worker.js');
       });
     }
@@ -53,10 +53,19 @@
   <link rel="import" href="components/polymer/polymer.html">
 
   <link rel="import" href="components/main.html">
+  <style is="custom-style" include="demo-pages-shared-styles">
+    @font-face {
+      font-family: 'FontAwesome';
+      src: url('components/granite-font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
+      src: url('components/granite-font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('components/granite-font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('components/granite-font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('components/granite-font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('components/granite-font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 </head>
 <body>
 
-  <warp10-main  scroll-target="document"></warp10-main>
+<warp10-main scroll-target="document"></warp10-main>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

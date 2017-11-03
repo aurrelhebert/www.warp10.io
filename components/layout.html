@@ -2,6 +2,7 @@
 <link rel="import" href="./styles.html">
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="marked-element/marked-element.html">
+<link rel="import" href="app-route/app-route.html">
 <link rel="import" href="iron-ajax/iron-ajax.html">
 <link rel="import" href="warp10-warpscript-widget.html">
 <link rel="import" href="menu.html">
@@ -10,24 +11,10 @@
 
   <template>
     <style include="style-module">
-      .nav .collapse, .nav .nav-link .nav {
-        margin-left: 10px;
-      }
-
-      .nav .nav-link {
-        max-width: 200px;
-      }
-
-      .nav .nav-link.active {
-        font-weight: bold;
-      }
-
-      .nav .nav-link.active:before {
-        content: '> ';
-      }
 
       .main-container {
         margin-top: 100px;
+        min-height: calc(100vh - 303px);
       }
 
     </style>
@@ -38,7 +25,7 @@
 
 
     <template is="dom-if" if="{{route.path}}" restamp>
-      <div class="container main-container" id="main-container">
+      <div class="container-fluid main-container" id="main-container">
         <iron-ajax
           auto
           url="[[getFile(route.path)]]"
@@ -50,7 +37,7 @@
           <dom-if if="[[withMenu]]">
             <template>
               <div class="col-sm-3">
-                <warp10-menu></warp10-menu>
+                <warp10-menu current-path="[[route.path]]"></warp10-menu>
               </div>
             </template>
           </dom-if>
@@ -91,9 +78,9 @@
           Prism.highlightElement(element, false);
         });
         this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
-          console.log('[warp10-layout] _handleResponse', element.getAttribute('href'));
+          //    console.log('[warp10-layout] _handleResponse', element.getAttribute('href'));
           if (!!element.getAttribute('href')) {
-            if (element.getAttribute('href').indexOf('http') === -1) {
+            if (element.getAttribute('href').indexOf('http') === -1 && element.getAttribute('href').indexOf('mailto') === -1) {
               let pathUrl = element.getAttribute('href');
               if (pathUrl.indexOf('/') !== 0) {
                 let spath = this.route.path.split('/');

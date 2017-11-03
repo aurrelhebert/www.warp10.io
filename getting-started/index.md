@@ -1,5 +1,5 @@
 ---
-title: "Getting Started - Index"
+title: "Getting Started"
 layout: "function"
 isPage: "true"
 link: "/"
@@ -9,7 +9,7 @@ category: "getting-started"
 ---
 
 
-# Quick start
+## Quick start
 
 This page describes how to download and deploy a standalone version of the Warp 10 platform, generate your first tokens and start interacting with the platform by pushing data and performing analytics.
 
@@ -19,12 +19,12 @@ The standalone version of the Warp 10 platform uses LevelDB as its storage backe
 
 <a name="setup"></a>
 
-# Warp 10 standalone platform deployment
+## Warp 10 standalone platform deployment
 
-## Setup the platform
+### Setup the platform
 
-<div class="text-center margin-left">
-  <a href='https://dl.bintray.com/cityzendata/generic/io/warp10/warp10/1.2.11-rc5/warp10-1.2.11-rc5.tar.gz' target="_blank">
+<div class="float-right">
+  <a href='https://dl.bintray.com/cityzendata/generic/io/warp10/warp10/1.2.11-rc6/warp10-1.2.11-rc6.tar.gz' target="_blank">
     <img class="no-zoom" src="/img/getting-started/bintray.png" alt="Using Warp 10 Init script">
     <br />
     <img class="no-zoom" src='https://api.bintray.com/packages/cityzendata/generic/warp10/images/download.svg?version=1.2.11-rc5'>
@@ -33,7 +33,7 @@ The standalone version of the Warp 10 platform uses LevelDB as its storage backe
 
 The easiest way to setup the Warp 10 platform is to use the Warp 10 Init script that comes with the Warp 10 build. Builds of Warp 10 are available on [Bintray](https://dl.bintray.com/cityzendata/generic/io/warp10/warp10). It is the recommended method of installation.
 
-### Running Warp 10
+#### Running Warp 10
 
 Untar the Warp 10 archive.
 
@@ -125,16 +125,16 @@ Logs are available in the `logs` directory
 
 Data are stored via leveldb in the `data` directory
 
-# Setup the platform with Docker
+## Setup the platform with Docker
 
-<div class="right margin-left">
+<div class="text-center">
   <img src="/img/getting-started/docker.png" alt="Using Docker">
 </div>
 
 The other way to setup the Warp 10 platform is to use [Docker](http://docker.io). Builds of Warp 10's Docker image are 
 available on [Dockerhub](https://hub.docker.com/r/warp10io/warp10/).
 
-## Running Warp 10 with Docker
+### Running Warp 10 with Docker
 
 Start your image binding the external ports 8080 and 8081 in all interfaces to your container.
 
@@ -149,9 +149,9 @@ In this example you bind the container internal data folder, `/data` to your loc
 
 You *must* use the same `--volume` option in all your other docker commands on warp 10 image.
 
-# Using Warp 10
+## Using Warp 10
 
-## Generating new Tokens
+### Generating new Tokens
 
 The Warp 10 platform is built with a robust security model that allows you to have a tight control of who has the right 
 to write and/or read data. The model is structured around the [concepts](/introduction/concepts) of `data producer`, 
@@ -173,9 +173,9 @@ default options loaded from file:/opt/warp10-X.Y.Z/bin/../etc/.conf-standalone.c
 ```
 
 In order to interact more precisely with the user/token/application system, you need an interactive access to Warp 10's 
-`Worf` console. More information [here](http://www.warp10.io/tools/worf).
+`Worf` console. More information [here](/tools/worf).
 
-## Data snapshot
+### Data snapshot
 
 Snapshot of leveldb data can be performed via the init script
 
@@ -185,17 +185,17 @@ Snapshot of leveldb data can be performed via the init script
 
 <a name="pushing-data"></a>
 
-## Pushing data into Warp 10
+### Pushing data into Warp 10
 
 Data is sent into the platform via HTTP [POST](http://en.wikipedia.org/wiki/POST_(HTTP)) requests to the Warp 10 API.
 
-## API Endpoint
+### API Endpoint
 
 The HTTP endpoint used to send data is `http(s)://host:port/api/vX/update`, where `vX`is the version of the API you want 
 to use (currently `v0`). In order to be accepted by the platform, requests to this endpointy need to be authenticated, 
 by using a `X-Warp10-Token` HTTP header with your **write** token.
 
-## Data format
+### Data format
 
 Data is sent in the body of the POST request, one data point per line. Each line follows the [GTS input format](/apis/gts-input-format):
 
@@ -245,7 +245,7 @@ Where :
 </div>
 
 
-## Example request
+### Example request
 
 ```http
 POST /api/v0/update HTTP/1.1
@@ -281,7 +281,7 @@ curl -v  --data-binary "'READ_TOKEN' 'test' {} NOW -1 FETCH" 'http://127.0.0.1:8
 
 If everything is OK, you should receive a HTTP 200 OK with your datapoint in JSON format.
 
-## Pushing your data into the platform
+### Pushing your data into the platform
 
 If you already have some time series that you want to push, you can put them into GTS input format.
 
@@ -324,7 +324,7 @@ with the content of the file in the body of the request, and the WRITE token in 
 
 Or you can simply use our graphical Warp 10 IDE: [Quantum](/tools/quantum).
 
-## Using Quantum
+### Using Quantum
 
 [Warp 10's Quantum](/tools/quantum) is a web application aiming to allow users to interact with the platform in an 
 user-friendly way, offering an alternative to command-line interaction.
@@ -355,13 +355,13 @@ headless embeddable version of Quantum's WarpScript widget that allows you to in
 
 <a name="accessing-data">
 
-## Accessing Data
+### Accessing Data
 
 Now you have some data in your Warp 10 instance. In this section we expose some methods to fetch data from  Warp 10. The
 first method is a simple HTTP GET request on the [`fetch` API endpoint](/apis/fetch). The second one will introduce 
 [WarpScript](/reference/) and you will see how to create your first script.
 
-### Requesting `fetch` API endpoint
+#### Requesting `fetch` API endpoint
 
 The Fetch API allows to recover raw GTS data in a extremely quick and efficient way.
 
@@ -413,7 +413,7 @@ curl -H 'X-Warp10-Token: TOKEN_READ' --data-binary "now=1449222473312000&timespa
 
 Note that the data returned by the Fetch API can be fed into the `update` endpoint verbatim.
 
-### Using WarpScript
+#### Using WarpScript
 
 The second way to fetch data is to use the WarpScript data manipulation environment.
 
@@ -444,7 +444,7 @@ This script can also be launched in Quantum. Besides, Quantum gives the possibil
 
 <a name="analyzing"></a>
 
-## Analyzing Data
+### Analyzing Data
 
 The WarpScript manipulation environment goes way further than simply recovering your data, it allows you to do complex 
 analysis of data stored in the Warp 10 storage platform.
@@ -452,7 +452,7 @@ analysis of data stored in the Warp 10 storage platform.
 In the previous section, a first WarpScript program was realized. Now it's time to improve it to extract information 
 about the data.
 
-### Compute the mean of all data points
+#### Compute the mean of all data points
 
 Get all the sensor GTS.
 
@@ -480,7 +480,7 @@ page.
 * What is on the stack now ? There is five GTS containing one tick which have a value equals to the mean of all the data 
 points of the GTS. Moreover, those GTS have their ticks synchronized.
 
-### Compute multiple mean for a GTS with a duration of 2 minutes
+#### Compute multiple mean for a GTS with a duration of 2 minutes
 
 Get all the GTS of all the sensors.
 
@@ -522,7 +522,7 @@ What happened here : this WarpScript will generate buckets starting from the las
 120 * 1 second). As many bucket as necessary will be generated for each GTS. Those buckets will have values equals to 
 the mean of all data points inside two minutes. Moreover the timestamp of each bucket of each GTS are now synchronized.
 
-### Get how many drones are flying at each timestamp
+#### Get how many drones are flying at each timestamp
 
 Get all the GPS metrics.
 bash
@@ -561,7 +561,7 @@ documentation page [`APPLY`](/reference/frameworks/framework-apply).
 
 Now you can simply compute the mean of this new GTS, or for example the mean by minute during the fly.
 
-### Find all objects near starting point at each timestamp
+#### Find all objects near starting point at each timestamp
 
 Get all the GPS metrics.
 

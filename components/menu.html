@@ -1,23 +1,92 @@
 <link rel="import" href="./styles.html">
-<link rel="import" href="iron-ajax/iron-ajax.html">
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="iron-collapse/iron-collapse.html">
-
+<link rel="import" href="iron-ajax/iron-ajax.html">
 <dom-module id="warp10-menu">
 
   <template>
     <style include="style-module">
+      :host {
+        display: block;
+        z-index: 0;
+      }
 
+      @media (min-width: 768px) {
+        nav a {
+          display: block !important;
+        }
+      }
+
+      @media (min-width: 768px) {
+        nav a {
+          max-height: calc(100vh - 9rem);
+          overflow-y: auto;
+        }
+      }
+
+      .bd-sidebar {
+        border-right: 1px solid rgba(0, 0, 0, .1);
+        min-height: calc(100vh - 278px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: absolute;
+        height: calc(100% + 25px);
+        width: 100%;
+        margin: -26px 0 0;
+        bottom: 0;
+        top: 0;
+      }
+
+      nav ul, nav ul li {
+        list-style-type: none;
+        display: list-item;
+      }
+
+      nav, .nav {
+        display: list-item;
+        list-style-type: none;
+        font-size: 1rem;
+      }
+
+      nav ul > li {
+        padding-left: 1rem;
+      }
+
+      nav > ul > li {
+        padding-left: 0;
+      }
+
+      a.header {
+        color: #2e3133;
+        font-weight: bold;
+        padding-top: 1rem;
+        margin-right: -15px;
+      }
+
+      a.menu-link {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-right: -15px;
+      }
+
+      a.nav-link.active {
+        font-weight: bold;
+      }
+
+      a.nav-link.active:before {
+        content: '> ';
+      }
     </style>
     <iron-ajax
       auto
       url="/raw/menu.json"
       handle-as="json"
       on-response="_handleResponse"
+      on-error="_handleError"
       last-response="{{ajaxResponse}}"
       debounce-duration="300"></iron-ajax>
 
-    <div id="content"></div>
+    <nav id="content" class="bd-sidebar"></nav>
 
   </template>
   <script>
@@ -34,49 +103,83 @@
               return {};
             },
           },
+          currentPath: {
+            type: String,
+            value: '',
+            observer: '_onRouteChanged'
+          }
         }
       }
+
       _toggle(evt) {
         this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
-        if(evt.path[0].attributes['data-target'].value === '!#') {
+        if (evt.path[0].attributes['href'].value === '!#') {
           evt.preventDefault();
           return false;
         }
       }
+
+      _onRouteChanged(route) {
+        console.log('[warp10-menu] _onRouteChanged', route);
+        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
+          if ('#/doc' + route === element.getAttribute('href')) {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
+        }, this);
+      }
+
       _buildMenu(menu) {
         let htmlMenu = '';
         Object.keys(menu).forEach(function (m) {
           htmlMenu += `<li>`;
-          if(menu[m].hasOwnProperty('children') &&  Object.keys(menu[m].children).length > 0) {
-            htmlMenu += `<a data-target="#${m}" href="!#" >${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul>${this._buildMenu(menu[m].children)}`;
+          let selectClass = '';
+          console.log(this.currentPath, m);
+          if (this.currentPath.match(new RegExp('/?' + m + '/?'))) {
+            selectClass = 'active'
           } else {
-            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul>`;
+            selectClass = '';
+          }
+          if (menu[m].hasOwnProperty('children') && Object.keys(menu[m].children).length > 0) {
+            htmlMenu += `<a data-target="#${m}" href="!#" class="nav-link header ${selectClass}">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul class="nav">${this._buildMenu(menu[m].children)}`;
+          } else {
+            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/" class="nav-link header ${selectClass}">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul class="nav">`;
           }
 
-          if(menu[m].hasOwnProperty('links')) {
-            menu[m]['links'].forEach(function(link){
-              htmlMenu += `<li><a href="#/doc/${link.path}">${this._capitalizeFirstLetter(link.title)}</a></li>`;
+          if (menu[m].hasOwnProperty('links')) {
+            menu[m]['links'].forEach(function (link) {
+              if (this.currentPath.match(new RegExp('/?' + link.path + '/?'))) {
+                selectClass = 'active'
+              } else {
+                selectClass = '';
+              }
+              htmlMenu += `<li><a href="#/doc/${link.path}" class="nav-link menu-link ${selectClass}">${this._capitalizeFirstLetter(link.title)}</a></li>`;
             }, this);
           }
           htmlMenu += '</iron-collapse></li></ul>';
         }, this);
         return htmlMenu;
       }
+
       _capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
+
       _handleResponse(event, ironRequest) {
         event.stopPropagation();
-        console.log(ironRequest.response);
+        console.log('[warp10-menu] _handleResponse', ironRequest.response);
         this.menu = {};
         Object.keys(ironRequest.response).forEach(function (item) {
-          console.log(item);
+          console.log('[warp10-menu] _handleResponse', item);
           let arr = item.split('/');
-          console.log(arr);
+          console.log('[warp10-menu] _handleResponse', arr);
           if (!this.menu.hasOwnProperty(arr[0])) {
             this.menu[arr[0]] = {title: arr[0], children: {}, links: []}
           }
-          this.menu[arr[0]].links = this.menu[arr[0]].links.concat(ironRequest.response[item]);
+          if (arr.length === 1) {
+            this.menu[arr[0]].links = this.menu[arr[0]].links.concat(ironRequest.response[item]);
+          }
           let tmpArr = this.menu[arr[0]].children;
           for (let i = 1; i < arr.length; i++) {
             if (!tmpArr.hasOwnProperty(arr[i])) {
@@ -88,14 +191,30 @@
             tmpArr = tmpArr[arr[i]];
           }
         }, this);
-        console.log(this.menu);
+        console.log('[warp10-menu] _handleResponse', this.menu);
 
-        this.root.querySelector('#content').innerHTML = `<ul>${this._buildMenu(this.menu)}</ul>`;
+        this.root.querySelector('#content').innerHTML = `<ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
         this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
-          if(!!element.getAttribute('data-target')) {
+          if (!!element.getAttribute('data-target')) {
             element.addEventListener('click', this._toggle.bind(this));
           }
         }, this);
+      }
+
+      _handleError(event, error) {
+        if (error.request.xhr.responseText.match(/<pre>\s*(.*)\s*<\/prse>/)) {
+          this.errorMsg = error.request.xhr.responseText.match(/<pre>\s*(.*)\s*<\/prse>/)[1];
+        } else {
+          this.errorMsg = error.request.statusText;
+        }
+
+        if (this.debug) {
+          console.log('[warp10-menu] _handleError', {error: error, errorMsg: this.errorMsg});
+        }
+
+        this.elapsed = error.elapsed;
+        this._hasAResponse = false;
+        this._hasAnError = true;
       }
     }
 
