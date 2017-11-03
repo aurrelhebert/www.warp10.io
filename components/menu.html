@@ -8,7 +8,6 @@
     <style include="style-module">
       :host {
         display: block;
-        z-index: 0;
       }
 
       @media (min-width: 768px) {
@@ -35,6 +34,9 @@
         margin: -26px 0 0;
         bottom: 0;
         top: 0;
+        z-index: 999;
+        background-color: #fff;
+
       }
 
       nav ul, nav ul li {
@@ -85,9 +87,10 @@
       on-error="_handleError"
       last-response="{{ajaxResponse}}"
       debounce-duration="300"></iron-ajax>
-
+    <iron-collapse id="menu">
+      <button type="button" class="btn btn-outline-dark" on-click="_toggleMenu" ><span class="fa fa-fw fa-arrow-left"></span></button>
     <nav id="content" class="bd-sidebar"></nav>
-
+    </iron-collapse>
   </template>
   <script>
     class Warp10Menu extends Polymer.Element {
@@ -110,7 +113,9 @@
           }
         }
       }
-
+      _toggleMenu() {
+        this.$.menu.toggle();
+      }
       _toggle(evt) {
         this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
         if (evt.path[0].attributes['href'].value === '!#') {
@@ -120,6 +125,7 @@
       }
 
       _onRouteChanged(route) {
+        this.$.menu.hide();
         console.log('[warp10-menu] _onRouteChanged', route);
         this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
           if ('#/doc' + route === element.getAttribute('href')) {
@@ -193,7 +199,7 @@
         }, this);
         console.log('[warp10-menu] _handleResponse', this.menu);
 
-        this.root.querySelector('#content').innerHTML = `<ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
+        this.root.querySelector('#content').innerHTML = `<button type="button" class="btn btn-outline-dark" on-click="_toggleMenu" ><span class="fa fa-fw fa-arrow-right"></span></button><ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
         this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
           if (!!element.getAttribute('data-target')) {
             element.addEventListener('click', this._toggle.bind(this));

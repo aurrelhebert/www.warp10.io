@@ -1,0 +1,83 @@
+<link rel="import" href="./styles.html">
+<link rel="import" href="polymer/polymer.html">
+
+<dom-module id="warp10-conf">
+
+  <template>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/>
+    <style include="style-module">
+    </style>
+  </template>
+  <script>
+    class Warp10Conf extends Polymer.Element {
+      static get is() {
+        return 'warp10-conf'
+      }
+
+      static get properties() {
+        return {
+          conf: {
+            type: String,
+            value: null
+          },
+          backend: {
+            type: String,
+            notify: true
+          },
+          embedded: {
+            type: Boolean,
+            notify: false
+          },
+          execEndpoint: {
+            type: String,
+            notify: true
+          },
+          headerName: {
+            type: String,
+            notify: true
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        console.debug("[warp-conf] Chosen conf", this.conf);
+        let confFound = false;
+
+        this.backend = "https://warp.cityzendata.net/dist/api/v0";
+        this.execEndpoint = "/exec/einstein";
+        this.headerName = "CityzenData";
+
+        if (this.conf === "doc") {
+          confFound = true;
+          this.embedded = true;
+        }
+        if (this.conf === "czd") {
+          confFound = true;
+          this.embedded = false;
+          this.configuredBackends = [
+            {
+              "id": "dist",
+              "label": "Distributed Warp",
+              "url": this.backend,
+              "execEndpoint": this.execEndpoint,
+              "headerName": this.headerName
+            },
+          ];
+        }
+
+        if (confFound) {
+          window.quantumConf = {
+            backend: this.backend,
+            execEndpoint: this.execEndpoint,
+            embedded: this.embedded,
+            headerName: this.headerName,
+            configuredBackends: this.configuredBackends
+          }
+        }
+      }
+    }
+
+    customElements.define(Warp10Conf.is, Warp10Conf);
+  </script>
+</dom-module>
