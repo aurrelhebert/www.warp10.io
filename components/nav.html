@@ -55,6 +55,9 @@
         padding: 5px 0 0 10px;
         text-transform: uppercase;
       }
+      #sps button.navbar-toggler {
+        color: #000;
+      }
 
       a.navbar-brand span {
         color: #ff9900;
@@ -68,7 +71,7 @@
         text-transform: uppercase;
       }
 
-      .sps--blw.top-bar a.navbar-brand {
+      .sps--blw.top-bar button.navbar-toggler, .sps--blw.top-bar a.navbar-brand {
         color: #000;
       }
 
@@ -144,10 +147,8 @@
     </style>
     <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv" id="sps">
       <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false"
-                aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon fa fa-fw fa-bars"></span>
+        <button class="navbar-toggler navbar-toggler-left" type="button" on-click="_toggleMenu">
+          <span class="fa fa-fw fa-bars"></span>
         </button>
         <a class="navbar-brand mx-auto" href="#">Warp<span><sup>10</sup></span></a>
         <div class="collapse navbar-collapse" id="navbarCollapse1">
@@ -216,11 +217,25 @@
       ready() {
         super.ready();
         this.init();
+        this.menuopen = false;
       }
 
       init() {
         console.log('[warp10-nav] - init', this.show, this.busy === true);
         this.element = this.root.querySelector('#sps');
+      }
+
+      _toggleMenu() {
+        if(this.menuopen) {
+          this.root.querySelector('#navbarCollapse1').classList.add('collapse')
+          if (this._onTop && this.hasTansparency) {
+            this.aboveScrollPos();
+          }
+        } else {
+          this.root.querySelector('#navbarCollapse1').classList.remove('collapse')
+          this.belowScrollPos();
+        }
+        this.menuopen = !this.menuopen;
       }
 
       equals(a, b) {
@@ -243,6 +258,7 @@
       }
 
       _topChanged(ontop) {
+        this._onTop = ontop;
      //   console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
         if (this.element !== undefined && !this.busy) {
           this.busy = true;

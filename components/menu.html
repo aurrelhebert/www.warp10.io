@@ -24,21 +24,20 @@
       }
 
       .bd-sidebar {
-        border-right: 1px solid rgba(0, 0, 0, .1);
-        min-height: calc(100vh - 278px);
+        width: 100%;
+        min-height: 100vh;
         overflow-y: auto;
         overflow-x: hidden;
         position: absolute;
-        height: calc(100% + 25px);
-        width: 100%;
         margin: -26px 0 0;
         bottom: 0;
         top: 0;
-        z-index: 999;
-        background-color: #fff;
-
       }
-
+      @media (min-width: 768px) {
+        .bd-sidebar {
+          border-right: 1px solid rgba(0, 0, 0, .1);
+        }
+      }
       nav ul, nav ul li {
         list-style-type: none;
         display: list-item;
@@ -87,10 +86,7 @@
       on-error="_handleError"
       last-response="{{ajaxResponse}}"
       debounce-duration="300"></iron-ajax>
-    <iron-collapse id="menu">
-      <button type="button" class="btn btn-outline-dark" on-click="_toggleMenu" ><span class="fa fa-fw fa-arrow-left"></span></button>
-    <nav id="content" class="bd-sidebar"></nav>
-    </iron-collapse>
+    <nav id="menuContent" class="bd-sidebar"></nav>
   </template>
   <script>
     class Warp10Menu extends Polymer.Element {
@@ -113,9 +109,7 @@
           }
         }
       }
-      _toggleMenu() {
-        this.$.menu.toggle();
-      }
+
       _toggle(evt) {
         this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
         if (evt.path[0].attributes['href'].value === '!#') {
@@ -125,9 +119,8 @@
       }
 
       _onRouteChanged(route) {
-        this.$.menu.hide();
         console.log('[warp10-menu] _onRouteChanged', route);
-        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
+        this.root.querySelector('#menuContent').querySelectorAll('a').forEach(function (element) {
           if ('#/doc' + route === element.getAttribute('href')) {
             element.classList.add('active');
           } else {
@@ -199,8 +192,8 @@
         }, this);
         console.log('[warp10-menu] _handleResponse', this.menu);
 
-        this.root.querySelector('#content').innerHTML = `<button type="button" class="btn btn-outline-dark" on-click="_toggleMenu" ><span class="fa fa-fw fa-arrow-right"></span></button><ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
-        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
+        this.root.querySelector('#menuContent').innerHTML = `<ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
+        this.root.querySelector('#menuContent').querySelectorAll('a').forEach(function (element) {
           if (!!element.getAttribute('data-target')) {
             element.addEventListener('click', this._toggle.bind(this));
           }
