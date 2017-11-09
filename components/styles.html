@@ -34,24 +34,20 @@
         text-indent: 10px;
         font-size: 1.2rem;
       }
+
       @font-face {
         font-family: 'FontAwesome';
         src: url('granite-font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
         src: url('granite-font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-             url('granite-font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-             url('granite-font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-             url('granite-font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
-             url('granite-font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+        url('granite-font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+        url('granite-font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+        url('granite-font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+        url('granite-font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
         font-weight: normal;
         font-style: normal;
       }
-
-      a, a:visited, a:active {
-        color: #039be5;
-      }
-
-      a:hover {
-        color: #039be5;
+      .btn {
+        text-indent: 0;
       }
 
       .blockquote {
@@ -157,6 +153,7 @@
       .shine:active:after {
         opacity: 0;
       }
+
       /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+http+java+json+python&plugins=line-numbers */
       /**
        * okaidia theme for JavaScript, CSS and HTML
@@ -199,6 +196,7 @@
       pre[class*="language-"] {
         background: #272822;
       }
+
       /* Inline code */
       :not(pre) > code[class*="language-"] {
         padding: .3rem 0.5rem;
@@ -282,6 +280,7 @@
       .token.bold {
         font-weight: bold;
       }
+
       .token.italic {
         font-style: italic;
       }
