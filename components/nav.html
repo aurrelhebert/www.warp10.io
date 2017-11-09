@@ -4,7 +4,7 @@
 <dom-module id="warp10-nav">
 
   <template>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/>
     <style include="style-module">
 
 
@@ -26,6 +26,7 @@
         color: #000;
         position: absolute;
         right: 21px;
+        top: 21px;
       }
 
       .sps {
@@ -55,12 +56,13 @@
         padding: 5px 0 0 10px;
         text-transform: uppercase;
       }
+
       #sps button.navbar-toggler {
         color: #000;
       }
 
       a.navbar-brand span {
-        color: #ff9900;
+        color: #039be5;
       }
 
       .top-bar a.navbar-brand {
@@ -71,12 +73,38 @@
         text-transform: uppercase;
       }
 
-      .sps--blw.top-bar button.navbar-toggler, .sps--blw.top-bar a.navbar-brand {
+      .btn-outline-search {
+        color: #fff;
+        background: transparent none;
+        border-color: #fff;
+      }
+
+      .btn-outline-search:hover {
+        color: #fff;
+        background: #fff none;
+        border-color: #fff;
+        cursor: pointer;
+      }
+
+      .sps--blw .btn-outline-search {
+        color: #000;
+        background: transparent none;
+        border-color: #000;
+      }
+
+      .sps--blw .btn-outline-search:hover {
+        color: #000;
+        background: #fff none;
+        border-color: #000;
+        cursor: pointer;
+      }
+
+      .sps--blw .btn-outline-search, .sps--blw.top-bar button.navbar-toggler, .sps--blw.top-bar a.navbar-brand {
         color: #000;
       }
 
       .top-bar a.navbar-brand span {
-        color: #ff9900;
+        color: #039be5;
       }
 
       .top-bar .nav-link {
@@ -101,24 +129,12 @@
       }
 
       .sps--blw.top-bar .nav-link:hover, .sps--blw.top-bar .nav-item.active a {
-        color: #ff9900;
+        color: #039be5;
         border-bottom: none;
         border-radius: 0;
       }
 
-      .btn-outline-search {
-        color: #ff9900;
-        background: transparent none;
-        border-color: #ff9900;
-      }
-
-      .btn-outline-search:hover {
-        color: #fff;
-        background: #ff9900 none;
-        border-color: #ff9900;
-        cursor: pointer;
-      }
-
+      .sps--blw
       #search_box {
         position: relative;
       }
@@ -147,7 +163,7 @@
     </style>
     <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv" id="sps">
       <div class="container">
-        <button class="navbar-toggler navbar-toggler-left" type="button" on-click="_toggleMenu">
+        <button class="navbar-toggler navbar-toggler-left align-top" type="button" on-click="_toggleMenu">
           <span class="fa fa-fw fa-bars"></span>
         </button>
         <a class="navbar-brand mx-auto" href="#">Warp<span><sup>10</sup></span></a>
@@ -226,7 +242,7 @@
       }
 
       _toggleMenu() {
-        if(this.menuopen) {
+        if (this.menuopen) {
           this.root.querySelector('#navbarCollapse1').classList.add('collapse')
           if (this._onTop && this.hasTansparency) {
             this.aboveScrollPos();
@@ -245,8 +261,8 @@
 
       _pathChanged(path) {
         this._topChanged(this.show);
-    //    console.log('[warp10-nav] - _pathChanged', path);
-        this.$.menu.childNodes.forEach(function(n) {
+        //    console.log('[warp10-nav] - _pathChanged', path);
+        this.$.menu.childNodes.forEach(function (n) {
           if ('LI' === n.nodeName) {
             if (n.firstChild.href.slice(n.firstChild.href.indexOf('#') + 1) === path) {
               n.classList.add('active');
@@ -259,34 +275,34 @@
 
       _topChanged(ontop) {
         this._onTop = ontop;
-     //   console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
+        //   console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
         if (this.element !== undefined && !this.busy) {
           this.busy = true;
           if (ontop && this.hasTansparency) {
-            window.requestAnimationFrame(function() {
+            window.requestAnimationFrame(function () {
               this.aboveScrollPos();
               this.busy = false;
-         //     console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
+              //     console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
             }.bind(this));
           } else {
-            window.requestAnimationFrame(function() {
+            window.requestAnimationFrame(function () {
               this.belowScrollPos();
               this.busy = false;
-         //     console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
+              //     console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
             }.bind(this));
           }
         }
       }
 
       aboveScrollPos() {
-    //    console.log('[warp10-nav] - aboveScrollPos', this.show);
+        //    console.log('[warp10-nav] - aboveScrollPos', this.show);
         // add style / class to element
         this.element.classList.add("sps--abv");
         this.element.classList.remove("sps--blw");
       }
 
       belowScrollPos() {
-    //    console.log('[warp10-nav] - belowScrollPos', this.show);
+        //    console.log('[warp10-nav] - belowScrollPos', this.show);
         this.element.classList.add("sps--blw");
         this.element.classList.remove("sps--abv");
       }

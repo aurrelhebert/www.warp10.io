@@ -19,7 +19,7 @@
       }
       .main-container {
         margin-top: 100px;
-        min-height: calc(100vh - 303px);
+        min-height: calc(100vh - 307px);
       }
 
       app-drawer {
@@ -27,6 +27,12 @@
       }
       app-drawer-layout {
         position: relative;
+      }
+
+      @media (max-width: 768px) {
+        .main-container {
+          min-height: calc(100vh - 223px);
+        }
       }
 
     </style>
@@ -52,12 +58,15 @@
               <template>
                 <app-toolbar>
                   <warp10-menu current-path="[[route.path]]"></warp10-menu>
+                  <button class="btn btn-outline-dark d-lg-none float-right" type="button" on-click="_toggleMenu">
+                    <span class="navbar-toggler-icon fa fa-fw fa-bars"></span>
+                  </button>
                 </app-toolbar>
               </template>
             </dom-if>
           </app-drawer>
           <div class="container">
-            <button class="btn btn-outline-dark" type="button" on-click="_toggleMenu">
+            <button class="btn btn-outline-dark d-lg-none" type="button" on-click="_toggleMenu">
               <span class="navbar-toggler-icon fa fa-fw fa-bars"></span>
             </button>
             <h1>[[title]]</h1>

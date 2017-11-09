@@ -153,7 +153,7 @@
               } else {
                 selectClass = '';
               }
-              htmlMenu += `<li><a href="#/doc/${link.path}" class="nav-link menu-link ${selectClass}">${this._capitalizeFirstLetter(link.title)}</a></li>`;
+              htmlMenu += `<li><a href="#/doc/${link.path}" class="nav-link menu-link ${selectClass}">${link.title}</a></li>`;
             }, this);
           }
           htmlMenu += '</iron-collapse></li></ul>';
