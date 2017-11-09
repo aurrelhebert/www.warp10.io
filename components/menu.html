@@ -25,17 +25,22 @@
 
       .bd-sidebar {
         width: 100%;
-        min-height: 100vh;
+        min-height: calc(100vh - 280px);
         overflow-y: auto;
         overflow-x: hidden;
-        position: absolute;
-        margin: -26px 0 0;
-        bottom: 0;
-        top: 0;
+        position: fixed;
+        bottom: 230px;
+        top: 73px;
+        margin: 0;
       }
       @media (min-width: 768px) {
         .bd-sidebar {
           border-right: 1px solid rgba(0, 0, 0, .1);
+        }
+      }
+      @media (max-width: 768px) {
+        .bd-sidebar {
+          bottom: 0;
         }
       }
       nav ul, nav ul li {
@@ -127,6 +132,7 @@
             element.classList.remove('active');
           }
         }, this);
+        this.updateStyles();
       }
 
       _buildMenu(menu) {

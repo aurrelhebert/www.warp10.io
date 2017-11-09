@@ -1,10 +1,11 @@
 <link rel="import" href="./styles.html">
 <link rel="import" href="polymer/polymer.html">
 <link rel="import" href="iron-collapse/iron-collapse.html">
+<link rel="import" href="fabric-algolia/fabric-algolia.html">
+
 <dom-module id="warp10-nav">
 
   <template>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/>
     <style include="style-module">
 
 
@@ -73,33 +74,7 @@
         text-transform: uppercase;
       }
 
-      .btn-outline-search {
-        color: #fff;
-        background: transparent none;
-        border-color: #fff;
-      }
-
-      .btn-outline-search:hover {
-        color: #fff;
-        background: #fff none;
-        border-color: #fff;
-        cursor: pointer;
-      }
-
-      .sps--blw .btn-outline-search {
-        color: #000;
-        background: transparent none;
-        border-color: #000;
-      }
-
-      .sps--blw .btn-outline-search:hover {
-        color: #000;
-        background: #fff none;
-        border-color: #000;
-        cursor: pointer;
-      }
-
-      .sps--blw .btn-outline-search, .sps--blw.top-bar button.navbar-toggler, .sps--blw.top-bar a.navbar-brand {
+      .sps--blw.top-bar button.navbar-toggler, .sps--blw.top-bar a.navbar-brand {
         color: #000;
       }
 
@@ -134,9 +109,27 @@
         border-radius: 0;
       }
 
-      .sps--blw
-      #search_box {
+      .sps--blw #search_box {
         position: relative;
+      }
+
+      .input-group {
+        background-color: #fff;
+      }
+
+      .input-group input {
+        background-color: transparent;
+      }
+
+      .input-group span {
+        float: right;
+        position: absolute;
+        right: 0;
+        height: 3em;
+        width: 3em;
+        border: none;
+        padding: 0.8em;
+        background-color: transparent;
       }
 
       .aa-dropdown-menu {
@@ -150,9 +143,14 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
+      .algolia-docsearch-suggestion--highlight {
+        background-color: #039be5;
+        color: #fff;
+      }
+
       /* Main category headers */
       .algolia-docsearch-suggestion--category-header {
-        background-color: #222;
+        background-color: #039be5;
         color: #fff;
       }
 
@@ -160,6 +158,9 @@
         cursor: pointer;
       }
 
+      .showMe {
+        display: block;
+      }
     </style>
     <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv" id="sps">
       <div class="container">
@@ -180,15 +181,24 @@
           </ul>
 
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" id="search_box" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-search my-2 my-sm-0 fa fa-search" type="submit"></button>
+            <div class="dropdown">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search"
+                       on-blur="_onBlur" value="{{query::input}}">
+                <span class="input-group-addon fa fa-fw fa-search"></span>
+              </div>
+              <fabric-algolia application-id="BH4D9OD16A"
+                              api-key="e3f0d4e7cfac4e1065a92f60b3ec28d1"
+                              index="warp10"
+                              query="[[query]]"
+                              response="{{response}}"></fabric-algolia>
+              <div class="dropdown-menu" id="dropdown-menu"></div>
+            </div>
           </form>
         </div>
       </div>
     </nav>
     <div class="navbar-separator"></div>
-    <warp10-conf conf="doc"></warp10-conf>
-
   </template>
   <script>
     class Warp10Nav extends Polymer.Element {
@@ -226,6 +236,13 @@
           path: {
             type: String,
             observer: '_pathChanged',
+          },
+          response: {
+            type: Object,
+            value: function () {
+              return {};
+            },
+            observer: '_onResponse'
           }
         };
       }
@@ -241,14 +258,19 @@
         this.element = this.root.querySelector('#sps');
       }
 
+
+      _onBlur() {
+        this.root.querySelector('#dropdown-menu').classList.remove("showMe");
+      }
+
       _toggleMenu() {
         if (this.menuopen) {
-          this.root.querySelector('#navbarCollapse1').classList.add('collapse')
+          this.root.querySelector('#navbarCollapse1').classList.add('collapse');
           if (this._onTop && this.hasTansparency) {
             this.aboveScrollPos();
           }
         } else {
-          this.root.querySelector('#navbarCollapse1').classList.remove('collapse')
+          this.root.querySelector('#navbarCollapse1').classList.remove('collapse');
           this.belowScrollPos();
         }
         this.menuopen = !this.menuopen;
@@ -257,6 +279,17 @@
       equals(a, b) {
         console.log('[warp10-nav] equals', 'a : ', a, 'b : ', b);
         return (a === b);
+      }
+
+      _formatCatPath(h) {
+        let res = [];
+        Object.keys(h).filter(function (k) {
+          return !!this[k];
+        }, h).sort().forEach(function (k) {
+          res.push(this[k].value);
+        }, h);
+
+        return res.join(' &gt; ');
       }
 
       _pathChanged(path) {
@@ -271,6 +304,23 @@
             }
           }
         });
+      }
+
+      _onResponse(resp) {
+        console.log('[warp10-nav] _onResponse', this.response, resp);
+        if (this.response && this.response.hits) {
+          this.root.querySelector('#dropdown-menu').classList.add("showMe");
+          let html = '';
+          this.response.hits.forEach(function (i) {
+            html += `<a class="dropdown-item" href="${this._formatURI(i.url)}">${this._formatCatPath(i._highlightResult.hierarchy)}</a>`;
+          }, this);
+          this.root.querySelector('#dropdown-menu').innerHTML = html;
+        }
+      }
+
+      _formatURI(url) {
+        url = url.replace('http://www.warp10.io/', '');
+        return '#/doc/' + url.slice(0, url.indexOf('#') - 1);
       }
 
       _topChanged(ontop) {

@@ -21,7 +21,8 @@
     "warp10-iron": "cityzendata/warp10-iron#^2.0.0-b1",
     "granite-font-awesome": "LostInBrittany/granite-font-awesome#^4.7.0-5",
     "ace-widget": "LostInBrittany/ace-widget#^1.3.5",
-    "app-layout": "PolymerElements/app-layout#^2.0.4"
+    "app-layout": "PolymerElements/app-layout#^2.0.4",
+    "fabric-algolia": "FabricElements/fabric-algolia"
   },
   "private": true,
   "ignore": [
@@ -36,6 +37,8 @@
     "polymer": "^2.0.0",
     "webcomponentsjs": "^v1.0.2",
     "iron-collapse": "^2.0.0",
-    "iron-flex-layout": "^2.0.1"
+    "iron-flex-layout": "^2.0.1",
+    "iron-a11y-keys-behavior": "^2.0.0",
+    "paper-styles": "^2.0.0"
   }
 }

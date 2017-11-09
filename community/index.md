@@ -42,22 +42,15 @@ Please contact [sales@cityzendata.com](mailto:sales@cityzendata.com) for details
 
 </div><div class="col-sm-12 col-md-4">
 
-<h3>IRC channel</h3>
-
-This is our day-to-day office: #vertx on freenode.net. Feel free to chat to the team.
-
 <h3>Issues</h3>
 
-Please file issues related to Vert.x projects in the impacted Github project. If you don't know the project, use vert.x issues. Do not use Github issues to ask questions, post them on the Google Group.
+Please file issues related to Warp10 projects in the impacted Github project. If you don't know the project, use Warp10
+issues. Do not use Github issues to ask questions, post them on the Google Group.
 
 </div><div class="col-sm-12 col-md-4">
 
-<h3>Vert.x awesome</h3>
-
-A curated list of awesome frameworks, libraries or other components for use with Vert.x. Feel free to add yours by submitting a pull request.
-
 <h3>Wiki</h3>
 
-The Vert.x wiki contains useful information such as a How to contribute guide, the Roadmap and Project Information.
+The Warp10 wiki contains useful information such as a How to contribute guide, the Roadmap and Project Information.
 
 </div></div>

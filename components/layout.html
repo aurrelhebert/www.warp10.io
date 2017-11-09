@@ -17,14 +17,16 @@
       :host {
         --app-drawer-width: 400px;
       }
+
       .main-container {
         margin-top: 100px;
-        min-height: calc(100vh - 307px);
+        min-height: calc(100vh - 207px);
       }
 
       app-drawer {
         top: 0;
       }
+
       app-drawer-layout {
         position: relative;
       }
@@ -89,6 +91,15 @@
             type: Boolean,
             value: false,
           }
+        }
+      }
+
+      ready() {
+        super.ready();
+        if (!this.withMenu) {
+          this.updateStyles({
+            '--app-drawer-width': 0,
+          });
         }
       }
 
