@@ -1,0 +1,30 @@
+{
+  "name": "fabric-algolia",
+  "description": "Algolia search component",
+  "main": "fabric-algolia.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "algoliasearch": "^3.24.3"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#^2.0.2",
+    "paper-card": "PolymerElements/paper-card#^2.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  },
+  "homepage": "https://github.com/FabricElements/fabric-algolia",
+  "_release": "2e67470a71",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2e67470a7141cc6506a6da65644e23def9f2a88f"
+  },
+  "_source": "https://github.com/FabricElements/fabric-algolia.git",
+  "_target": "*",
+  "_originalSource": "FabricElements/fabric-algolia",
+  "_direct": true
+}
