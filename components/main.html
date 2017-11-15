@@ -22,10 +22,10 @@
 
     <div class="page-wrap">
       <app-route
-          route="{{route}}"
-          pattern="/:view"
-          data="{{routeData}}"
-          tail="{{subroute}}"></app-route>
+        route="{{route}}"
+        pattern="/:view"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
       <app-location route="{{route}}" use-hash-as-path></app-location>
       <iron-pages selected="[[routeData.view]]"
                   attr-for-selected="name"
@@ -76,11 +76,11 @@
 
       ready() {
         super.ready();
-        this._scrollHandler();
       }
 
       _routeChanged(changeRecord) {
         this._showHeaderAnim = false;
+        this._scrollHandler();
         console.log('[warp10-main] Path changed!', changeRecord);
         if (changeRecord.path === 'route') {
           if ('' === changeRecord.value.path) {
