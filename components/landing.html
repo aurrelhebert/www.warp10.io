@@ -91,18 +91,55 @@
       .about-sec h2 {
         font-size: 55px;
         font-weight: 800;
-        margin-top: 25%;
       }
 
       .about-sec h2 small {
         display: block;
         font-size: 24px;
         margin-bottom: 15px;
-        padding-left: 10px;
       }
 
       .about-sec p {
-        font-size: 16px;
+        font-size: 1.2rem;
+      }
+
+      .about-sec li {
+        font-size: 1rem;
+      }
+
+      .action-sec {
+        width: 100%;
+        float: left;
+        background: #222;
+      }
+
+      .action-box {
+        float: left;
+        width: 100%;
+        text-align: center;
+      }
+
+      .action-box h2 {
+        color: #fff;
+        font-size: 20px;
+      }
+
+      .action-sec li {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      .action-sec p {
+        color: #fff;
+      }
+
+      .action-sec .warpscript {
+        filter: grayscale(100%) invert(100%);
+        -webkit-filter: grayscale(100%) invert(100%);
+      }
+
+      .plugin-roster img {
+        max-height: 8rem;
       }
 
       header::after {
@@ -186,6 +223,24 @@
         color: white;
       }
 
+      img.white {
+        filter: grayscale(100%) invert(100%);
+        -webkit-filter: grayscale(100%) invert(100%);
+        width: 5rem;
+      }
+      img.blue {
+        filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        -webkit-filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        width: 5rem;
+      }
+
+
+      img.pulse {
+        filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        -webkit-filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        width: 100%;
+      }
+
       .bounce {
         -moz-animation: bounce 2s infinite;
         -webkit-animation: bounce 2s infinite;
@@ -220,6 +275,10 @@
           -webkit-transform: translateY(-15px);
           transform: translateY(-15px);
         }
+      }
+
+      .text-sm-center ul {
+        text-align: left;
       }
 
     </style>
@@ -282,24 +341,19 @@
     <section class="service-sec" id="benefits">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 text-sm-center service-block"><i class="fa fa-globe" aria-hidden="true"></i>
+          <div class="col-md-6 text-sm-center service-block">
             <marked-element disable-remote-sanitization>
               <div slot="markdown-html"></div>
               <script type="text/markdown" src="/landing/gts.md"></script>
             </marked-element>
           </div>
-          <div class="col-md-6 text-sm-center service-block"><i class="fa fa-cubes" aria-hidden="true"></i>
+          <div class="col-md-6 text-sm-center service-block">
             <marked-element disable-remote-sanitization>
               <div slot="markdown-html"></div>
               <script type="text/markdown" src="/landing/platform.md"></script>
             </marked-element>
           </div>
-          <div class="col-md-6 text-sm-center service-block"><i class="fa fa-gears" aria-hidden="true"></i>
-            <marked-element disable-remote-sanitization>
-              <div slot="markdown-html"></div>
-              <script type="text/markdown" src="/landing/data.md"></script>
-            </marked-element>
-          </div>
+
         </div>
         <!-- /.row -->
       </div>
@@ -310,19 +364,11 @@
     <section class="about-sec parallax-section" id="about">
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
-            <h2>
-              <small>Who We Are</small>
-              About<br>
-              US
-            </h2>
-          </div>
-          <div class="col-md-8">
+          <div class="col-md-12 text-sm-center service-block">
             <marked-element disable-remote-sanitization>
               <div slot="markdown-html"></div>
-              <script type="text/markdown" src="/landing/history.md"></script>
+              <script type="text/markdown" src="/landing/features.md"></script>
             </marked-element>
-            <p><a href="#" class="btn btn-transparent-white btn-capsul">Explore More</a></p>
           </div>
         </div>
       </div>
@@ -330,8 +376,21 @@
 
     <section class="action-sec">
       <div class="container">
-        <div class="action-box text-center"><h2>START HERE </h2>
-          <a class="btn btn-success btn-capsul" href="/#/nav/getting-started/" target="_blank">Quick Start</a></div>
+        <div class="row">
+          <div class="col-md-3">
+            <h2>
+              <small>Our Strength</small>
+              <img class="warpscript" src="assets/img/warpscript.png">
+            </h2>
+          </div>
+          <div class="col-md-8">
+            <marked-element disable-remote-sanitization>
+              <div slot="markdown-html"></div>
+              <script type="text/markdown" src="/landing/data.md"></script>
+            </marked-element>
+            <p><a href="#/doc/reference/" class="btn btn-transparent-white btn-capsul">Explore More</a></p>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -1,5 +1,8 @@
 ## Geo Time Series<sup>®</sup>
 
+
+<div ><img src="/assets/img/hbmonitor_line.png" class="pulse"></div>
+
 The first differentiating factor of Warp 10 is that both space (location) and time are considered first class citizens. 
 Working with Geo Time Series<sup>®</sup> (GTS) allows you to have geo-located readings without having to use four 
 separate series and having to keep track of the reading context.
