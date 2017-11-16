@@ -35,6 +35,6 @@
         <h3>SAAS</h3>
         <img src="/assets/img/cloud.png" class="white" />
         <p>No data center? No problem, we can host your data on our distributed environnement
-        and access Warp10 in the cloud.</p>
+        and you can access Warp10 in the cloud.</p>
     </div>
 </div>
