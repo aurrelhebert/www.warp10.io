@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-6">
-        <h3>Embeded</h3>
+        <h3>Edge</h3>
         <img src="/assets/img/embedded.png" class="white" />
         <p>Designed for IOT, you can embed Warp10 on your device.</p> 
         <ul>

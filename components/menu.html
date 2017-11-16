@@ -176,7 +176,7 @@
         event.stopPropagation();
         console.log('[warp10-menu] _handleResponse', ironRequest.response);
         this.menu = {};
-        Object.keys(ironRequest.response).forEach(function (item) {
+        Object.keys(ironRequest.response).sort().forEach(function (item) {
           console.log('[warp10-menu] _handleResponse', item);
           let arr = item.split('/');
           console.log('[warp10-menu] _handleResponse', arr);

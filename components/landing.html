@@ -134,8 +134,13 @@
       }
 
       .action-sec .warpscript {
-        filter: grayscale(100%) invert(100%);
-        -webkit-filter: grayscale(100%) invert(100%);
+        background-color: #fff;
+        border: solid 1px #fff;
+      }
+
+      .action-sec ul {
+        margin-top: 2rem;
+        padding-left: 0;
       }
 
       .plugin-roster img {
@@ -209,7 +214,6 @@
 
       [slot="markdown-html"] p {
         text-align: justify;
-        text-indent: 50px;
       }
 
       .arrow {
@@ -228,16 +232,16 @@
         -webkit-filter: grayscale(100%) invert(100%);
         width: 5rem;
       }
+
       img.blue {
-        filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
-        -webkit-filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        filter: grayscale(100%) invert(100%) brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        -webkit-filter: grayscale(100%) invert(100%) brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
         width: 5rem;
       }
 
-
       img.pulse {
-        filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
-        -webkit-filter: grayscale(100%) invert(100%)brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        filter: grayscale(100%) invert(100%) brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+        -webkit-filter: grayscale(100%) invert(100%) brightness(50%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
         width: 100%;
       }
 
@@ -378,10 +382,16 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3">
-            <h2>
-              <small>Our Strength</small>
-              <img class="warpscript" src="assets/img/warpscript.png">
-            </h2>
+            <h2>Our Strength</h2>
+            <img class="warpscript" src="assets/img/warpscript.png">
+            <ul>
+              <li>Dedicated language</li>
+              <li>5 frameworks</li>
+              <li>800+ functions</li>
+              <li>Turing complete</li>
+              <li>Fully extensible</li>
+              <li>Sandboxed</li>
+            </ul>
           </div>
           <div class="col-md-8">
             <marked-element disable-remote-sanitization>

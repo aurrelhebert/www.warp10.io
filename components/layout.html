@@ -109,6 +109,9 @@
 
       _handleResponse(event, ironRequest) {
         event.stopPropagation();
+        if(!this.root.querySelector('#content')) {
+          return;
+        }
         this.root.querySelector('#content').innerHTML = ironRequest.response.content
           .replace(new RegExp('\{%[ ]+raw[ ]+%\}', 'g'), '')
           .replace(new RegExp('\{%[ ]+endraw[ ]+%\}', 'g'), '');

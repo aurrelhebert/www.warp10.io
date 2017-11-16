@@ -1,12 +1,5 @@
 ## Warp 10 data manipulation environment ##
 
-* Dedicated language
-* 5 frameworks
-* 800+ functions
-* Turing complete
-* Fully extensible
-* Sandboxed
-
 We created *WarpScript*, an extensible stack oriented programming language which offers more than 800 functions and 
 several high level frameworks to ease and speed your data analysis. Simply create scripts containing your data analysis 
 code and submit them to the platform, they will execute close to where the data resides and you will get the result of 

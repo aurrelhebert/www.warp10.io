@@ -259,7 +259,7 @@
       }
 
       _onBlur() {
-        this.root.querySelector('#dropdown-menu').classList.remove("showMe");
+        Polymer.Base.async(function(){this.root.querySelector('#dropdown-menu').classList.remove("showMe");}.bind(this), 500);
       }
 
       _toggleMenu() {
