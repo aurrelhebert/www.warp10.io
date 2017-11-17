@@ -216,7 +216,6 @@
             element.addEventListener('click', this._toggle.bind(this));
           }
         }, this);
-        console.log('[warp10-menu] _handleResponse - toOpen', this.toOpen)
         this.toOpen.forEach(id => {
           this.root.querySelector('#menuContent').querySelector('#' + id).toggle();
         }, this);
