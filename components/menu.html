@@ -34,16 +34,19 @@
         margin: 0;
         height: calc(100% - 300px);
       }
+
       @media (min-width: 768px) {
         .bd-sidebar {
           border-right: 1px solid rgba(0, 0, 0, .1);
         }
       }
+
       @media (max-width: 768px) {
         .bd-sidebar {
           bottom: 0;
         }
       }
+
       nav ul, nav ul li {
         list-style-type: none;
         display: list-item;
@@ -108,6 +111,12 @@
               return {};
             },
           },
+          toOpen: {
+            type: Array,
+            value: function () {
+              return [];
+            },
+          },
           currentPath: {
             type: String,
             value: '',
@@ -137,20 +146,23 @@
       }
 
       _buildMenu(menu) {
+        let toOpen = [];
         let htmlMenu = '';
-        Object.keys(menu).forEach(function (m) {
+        Object.keys(menu).forEach(m => {
           htmlMenu += `<li>`;
           let selectClass = '';
-          console.log(this.currentPath, m);
           if (this.currentPath.match(new RegExp('/?' + m + '/?'))) {
-            selectClass = 'active'
+            selectClass = 'active';
+            toOpen.push(m);
           } else {
             selectClass = '';
           }
           if (menu[m].hasOwnProperty('children') && Object.keys(menu[m].children).length > 0) {
-            htmlMenu += `<a data-target="#${m}" href="!#" class="nav-link header ${selectClass}">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul class="nav">${this._buildMenu(menu[m].children)}`;
+            htmlMenu += `<a data-target="#${m}" href="!#" class="nav-link header ${selectClass}">${menu[m].title}</a>
+                        <iron-collapse id="${m}"><ul class="nav">${this._buildMenu(menu[m].children)}`;
           } else {
-            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/" class="nav-link header ${selectClass}">${this._capitalizeFirstLetter(menu[m].title)}</a><iron-collapse id="${m}"><ul class="nav">`;
+            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/" class="nav-link header ${selectClass}">
+                          ${menu[m].title}</a><iron-collapse id="${m}"><ul class="nav">`;
           }
 
           if (menu[m].hasOwnProperty('links')) {
@@ -165,6 +177,7 @@
           }
           htmlMenu += '</iron-collapse></li></ul>';
         }, this);
+        this.toOpen = this.toOpen.concat(toOpen);
         return htmlMenu;
       }
 
@@ -172,38 +185,40 @@
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
 
+      _addItemToMenu(item, data) {
+        let arr = item.split('/');
+        let next = this.menu;
+        arr.forEach((p, i) => {
+          if (!next.hasOwnProperty(p)) {
+            next[p] = {title: this._capitalizeFirstLetter(p.replace(/_/gi, ' ')), children: {}, links: []};
+          }
+          if (i === arr.length - 1) {
+            next[p].links = next[p].links.concat(data);
+          }
+          next = next[p].children;
+        }, this);
+      }
+
       _handleResponse(event, ironRequest) {
         event.stopPropagation();
         console.log('[warp10-menu] _handleResponse', ironRequest.response);
         this.menu = {};
-        Object.keys(ironRequest.response).sort().forEach(function (item) {
-          console.log('[warp10-menu] _handleResponse', item);
-          let arr = item.split('/');
-          console.log('[warp10-menu] _handleResponse', arr);
-          if (!this.menu.hasOwnProperty(arr[0])) {
-            this.menu[arr[0]] = {title: arr[0], children: {}, links: []}
-          }
-          if (arr.length === 1) {
-            this.menu[arr[0]].links = this.menu[arr[0]].links.concat(ironRequest.response[item]);
-          }
-          let tmpArr = this.menu[arr[0]].children;
-          for (let i = 1; i < arr.length; i++) {
-            if (!tmpArr.hasOwnProperty(arr[i])) {
-              tmpArr[arr[i]] = {title: arr[i], children: {}, links: []}
-            }
-            if (i === arr.length - 1) {
-              tmpArr[arr[i]].links = tmpArr[arr[i]].links.concat(ironRequest.response[item]);
-            }
-            tmpArr = tmpArr[arr[i]];
+        Object.keys(ironRequest.response).sort().forEach(item => {
+          if (!item.match(/components.*/gi)) {
+            this._addItemToMenu(item, ironRequest.response[item]);
           }
         }, this);
         console.log('[warp10-menu] _handleResponse', this.menu);
 
         this.root.querySelector('#menuContent').innerHTML = `<ul class="nav bd-sidenav">${this._buildMenu(this.menu)}</ul>`;
-        this.root.querySelector('#menuContent').querySelectorAll('a').forEach(function (element) {
+        this.root.querySelector('#menuContent').querySelectorAll('a').forEach(element => {
           if (!!element.getAttribute('data-target')) {
             element.addEventListener('click', this._toggle.bind(this));
           }
+        }, this);
+        console.log('[warp10-menu] _handleResponse - toOpen', this.toOpen)
+        this.toOpen.forEach(id => {
+          this.root.querySelector('#menuContent').querySelector('#' + id).toggle();
         }, this);
       }
 
