@@ -126,10 +126,14 @@
       }
 
       _toggle(evt) {
-        this.shadowRoot.querySelector(evt.path[0].attributes['data-target'].value).toggle();
-        if (evt.path[0].attributes['href'].value === '!#') {
-          evt.preventDefault();
-          return false;
+        console.log('toggle', evt);
+        if (evt && evt.target) {
+          this.shadowRoot.querySelector(evt.target.attributes['data-target'].value).toggle();
+          if (evt.target.attributes['href'].value === '!#') {
+            evt.stopPropagation();
+            evt.preventDefault();
+            return false;
+          }
         }
       }
 
@@ -146,6 +150,7 @@
       }
 
       _buildMenu(menu) {
+        console.log('[warp10-menu] buildMenu', menu);
         let toOpen = [];
         let htmlMenu = '';
         Object.keys(menu).forEach(m => {
@@ -173,7 +178,7 @@
                 selectClass = '';
               }
               htmlMenu += `<li><a href="#/doc/${link.path}" class="nav-link menu-link ${selectClass}">${link.title}</a></li>`;
-            }, this);
+            }.bind(this), htmlMenu);
           }
           htmlMenu += '</iron-collapse></li></ul>';
         }, this);
@@ -217,7 +222,10 @@
           }
         }, this);
         this.toOpen.forEach(id => {
-          this.root.querySelector('#menuContent').querySelector('#' + id).toggle();
+          let menuItem = this.root.querySelector('#menuContent').querySelector('#' + id);
+          if (menuItem) {
+            menuItem.toggle();
+          }
         }, this);
       }
 

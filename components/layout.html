@@ -90,6 +90,10 @@
           withMenu: {
             type: Boolean,
             value: false,
+          },
+          name: {
+            type: String,
+            value: ''
           }
         }
       }
@@ -109,52 +113,52 @@
 
       _handleResponse(event, ironRequest) {
         event.stopPropagation();
-        if(!this.root.querySelector('#content')) {
+        event.preventDefault();
+        if (!this.root.querySelector('#content')) {
           return;
         }
+        console.log('[warp10-layout] injecting html');
         this.root.querySelector('#content').innerHTML = ironRequest.response.content
           .replace(new RegExp('\{%[ ]+raw[ ]+%\}', 'g'), '')
           .replace(new RegExp('\{%[ ]+endraw[ ]+%\}', 'g'), '');
         this.title = ironRequest.response.title;
         this.desc = ironRequest.response.desc;
-        this.root.querySelectorAll('code').forEach(function (element) {
-          Prism.highlightElement(element, false);
-        });
-        this.root.querySelector('#content').querySelectorAll('a').forEach(function (element) {
-          //    console.log('[warp10-layout] _handleResponse', element.getAttribute('href'));
-          if (!!element.getAttribute('href')) {
-            if (element.getAttribute('href').indexOf('http') === -1 && element.getAttribute('href').indexOf('mailto') === -1) {
-              let pathUrl = element.getAttribute('href');
-              if (pathUrl.indexOf('/') !== 0) {
-                let spath = this.route.path.split('/');
-                let newPath = '';
-                spath.slice(1).forEach(function (p) {
-                  newPath += '/' + p;
-                });
-                pathUrl = newPath + '/' + pathUrl
+        window.requestAnimationFrame(function () {
+          this.root.querySelectorAll('code').forEach(element => Prism.highlightElement(element, false));
+          let innerLinks = this._turnObjToArray(this.root.querySelector('#content').querySelectorAll('a'));
+          if(innerLinks) {
+            innerLinks.map(function (element) {
+              if (!!element.getAttribute('href')) {
+                if (element.getAttribute('href').indexOf('http') === -1 && element.getAttribute('href').indexOf('mailto') === -1) {
+                  let pathUrl = element.getAttribute('href');
+                  if (pathUrl.indexOf('/') !== 0) {
+                    let newPath = this.route.path.split('/').slice(1).reduce((acc, p) => (acc += '/' + p), '');
+                    pathUrl = newPath + '/' + pathUrl
+                  }
+                  let path = ('#/doc/' + pathUrl).replace(new RegExp('//', 'g'), '/');
+                  element.setAttribute('href', path);
+                } else {
+                  element.setAttribute('target', '_blank');
+                }
               }
-              let path = ('#/doc/' + pathUrl).replace(new RegExp('//', 'g'), '/');
-              element.setAttribute('href', path);
-            } else {
-              element.setAttribute('target', '_blank');
-            }
+            }.bind(this));
           }
         }.bind(this));
-        // this.root.querySelector('#panel').classList.add(this.withMenu ? 'col-sm-9' : 'col-sm-12');
       }
+
+      _turnObjToArray(obj) {
+        return [].map.call(obj, function(element) {
+          return element;
+        })
+      };
 
       getFile(path) {
-        let spath = path.split('/');
-        let md = 'raw';
-        spath.slice(1).forEach(function (p) {
-          md += '/' + p;
-        });
-        console.log('[warp10-layout] - getFile', md + '/raw.json');
+        if (this.route.prefix !== '/' + this.name) {
+          return;
+        }
+        let md = path.split('/').slice(1).reduce((acc, p) => (acc += '/' + p), 'raw');
+        console.log('[warp10-layout] - getFile', md + '/raw.json', this.route.prefix, this.name);
         return md + '/raw.json'
-      }
-
-      _stringify(obj) {
-        return JSON.stringify(obj);
       }
     }
 
