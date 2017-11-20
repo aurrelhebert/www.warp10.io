@@ -76,11 +76,11 @@
 
       ready() {
         super.ready();
+        this._scrollHandler();
       }
 
       _routeChanged(changeRecord) {
         this._showHeaderAnim = false;
-        this._scrollHandler();
         console.log('[warp10-main] Path changed!', changeRecord);
         if (changeRecord.path === 'route') {
           if ('' === changeRecord.value.path) {
@@ -93,6 +93,7 @@
           }
         }
         this.path = changeRecord.value.path;
+        this._scrollHandler();
       }
 
       _scrollHandler() {
