@@ -208,10 +208,6 @@
 
       static get properties() {
         return {
-          busy: {
-            type: Boolean,
-            value: false
-          },
           show: {
             type: Boolean,
             value: true,
@@ -224,6 +220,7 @@
           _onTop: {
             type: Boolean,
             value: true,
+            observer: '_topChanged'
           },
           scrollPosY: {
             type: Number,
@@ -254,7 +251,6 @@
       }
 
       init() {
-        console.log('[warp10-nav] - init', this.show, this.busy === true);
         this.element = this.root.querySelector('#sps');
       }
 
@@ -323,35 +319,26 @@
       }
 
       _topChanged(ontop) {
-        this._onTop = ontop;
-        //   console.log('[warp10-nav] - _topChanged', ontop, this.busy === true, this.hasTansparency === true);
-        if (this.element !== undefined && !this.busy) {
-          this.busy = true;
+        console.log('[warp10-nav] - _topChanged', ontop,this.hasTansparency === true);
+        if (this.element !== undefined) {
           if (ontop && this.hasTansparency) {
             window.requestAnimationFrame(function () {
               this.aboveScrollPos();
-              this.busy = false;
-              //     console.log('[warp10-nav] - _topChanged - aboveScrollPos - end', this.show, this.busy);
             }.bind(this));
           } else {
             window.requestAnimationFrame(function () {
               this.belowScrollPos();
-              this.busy = false;
-              //     console.log('[warp10-nav] - _topChanged - belowScrollPos - end', this.show, this.busy);
             }.bind(this));
           }
         }
       }
 
       aboveScrollPos() {
-        //    console.log('[warp10-nav] - aboveScrollPos', this.show);
-        // add style / class to element
         this.element.classList.add("sps--abv");
         this.element.classList.remove("sps--blw");
       }
 
       belowScrollPos() {
-        //    console.log('[warp10-nav] - belowScrollPos', this.show);
         this.element.classList.add("sps--blw");
         this.element.classList.remove("sps--abv");
       }

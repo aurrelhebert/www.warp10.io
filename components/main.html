@@ -77,11 +77,11 @@
       ready() {
         super.ready();
         this._scrollHandler();
+        window.setTimeout(() =>window.scrollTo(0,0), 500);
       }
 
       _routeChanged(changeRecord) {
         this._showHeaderAnim = false;
-        console.log('[warp10-main] Path changed!', changeRecord);
         if (changeRecord.path === 'route') {
           if ('' === changeRecord.value.path) {
             this.set('route.path', '/');
@@ -94,11 +94,13 @@
         }
         this.path = changeRecord.value.path;
         this._scrollHandler();
+        window.scrollTo(0,0);
       }
 
       _scrollHandler() {
         this.y = window.pageYOffset;
         this.isOnTop = this.y <= 1 && this._showHeaderAnim;
+        console.log('[warp10-main] _scrollHandler', this.isOnTop, this._showHeaderAnim);
       }
 
 
