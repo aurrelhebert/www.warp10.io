@@ -4,7 +4,11 @@
   <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-
+  <script language="JavaScript">
+    if (!/bot|googlebot|crawler|spider|robot|crawling/.test(navigator.userAgent)) {
+      window.location.href ='/#/doc' + window.location.pathname;
+    }
+  </script>
   <style>
     body {
       background-color: #eeeeee;

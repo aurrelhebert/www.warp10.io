@@ -44,6 +44,14 @@
         navigator.serviceWorker.register('./service-worker.js');
       });
     }
+    if (/bot|googlebot|crawler|spider|robot|crawling/.test(navigator.userAgent)) {
+      console.log('the user agent is a crawler!', window.location);
+      if(window.location.hash === '#/') {
+        window.location.replace('/robots/');
+      } else if(window.location.pathname !== '/robots/') {
+        window.location.replace('/' + window.location.hash.replace('#/', '').replace('doc/', '').replace('nav/', ''));
+      }
+    }
   </script>
   <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
   <script src="components/webcomponentsjs/webcomponents-loader.js"></script>
