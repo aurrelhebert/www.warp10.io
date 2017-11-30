@@ -3,7 +3,7 @@ title: "Setting up a Distributed Version of Warp 10"
 layout: "function"
 isPage: "true"
 link: "/distributed-setup"
-categoryTree: ["getting-stated"]
+categoryTree: ["getting-started"]
 category: "getting-started"
 ---
 

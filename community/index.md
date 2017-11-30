@@ -1,8 +1,7 @@
 ---
-title: "Community - Index"
+title: "1. Community"
 layout: "function"
 isPage: "true"
-link: "/community"
 categoryTree: ["community"]
 oldPath: ["00-Index.html.md"]
 category: "community"
@@ -19,6 +18,9 @@ License, enabling you to install it and use it at will under the terms of this l
 
 
 We have a thriving user and developer community and many exciting new developments to come, so why not be a part of it?
+
+* [Code of conduct](code_of_conduct) 
+* [Contributing](contributing)
 
 ## Get Help ##
 

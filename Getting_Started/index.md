@@ -3,7 +3,7 @@ title: "Getting Started"
 layout: "function"
 isPage: "true"
 link: "/"
-categoryTree: ["getting-stated"]
+categoryTree: ["getting-started"]
 oldPath: ["00-Index.html.md"]
 category: "getting-started"
 ---
@@ -17,7 +17,9 @@ Alternatively a method involving docker is also described.
 
 The standalone version of the Warp 10 platform uses LevelDB as its storage backend, this version is suitable for managing a few tens of millions of time series and few hundreds of billions of datapoints. If you have larger needs, a [distributed](distributed) version of the platform is also available which uses Apache HBase as a scalable storage layer.
 
-<a name="setup"></a>
+## Docker
+
+See here : [Docker](docker). 
 
 ## Warp 10 standalone platform deployment
 
@@ -124,30 +126,6 @@ Warp 10 standalone config `conf-standalone.conf` has been generated in the `etc`
 Logs are available in the `logs` directory
 
 Data are stored via leveldb in the `data` directory
-
-## Setup the platform with Docker
-
-<div class="text-center">
-  <img src="/img/getting-started/docker.png" alt="Using Docker">
-</div>
-
-The other way to setup the Warp 10 platform is to use [Docker](http://docker.io). Builds of Warp 10's Docker image are 
-available on [Dockerhub](https://hub.docker.com/r/warp10io/warp10/).
-
-### Running Warp 10 with Docker
-
-Start your image binding the external ports 8080 and 8081 in all interfaces to your container.
-
-Docker containers are easy to delete. If you delete your container instance, you'll lose the Warp 10 store and 
-configuration. So by default you should add a volume mapping to the containers `/data` folder.
-
-```bash
-docker run --volume=/var/warp10:/data -p 8080:8080 -p 8081:8081 -d -i warp10io/warp10:1.0.7
-```
-
-In this example you bind the container internal data folder, `/data` to your local folder `/var/warp10`.
-
-You *must* use the same `--volume` option in all your other docker commands on warp 10 image.
 
 ## Using Warp 10
 
@@ -267,7 +245,7 @@ curl -v -H 'X-Warp10-Token: WRITE_TOKEN' --data-binary "1// test{} 42" 'http://1
 If everything is OK, you should receive a HTTP 200
 
 > When using Docker on Mac OS or Windows, there is no binding between Warp 10 API address and the host (docker is 
-runned throw a Virtual Machine). To reach Warp 10 you need to replace 127.0.0.1 by the real Ip address of the container.
+ran throw a Virtual Machine). To reach Warp 10 you need to replace 127.0.0.1 by the real Ip address of the container.
 To get it, use a simple `docker-machine ip default>`, the container address is also shown in the Settings/Ports page of 
 your container. If you used the shared volume between the container and the host, you can access to the virtual machine 
 using `docker-machine ssh default>` and inspect the repertory `/var/warp10`. Don't hesitate to check on 

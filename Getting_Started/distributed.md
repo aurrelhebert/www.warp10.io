@@ -3,7 +3,7 @@ title: "Getting Started with the Distributed Version of Warp 10"
 layout: "function"
 isPage: "true"
 link: "/distributed"
-categoryTree: ["getting-stated"]
+categoryTree: ["getting-started"]
 category: "getting-started"
 ---
 

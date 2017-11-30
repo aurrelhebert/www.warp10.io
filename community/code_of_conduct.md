@@ -1,4 +1,10 @@
-# Warp10 Code of Conduct
+---
+title: "2. Warp10 Code of Conduct"
+layout: "function"
+isPage: "true"
+categoryTree: ["community"]
+category: "community"
+---
 
 In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in Simpla and its community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 

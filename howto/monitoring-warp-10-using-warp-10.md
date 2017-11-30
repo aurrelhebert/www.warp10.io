@@ -15,7 +15,7 @@ analyze those metrics.
 The first thing to do is install the instance of Warp&nbsp;10 where you will do the 
 monitoring, gathering the metrics from the main instance and analyzing them via WarpScript.
 
-> If needed, look at the [getting started](/getting-started) page for the detailed 
+> If needed, look at the [getting started](/1._getting-started) page for the detailed 
 > instructions to install Warp&nbsp;10
 
 ### Generate monitoring tokens
