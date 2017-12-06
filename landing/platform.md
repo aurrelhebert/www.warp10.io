@@ -18,4 +18,6 @@ Plug Warp10 with your tools and ecosystem:
     <img src="assets/img/elasticsearch.png" >
 </div>
 
-... and <a href="#/doc/tools/github_repositories">many more</a>.
+<div class="text-center mt-5">
+<a class="btn btn-success btn-lg" href="#/doc/tools/github_repositories">Learn more</a>
+</div>

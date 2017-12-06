@@ -14,7 +14,7 @@
     <div class="col-sm-12 col-md-6">
         <h3>Standalone</h3>
         <img src="/assets/img/standalone.png" class="white" />
-        <p>Meet the power of Warp10 on your computer or on a sigle server.</p>
+        <p>Meet the power of Warp10 on your computer or on a single server.</p>
         <ul>
             <li>10s millions of series</li>
             <li>Billions of datapoints</li> 

@@ -26,33 +26,29 @@ We have a thriving user and developer community and many exciting new developmen
 
 If you need help using our software, the following options are available to you:
 
-<div class="row"><div class="col-sm-12 col-md-4">
+<div class="row">
 
+<div class="col-sm-12 col-md-4">
 <h3>User Group</h3>
-
 The community around the Warp 10 platform gathers around the Google Group 
 [Warp 10 Users](https://groups.google.com/forum/#!forum/warp10-users) discussion group. It also meets in real life at 
-occasional meetups. We don't reply on StackOverflow, so the Google Group  is the most appropriate place to post questions.
+occasional meetups. We also reply on StackOverflow about [#warp10](https://stackoverflow.com/questions/tagged/warp10) 
+and [#warpscript](https://stackoverflow.com/questions/tagged/warpscript), so the Google Group stay the most appropriate 
+place to post questions.
+</div>
 
+<div class="col-sm-12 col-md-4">
+<h3>Issues</h3>
+Please fill issues related to Warp10 projects in our [ticketting system](https://warp10.groovehq.com). Do not use Github 
+issues to ask questions, post them on the [Google Group](https://groups.google.com/forum/#!forum/warp10-users).
+</div>
+
+<div class="col-sm-12 col-md-4">
 <h3>Commercial Support</h3>
-
-
 If you need commercial support for the solution, you can get access to members of the team behind the platform through 
 one of the support plans offered by [Cityzen Data](http://www.cityzendata.com/).
 
 Please contact [sales@cityzendata.com](mailto:sales@cityzendata.com) for details.
+</div>
 
-</div><div class="col-sm-12 col-md-4">
-
-<h3>Issues</h3>
-
-Please file issues related to Warp10 projects in the impacted Github project. If you don't know the project, use Warp10
-issues. Do not use Github issues to ask questions, post them on the Google Group.
-
-</div><div class="col-sm-12 col-md-4">
-
-<h3>Wiki</h3>
-
-The Warp10 wiki contains useful information such as a How to contribute guide, the Roadmap and Project Information.
-
-</div></div>
+</div>

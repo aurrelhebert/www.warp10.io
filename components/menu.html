@@ -163,11 +163,11 @@
             selectClass = '';
           }
           if (menu[m].hasOwnProperty('children') && Object.keys(menu[m].children).length > 0) {
-            htmlMenu += `<a data-target="#${m}" href="!#" class="nav-link header ${selectClass}">${menu[m].title}</a>
-                        <iron-collapse id="${m}"><ul class="nav">${this._buildMenu(menu[m].children)}`;
+            htmlMenu += `<a data-target="#id_${m}" href="!#" class="nav-link header ${selectClass}">${menu[m].title.replace(/^[0-9]{2} /, '')}</a>
+                        <iron-collapse id="id_${m}"><ul class="nav">${this._buildMenu(menu[m].children)}`;
           } else {
-            htmlMenu += `<a data-target="#${m}" href="#/doc/${m}/" class="nav-link header ${selectClass}">
-                          ${menu[m].title}</a><iron-collapse id="${m}"><ul class="nav">`;
+            htmlMenu += `<a data-target="#id_${m}" href="#/doc/${m}/" class="nav-link header ${selectClass}">
+                          ${menu[m].title.replace(/^[0-9]{2} /, '')}</a><iron-collapse id="id_${m}"><ul class="nav">`;
           }
 
           if (menu[m].hasOwnProperty('links')) {

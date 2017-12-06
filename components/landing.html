@@ -28,8 +28,7 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         cursor: pointer;
         color: #FFF;
-        font-size: 5em;
-        margin: 0.5em 5px 5px;
+        font-size: 3em;
       }
 
       a.github:hover, a.github:visited, a.github:active {
@@ -77,9 +76,7 @@
       }
 
       .service-sec p {
-        line-height: 22px;
         margin-top: 13px;
-        padding: 0 21px;
       }
 
       .service-sec .service-block {
@@ -128,14 +125,6 @@
         margin-bottom: 15px;
       }
 
-      .about-sec p {
-        font-size: 1.2rem;
-      }
-
-      .about-sec li {
-        font-size: 1rem;
-      }
-
       .action-sec {
         width: 100%;
         float: left;
@@ -174,7 +163,7 @@
 
       .plugin-roster img {
         max-height: 7em;
-        min-height: 7em;
+        max-width: 7em;
         margin: 0.5em;
       }
 
@@ -359,14 +348,22 @@
             <div slot="markdown-html"></div>
             <script type="text/markdown" src="/landing/headline.md"></script>
           </marked-element>
-          <div class="text-center">
-            <a class="btn btn-success btn-lg"
-               href="https://dl.bintray.com/cityzendata/generic/io/warp10/warp10/1.2.12-rc2/:warp10-1.2.12-rc2.tar.gz"
-               role="button"><span class="fa fa-download"></span> Download 1.2.12-rc2</a>
-            <br/>
-            <a href="https://github.com/cityzendata/" target="_blank" class="github text-center"> <span
-              class="fa fa-fw fa-github  shine"></span><br/>Fork
-              Me</a></div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 align-middle">
+              <div class="text-center">
+                <a class="btn btn-success btn-lg"
+                   href="/#/nav/getting-started/"
+                   role="button"><span class="fa fa-download"></span> Download</a>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 align-middle">
+              <div class="text-center">
+                <a href="https://github.com/cityzendata/" target="_blank" class="github text-center"> <span
+                  class="fa fa-fw fa-github  shine"></span><br/>Fork
+                  Me</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="arrow"><span class="bounce fa fa-arrow-down fa-2x"></span></div>
@@ -420,7 +417,6 @@
               <li>Dedicated language</li>
               <li>5 frameworks</li>
               <li>800+ functions</li>
-              <li>Turing complete</li>
               <li>Fully extensible</li>
               <li>Sandboxed</li>
             </ul>
