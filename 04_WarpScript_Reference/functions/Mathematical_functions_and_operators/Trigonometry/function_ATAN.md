@@ -30,7 +30,7 @@ Stack:
 
 {% raw %}
 <warp10-warpscript-widget backend="{{backend}}"  exec-endpoint="{{execEndpoint}}">0.42 
-ASIN
+ATAN
 </warp10-warpscript-widget>
 {% endraw %}    
 
