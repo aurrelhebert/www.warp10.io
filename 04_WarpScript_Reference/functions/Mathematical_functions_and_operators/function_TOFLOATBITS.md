@@ -1,5 +1,5 @@
 ---
-title: "->DOUBLEBITS"
+title: "->FLOATBITS"
 layout: function
 desc: "Converts a double to a long value of the raw bits of its float representation."
 category: reference
