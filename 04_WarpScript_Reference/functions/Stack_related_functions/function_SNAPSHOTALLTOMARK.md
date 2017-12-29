@@ -15,6 +15,6 @@ The `SNAPSHOTALLTOMARK` function converts the content of the stack and current s
 {% raw %}
 <warp10-warpscript-widget backend="{{backend}}"  exec-endpoint="{{execEndpoint}}">42 MARK 'foo' NOW
 'foo' 'bar' STORE
-SNAPSHOTALL
+SNAPSHOTALLTOMARK
 </warp10-warpscript-widget>
 {% endraw %}      
