@@ -22,7 +22,7 @@ NEWGTS
 <%
   'i' STORE $i NaN NaN NaN $i 360.0 / 2 PI * * SIN ADDVALUE
 %>
-FORi
+FOR
 50 TLTTB
 </warp10-warpscript-widget>
 {% endraw %}        
