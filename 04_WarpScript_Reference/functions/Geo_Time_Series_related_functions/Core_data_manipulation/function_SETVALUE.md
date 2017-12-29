@@ -39,7 +39,7 @@ NaN  //latitude
 NaN  //longitude
 NaN  //elevation
 42   //value
-ADDVALUE
+SETVALUE
 ~~~
 
   Stack:
